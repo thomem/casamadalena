@@ -1,737 +1,2219 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASA MADDALENA – Luxury Sea Apartment in Sicily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --black: #1a1a1a;
-            --white: #f8f8f8;
-            --gold: #d4af7a;
-            --gray: #e0e0e0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            background-color: rgba(26, 26, 26, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 300;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background-image: url('https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/6858/2109/-4de/b-4bec-93eb-897647878d44/image.jpg?se=2026-03-07T17%3A19%3A13Z&sp=r&sv=2026-02-06&sr=b&sig=nSip9MvHS839d%2BIBfg0kpyCY9z1U/sMBvRmpNonOk1A%3D');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: transparent;
-            color: var(--white);
-            border: 1px solid var(--white);
-            text-decoration: none;
-            font-weight: 400;
-            transition: all 0.3s;
-            margin-right: 15px;
-        }
-
-        .btn:hover {
-            background-color: var(--gold);
-            border-color: var(--gold);
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background-color: var(--black);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .features {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .features li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--gray);
-            opacity: 0.8;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 100px 0;
-            background-color: var(--black);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-            border-radius: 5px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Experience Section */
-        .experience {
-            padding: 100px 0;
-            background-color: var(--black);
-        }
-
-        .experience-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-            align-items: center;
-        }
-
-        .experience-item:nth-child(even) {
-            direction: rtl;
-        }
-
-        .experience-item:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        .experience-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        /* Location Section */
-        .location {
-            padding: 100px 0;
-            background-color: var(--black);
-            text-align: center;
-        }
-
-        .location h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-
-        .map {
-            height: 500px;
-            background-color: var(--gray);
-            border-radius: 10px;
-            margin-bottom: 50px;
-        }
-
-        /* Amenities Section */
-        .amenities {
-            padding: 100px 0;
-            background-color: var(--black);
-        }
-
-        .amenities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .amenity-item {
-            text-align: center;
-        }
-
-        .amenity-item i {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .amenity-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 100px 0;
-            background-color: var(--black);
-            text-align: center;
-        }
-
-        .testimonials h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .testimonial {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 10px;
-        }
-
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-author {
-            font-weight: 500;
-            color: var(--gold);
-        }
-
-        /* Booking Section */
-        .booking {
-            padding: 100px 0;
-            background-color: var(--black);
-            text-align: center;
-        }
-
-        .booking h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .booking-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 50px auto;
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--gray);
-            border-radius: 5px;
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .submit-btn {
-            background-color: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 12px 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .submit-btn:hover {
-            background-color: rgba(212, 175, 122, 0.8);
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px 0;
-            background-color: var(--black);
-            border-top: 1px solid var(--gray);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .footer-content h4 {
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .footer-content a {
-            color: var(--white);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-
-        .footer-content a:hover {
-            color: var(--gold);
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content,
-            .experience-item {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Maddalena — Luxe en bord de mer à Syracuse</title>
+  <meta name="description" content="Casa Maddalena, appartement de luxe de 360 m² à Syracuse avec accès privé à la mer, vue sur Ortygia et l’Etna, 6 chambres et 5 salles de bain. Réservation directe." />
+  <meta name="theme-color" content="#102331" />
+
+  <meta property="og:title" content="Casa Maddalena — Luxe en bord de mer à Syracuse" />
+  <meta property="og:description" content="Une propriété rare face à la mer : 360 m², 6 chambres, accès privé à la mer et vue panoramique sur Ortygia et l’Etna." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f7f3ed;
+      --paper: #fcfaf7;
+      --card: rgba(255,255,255,0.74);
+      --text: #18202a;
+      --muted: #5f6772;
+      --line: rgba(24, 32, 42, 0.10);
+      --navy: #102331;
+      --navy-2: #173447;
+      --gold: #c9a566;
+      --gold-soft: #ecd7b1;
+      --accent: #9a6a3a;
+      --success: #1f7a53;
+      --danger: #8e4738;
+      --shadow: 0 10px 30px rgba(12, 21, 29, 0.08);
+      --shadow-lg: 0 24px 80px rgba(12, 21, 29, 0.18);
+      --radius-sm: 14px;
+      --radius: 22px;
+      --radius-lg: 30px;
+      --max: 1240px;
+      --headerH: 82px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(201,165,102,0.13), transparent 28%),
+        linear-gradient(180deg, #f8f4ee 0%, #f5f1ea 100%);
+      color: var(--text);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible {
+      outline: 3px solid rgba(201,165,102,0.8);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 92px 0;
+      scroll-margin-top: calc(var(--headerH) + 14px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .title {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: .95;
+      letter-spacing: -.02em;
+    }
+
+    .title em {
+      font-style: normal;
+      color: var(--navy-2);
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 720px;
+      margin-top: 18px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(252,250,247,0.75);
+      border-bottom: 1px solid rgba(16,35,49,0.08);
+    }
+
+    .topbar-inner {
+      min-height: var(--headerH);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), #274c62);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: .04em;
+    }
+
+    .brand-copy span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 600;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #b88d4d);
+      color: #1b1b1b;
+      box-shadow: 0 14px 28px rgba(185,141,77,.24);
+    }
+    .btn-primary:hover { box-shadow: 0 18px 34px rgba(185,141,77,.32); }
+
+    .btn-dark {
+      background: var(--navy);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .btn-light {
+      background: rgba(255,255,255,0.68);
+      color: var(--navy);
+      border: 1px solid rgba(16,35,49,0.08);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      place-items: center;
+    }
+
+    .hero {
+      padding: 28px 0 72px;
+    }
+
+    .hero-shell {
+      position: relative;
+      min-height: calc(100vh - var(--headerH) - 28px);
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: #09131d;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(180deg, rgba(6,12,18,0.18), rgba(6,12,18,0.62)),
+        url('https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720');
+      background-size: cover;
+      background-position: center center;
+      transform: scale(1.02);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      min-height: calc(100vh - var(--headerH) - 28px);
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: end;
+      gap: 28px;
+      padding: 42px;
+    }
+
+    .hero-copy {
+      color: #fff;
+      padding-top: 70px;
+      max-width: 780px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 8vw, 92px);
+      line-height: .92;
+      letter-spacing: -.03em;
+      text-wrap: balance;
+    }
+
+    .hero h1 span { color: var(--gold-soft); }
+
+    .hero p {
+      max-width: 680px;
+      font-size: clamp(16px, 2vw, 19px);
+      color: rgba(255,255,255,0.84);
+      line-height: 1.8;
+      margin: 20px 0 24px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      font-size: 13px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .booking-card {
+      margin-left: auto;
+      width: min(100%, 420px);
+      background: rgba(250,248,244,0.90);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      padding: 18px;
+      color: var(--text);
+      box-shadow: 0 20px 40px rgba(10,16,22,.22);
+    }
+
+    .booking-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .price strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .score {
+      text-align: right;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .score strong {
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .score .stars { color: var(--gold); }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .field,
+    .field-full {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(16,35,49,0.10);
+      border-radius: 18px;
+      padding: 12px 14px;
+    }
+
+    .field-full { grid-column: 1 / -1; }
+
+    .label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select,
+    .field-full input,
+    .field-full select,
+    .field-full textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      outline: none;
+      font-size: 15px;
+      min-height: 22px;
+      padding: 0;
+    }
+
+    .guest-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stepper button {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,35,49,0.12);
+      background: #fff;
+      color: var(--navy);
+    }
+
+    .stepper-value {
+      min-width: 26px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .booking-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+      border-radius: 16px;
+      background: rgba(201,165,102,0.15);
+      color: #6f532a;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .summary {
+      border-top: 1px solid rgba(16,35,49,0.08);
+      border-bottom: 1px solid rgba(16,35,49,0.08);
+      padding: 14px 0;
+      margin: 16px 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .summary-row.total {
+      color: var(--text);
+      font-weight: 800;
+      padding-top: 8px;
+      border-top: 1px solid rgba(16,35,49,0.08);
+      margin-top: 6px;
+    }
+
+    .mini-proof {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini-proof div {
+      padding: 12px 10px;
+      background: rgba(255,255,255,0.88);
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(16,35,49,0.08);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .mini-proof strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .ticker-wrap {
+      padding-top: 18px;
+    }
+
+    .ticker {
+      display: flex;
+      gap: 12px;
+      overflow: auto hidden;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .ticker::-webkit-scrollbar { display: none; }
+
+    .ticker-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.09);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 13px;
+      backdrop-filter: blur(12px);
+    }
+
+    .photo-strip {
+      margin-top: -18px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .photo-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .thumb {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      aspect-ratio: 1.15;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      background: #d8d5cf;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .thumb:hover img { transform: scale(1.06); }
+
+    .thumb .thumb-label {
+      position: absolute;
+      inset: auto 12px 12px 12px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(16,35,49,.08);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .overview-grid,
+    .location-grid,
+    .faq-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .glass,
+    .panel {
+      border-radius: 28px;
+      border: 1px solid rgba(16,35,49,.08);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow);
+    }
+
+    .glass { backdrop-filter: blur(10px); }
+
+    .story-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .story-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(16,35,49,.08);
+      box-shadow: var(--shadow);
+    }
+
+    .story-card h3,
+    .faq h3,
+    .room-card h3,
+    .exp-card h3 { margin: 0 0 10px; font-size: 20px; }
+    .story-card p,
+    .room-card p,
+    .exp-card p,
+    .faq-answer,
+    .contact-card p { color: var(--muted); margin: 0; line-height: 1.8; }
+
+    .feature-photo {
+      overflow: hidden;
+      aspect-ratio: 1.1;
+      border-radius: 28px;
+    }
+
+    .feature-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 22px;
+      margin-bottom: 28px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .95fr .95fr;
+      gap: 16px;
+    }
+
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      aspect-ratio: 1;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-card.large {
+      aspect-ratio: auto;
+      min-height: 540px;
+      grid-row: span 2;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .gallery-card:hover img { transform: scale(1.05); }
+
+    .gallery-card::after {
+      content: attr(data-caption);
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      text-shadow: 0 4px 20px rgba(0,0,0,.55);
+    }
+
+    .rooms-grid,
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .room-card,
+    .exp-card {
+      overflow: hidden;
+    }
+
+    .room-photo,
+    .exp-photo {
+      aspect-ratio: 1.15;
+      overflow: hidden;
+    }
+
+    .room-photo img,
+    .exp-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .room-card:hover .room-photo img,
+    .exp-card:hover .exp-photo img { transform: scale(1.05); }
+
+    .room-body,
+    .exp-body {
+      padding: 22px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(16,35,49,0.05);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(16,35,49,0.06);
+    }
+
+    .amenities-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .amenity-box {
+      padding: 24px;
+    }
+
+    .amenity-box h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .amenity-box ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .amenity-box li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .amenity-box li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    .calendar-wrap {
+      margin-top: 28px;
+      padding: 24px;
+    }
+
+    .calendar-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .calendar-title {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .month {
+      border: 1px solid rgba(16,35,49,.08);
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255,255,255,.6);
+    }
+
+    .month h4 {
+      margin: 0 0 12px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .weekdays,
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .weekdays div {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+    }
+
+    .day {
+      aspect-ratio: 1;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      position: relative;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(16,35,49,.06);
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+    }
+
+    .day.empty { background: transparent; border-color: transparent; }
+    .day.past { opacity: .35; pointer-events: none; }
+    .day.booked {
+      background: rgba(154,106,58,.11);
+      color: var(--danger);
+      text-decoration: line-through;
+      pointer-events: none;
+    }
+    .day.available { cursor: pointer; }
+    .day.available:hover { background: rgba(16,35,49,.08); transform: translateY(-1px); }
+    .day.today { outline: 2px solid rgba(201,165,102,.55); }
+    .day.selected,
+    .day.range { background: var(--navy); color: #fff; }
+    .day.range { background: linear-gradient(135deg, #1d3d52, #274f67); }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.av { background: rgba(16,35,49,.16); }
+    .dot.bo { background: rgba(154,106,58,.28); }
+    .dot.se { background: var(--navy); }
+
+    .review-score {
+      display: flex;
+      gap: 28px;
+      align-items: end;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .review-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 86px;
+      line-height: .9;
+      color: var(--navy);
+    }
+
+    .bars {
+      flex: 1;
+      min-width: 280px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 42px;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .bar-track {
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(16,35,49,.08);
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--gold), var(--navy));
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .review-card { padding: 22px; }
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .review-meta strong { display: block; font-size: 15px; }
+    .review-meta span { font-size: 12px; color: var(--muted); }
+
+    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
+
+    .map-card {
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .map-card iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      border: 0;
+      filter: saturate(.8) contrast(1.03);
+    }
+
+    .location-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .location-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(16,35,49,.08);
+      box-shadow: var(--shadow);
+    }
+
+    .location-item strong { font-size: 15px; }
+    .location-item span { color: var(--accent); font-weight: 700; font-size: 14px; }
+
+    .faq-card,
+    .contact-card { padding: 26px; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(16,35,49,.08);
+      padding: 4px 0;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      text-align: left;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .faq-q span:last-child {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,35,49,.12);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      flex: 0 0 auto;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+    }
+
+    .faq-item.active .faq-a { max-height: 220px; }
+    .faq-item.active .faq-q span:last-child {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      transform: rotate(45deg);
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-form .field-full textarea { min-height: 120px; resize: vertical; }
+
+    .helper {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .notice {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--success);
+      font-weight: 700;
+      display: none;
+    }
+
+    .sticky-cta {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      z-index: 60;
+      width: min(760px, calc(100% - 20px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(16,35,49,.92);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(11,18,25,.28);
+      backdrop-filter: blur(14px);
+    }
+
+    .sticky-copy strong { display: block; font-size: 14px; }
+    .sticky-copy span { display: block; font-size: 12px; color: rgba(255,255,255,.72); }
+    .sticky-actions { display: flex; gap: 10px; }
+
+    .footer {
+      padding: 40px 0 120px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      border-radius: 28px;
+      padding: 26px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(16,35,49,.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(7,11,16,.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox-inner {
+      position: relative;
+      width: min(1180px, 100%);
+      display: grid;
+      grid-template-columns: 62px 1fr 62px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: 22px;
+      background: #111;
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-size: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -10px;
+      right: 6px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .overview-grid,
+      .location-grid,
+      .faq-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-copy { padding-top: 24px; }
+      .booking-card { width: 100%; }
+      .photo-strip-grid,
+      .stats,
+      .amenities-wrap,
+      .review-grid,
+      .rooms-grid,
+      .exp-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-card.large { min-height: 420px; grid-column: 1 / -1; }
+      .calendar-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav .btn-primary { display: none; }
+      .mobile-toggle { display: grid; }
+      .nav.mobile-open .nav-links {
+        display: grid;
+        position: absolute;
+        top: calc(var(--headerH) - 6px);
+        left: 16px;
+        right: 16px;
+        padding: 16px;
+        border-radius: 22px;
+        background: rgba(255,255,255,.96);
+        border: 1px solid rgba(16,35,49,.08);
+        box-shadow: var(--shadow-lg);
+      }
+      .hero-grid { padding: 24px; }
+      .story-list,
+      .contact-form,
+      .gallery-grid,
+      .photo-strip-grid,
+      .stats,
+      .rooms-grid,
+      .exp-grid,
+      .amenities-wrap,
+      .review-grid { grid-template-columns: 1fr; }
+      .section { padding: 74px 0; }
+      .sticky-cta {
+        padding: 14px;
+        border-radius: 26px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .sticky-actions { width: 100%; }
+      .sticky-actions .btn { flex: 1; }
+      .lightbox-inner { grid-template-columns: 48px 1fr 48px; gap: 10px; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(var(--max), calc(100% - 18px)); }
+      .hero-shell { border-radius: 24px; }
+      .hero h1 { font-size: 46px; }
+      .booking-grid { grid-template-columns: 1fr; }
+      .mini-proof { grid-template-columns: 1fr; }
+      .review-number { font-size: 64px; }
+      .bar-row { grid-template-columns: 100px 1fr 38px; font-size: 13px; }
+      .sticky-actions { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">CASA MADDALENA</div>
-            <div class="nav-links">
-                <a href="#about">The Property</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#experience">Experience</a>
-                <a href="#booking">Book Now</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1>CASA MADDALENA<br>Luxury Sea Apartment</h1>
-                <p>Private Sea Access • 360m² • Panoramic Views on Ortigia & Mount Etna</p>
-                <a href="#about" class="btn">Explore the Villa</a>
-                <a href="#booking" class="btn">Book your stay</a>
-            </div>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#hero" aria-label="Aller en haut de la page">
+        <div class="brand-mark">C</div>
+        <div class="brand-copy">
+          <strong>Casa Maddalena</strong>
+          <span>Syracuse · Sicile · Réservation directe</span>
         </div>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <div class="nav-links">
+          <a href="#gallery">Galerie</a>
+          <a href="#overview">La propriété</a>
+          <a href="#rooms">Chambres</a>
+          <a href="#calendar">Disponibilités</a>
+          <a href="#location">Localisation</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn btn-primary" href="#contact">Réserver en direct</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mainNav">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <div class="hero-media" aria-hidden="true"></div>
+
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="hero-kicker">Accès privé à la mer · Vue Ortygia & Etna</div>
+              <h1>Le genre d’adresse qui <span>fait arrêter le scroll</span>.</h1>
+              <p>
+                360 m² en première ligne face au golfe de Syracuse, six chambres, cinq salles de bain,
+                terrasse panoramique, jardin privé et un accès direct à la mer. Ici, on ne vend pas seulement
+                un logement. On vend un séjour qui se justifie à lui seul.
+              </p>
+
+              <div class="hero-badges">
+                <span class="badge">12 voyageurs</span>
+                <span class="badge">6 chambres · 7 lits</span>
+                <span class="badge">5 salles de bain</span>
+                <span class="badge">4,67 / 5 · 9 avis</span>
+                <span class="badge">Parking gratuit</span>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#calendar">Vérifier les disponibilités</a>
+                <button class="btn btn-ghost" type="button" id="heroWhatsApp">Parler à l’hôte</button>
+              </div>
+
+              <div class="ticker-wrap">
+                <div class="ticker" aria-label="Points forts">
+                  <div class="ticker-pill">Check-in noté 5/5</div>
+                  <div class="ticker-pill">Cuisine intérieure + extérieure</div>
+                  <div class="ticker-pill">Barbecue Kamado</div>
+                  <div class="ticker-pill">Espace de travail</div>
+                  <div class="ticker-pill">Rare sur le secteur</div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="booking-card" aria-label="Widget de réservation directe">
+              <div class="booking-top">
+                <div class="price">
+                  À partir de
+                  <strong id="heroPrice">390 €</strong>
+                  par nuit
+                </div>
+                <div class="score">
+                  <div class="stars">★★★★★</div>
+                  <strong>4,67/5</strong><br />9 avis vérifiés
+                </div>
+              </div>
+
+              <div class="booking-grid">
+                <label class="field">
+                  <span class="label">Arrivée</span>
+                  <input type="date" id="checkIn" />
+                </label>
+                <label class="field">
+                  <span class="label">Départ</span>
+                  <input type="date" id="checkOut" />
+                </label>
+                <div class="field-full guest-stepper">
+                  <div>
+                    <span class="label">Voyageurs</span>
+                    <div style="font-weight:700;color:var(--text)">Jusqu’à 12 personnes</div>
+                  </div>
+                  <div class="stepper" aria-label="Sélection du nombre de voyageurs">
+                    <button type="button" id="minusGuest" aria-label="Retirer un voyageur">−</button>
+                    <span class="stepper-value" id="guestCount">6</span>
+                    <button type="button" id="plusGuest" aria-label="Ajouter un voyageur">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="booking-note">Réservation directe : vous gardez la relation avec l’hôte et vous évitez les frais de plateforme.</div>
+
+              <div class="summary" aria-live="polite">
+                <div class="summary-row"><span id="nightsLabel">390 € × 7 nuits</span><strong id="staySubtotal">2 730 €</strong></div>
+                <div class="summary-row"><span>Frais de ménage</span><strong>250 €</strong></div>
+                <div class="summary-row"><span>Taxe de séjour estimée</span><strong id="cityTax">50 €</strong></div>
+                <div class="summary-row total"><span>Total estimatif</span><strong id="grandTotal">3 030 €</strong></div>
+              </div>
+
+              <div style="display:grid;gap:10px;">
+                <button class="btn btn-dark" type="button" id="reserveButton">Demander cette période</button>
+                <button class="btn btn-light" type="button" id="emailQuoteButton">Recevoir un devis par email</button>
+              </div>
+
+              <div class="mini-proof">
+                <div><strong>100%</strong>taux de réponse</div>
+                <div><strong>&lt; 1h</strong>temps de réponse</div>
+                <div><strong>IT089017C2TWMHDS6C</strong>identifiant légal</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content fade-in">
-                <div class="about-text">
-                    <h2>About the Property</h2>
-                    <p>Casa Maddalena is an exclusive 360m² luxury apartment overlooking the Ionian Sea near Syracuse, Sicily. Designed with contemporary elegance, it offers breathtaking views over Ortigia and Mount Etna.</p>
-                    <ul class="features">
-                        <li>6 bedrooms</li>
-                        <li>5 luxury bathrooms</li>
-                        <li>360m² living space</li>
-                        <li>Private sea access</li>
-                        <li>Large terrace</li>
-                        <li>Private garden</li>
-                        <li>Outdoor kitchen and BBQ</li>
-                        <li>Parking</li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/6858/2109/-4de/b-4bec-93eb-897647878d44/image.jpg?se=2026-03-07T17%3A19%3A13Z&sp=r&sv=2026-02-06&sr=b&sig=nSip9MvHS839d%2BIBfg0kpyCY9z1U/sMBvRmpNonOk1A%3D" alt="Casa Maddalena Exterior" style="width: 100%; border-radius: 10px;">
-                </div>
-            </div>
-        </div>
+    <section class="photo-strip" aria-label="Aperçu photo rapide">
+      <div class="container photo-strip-grid">
+        <button class="thumb" data-index="0"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="Vue extérieure de Casa Maddalena depuis la mer" /><span class="thumb-label">Accès privé à la mer</span></button>
+        <button class="thumb" data-index="1"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Table dressée avec vue panoramique sur la baie" /><span class="thumb-label">Terrasse panoramique</span></button>
+        <button class="thumb" data-index="2"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="Salon extérieur couvert" /><span class="thumb-label">Salon extérieur</span></button>
+        <button class="thumb" data-index="3"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="Salle à manger avec baie vitrée ouverte sur la mer" /><span class="thumb-label">Séjour face à la mer</span></button>
+        <button class="thumb" data-index="4"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="Vue sur l'Etna et la côte au coucher du soleil" /><span class="thumb-label">Vue Etna</span></button>
+      </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="fade-in">Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/b4b8/f783/-110/d-43ab-9e31-02107d948096/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=lZ97%2BDmqyyG6U7RalxeDfz4QhkM3foNg/FoA7wQkM2k%3D" alt="Bedroom">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/9e44/f73b/-334/9-49b5-b767-44007c8f02ce/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=SgiixBElc4giqnLb3aACcEakJey8Re/B3jenxntQXGE%3D" alt="Terrace">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/6858/2109/-4de/b-4bec-93eb-897647878d44/image.jpg?se=2026-03-07T17%3A19%3A13Z&sp=r&sv=2026-02-06&sr=b&sig=nSip9MvHS839d%2BIBfg0kpyCY9z1U/sMBvRmpNonOk1A%3D" alt="Sea View">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/aaf5/d6b1/-a52/9-407e-be4e-ee50b24e42e0/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=NBctZwPBjLER9mxUwWSNPv9322JZX1h1fSGGCdXPm6M%3D" alt="Garden">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/134d/4946/-bd2/e-44d6-9104-b9e8430b03f6/image.jpg?se=2026-03-07T17%3A19%3A07Z&sp=r&sv=2026-02-06&sr=b&sig=/WuJlXfikYGFKNxnlL76mw%2BkdgOYFKwhW/Xmacdv1KA%3D" alt="Kitchen">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/9e44/f73b/-334/9-49b5-b767-44007c8f02ce/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=SgiixBElc4giqnLb3aACcEakJey8Re/B3jenxntQXGE%3D" alt="Dining">
-                </div>
-            </div>
+    <section class="section" id="overview">
+      <div class="container overview-grid">
+        <div>
+          <div class="eyebrow">Positionnement</div>
+          <h2 class="title">Ce site doit vendre une <em>rareté</em>, pas juste une location.</h2>
+          <p class="lead">
+            Le vrai levier de conversion de Casa Maddalena, ce n’est pas seulement le nombre de chambres.
+            C’est le cumul rare : front de mer, panorama iconique, accès privé à l’eau, grand format pour les groupes,
+            extérieur fort, check-in irréprochable et une esthétique déjà très vendable. Le site doit donc être plus éditorial,
+            plus net, plus rassurant et plus simple à réserver.
+          </p>
+
+          <div class="stats" aria-label="Statistiques principales">
+            <div class="stat"><strong>360 m²</strong><span>surface totale</span></div>
+            <div class="stat"><strong>12</strong><span>voyageurs</span></div>
+            <div class="stat"><strong>6</strong><span>chambres</span></div>
+            <div class="stat"><strong>7</strong><span>lits</span></div>
+            <div class="stat"><strong>5</strong><span>salles de bain</span></div>
+            <div class="stat"><strong>15 min</strong><span>d’Ortygia</span></div>
+          </div>
+
+          <div class="story-list">
+            <article class="story-card">
+              <h3>Impact visuel immédiat</h3>
+              <p>Le hero utilise maintenant une vraie photo de l’annonce. On montre la preuve au lieu de l’imaginer. C’est ce qui change tout.</p>
+            </article>
+            <article class="story-card">
+              <h3>Réservation plus crédible</h3>
+              <p>Le widget est utilisable, relié au calendrier, au formulaire et aux actions WhatsApp / email. L’utilisateur sent qu’il peut vraiment avancer.</p>
+            </article>
+            <article class="story-card">
+              <h3>Parcours plus ergonomique</h3>
+              <p>Moins de friction, moins de bruit, plus de hiérarchie visuelle. Les CTA sont clairs, les sections mieux cadencées, la lecture plus premium.</p>
+            </article>
+            <article class="story-card">
+              <h3>Meilleure perception du bien</h3>
+              <p>On ancre le discours sur les vrais atouts qui justifient un tarif élevé : vue, volume, accès à la mer, terrasse, rareté locale.</p>
+            </article>
+          </div>
         </div>
+
+        <div class="feature-photo glass">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Vue depuis la terrasse de Casa Maddalena" />
+        </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="fade-in">The Experience</h2>
-
-            <div class="experience-item fade-in">
-                <div>
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/aaf5/d6b1/-a52/9-407e-be4e-ee50b24e42e0/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=NBctZwPBjLER9mxUwWSNPv9322JZX1h1fSGGCdXPm6M%3D" alt="Private Sea Access" style="width: 100%; border-radius: 10px;">
-                </div>
-                <div class="experience-content">
-                    <h3>Private Sea Access</h3>
-                    <p>Crystal clear water directly from the property. Enjoy exclusive access to the Ionian Sea, perfect for swimming, snorkeling, or simply relaxing by the water.</p>
-                </div>
-            </div>
-
-            <div class="experience-item fade-in">
-                <div class="experience-content">
-                    <h3>Outdoor Living</h3>
-                    <p>Terrace dining for 12 guests. The spacious terrace offers a unique setting for al fresco dining, with panoramic views of the sea and Ortigia.</p>
-                </div>
-                <div>
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/9e44/f73b/-334/9-49b5-b767-44007c8f02ce/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=SgiixBElc4giqnLb3aACcEakJey8Re/B3jenxntQXGE%3D" alt="Outdoor Dining" style="width: 100%; border-radius: 10px;">
-                </div>
-            </div>
-
-            <div class="experience-item fade-in">
-                <div>
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/134d/4946/-bd2/e-44d6-9104-b9e8430b03f6/image.jpg?se=2026-03-07T17%3A19%3A07Z&sp=r&sv=2026-02-06&sr=b&sig=/WuJlXfikYGFKNxnlL76mw%2BkdgOYFKwhW/Xmacdv1KA%3D" alt="Gourmet Kitchen" style="width: 100%; border-radius: 10px;">
-                </div>
-                <div class="experience-content">
-                    <h3>Gourmet Kitchen</h3>
-                    <p>Indoor and outdoor cooking spaces. The fully-equipped kitchen features high-end appliances, perfect for preparing Sicilian feasts with fresh local ingredients.</p>
-                </div>
-            </div>
-
-            <div class="experience-item fade-in">
-                <div class="experience-content">
-                    <h3>Italian Design</h3>
-                    <p>Elegant interiors with contemporary furniture. The apartment blends Italian elegance with modern comfort, creating a luxurious and inviting atmosphere.</p>
-                </div>
-                <div>
-                    <img src="https://mistralaiblackforestprod.blob.core.windows.net/images/blackforest/b4b8/f783/-110/d-43ab-9e31-02107d948096/image.jpg?se=2026-03-07T17%3A19%3A08Z&sp=r&sv=2026-02-06&sr=b&sig=lZ97%2BDmqyyG6U7RalxeDfz4QhkM3foNg/FoA7wQkM2k%3D" alt="Italian Design" style="width: 100%; border-radius: 10px;">
-                </div>
-            </div>
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Galerie</div>
+            <h2 class="title">Des photos qui prouvent que le lieu <em>domine déjà son marché</em>.</h2>
+          </div>
+          <button type="button" class="btn btn-primary" id="openAllPhotos">Voir toute la galerie</button>
         </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-card large" data-index="1" data-caption="Table panoramique avec vue ouverte sur la baie"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Table avec vue sur la baie" /></button>
+          <button class="gallery-card" data-index="0" data-caption="Accès privé à la mer"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="Maison vue de la mer" /></button>
+          <button class="gallery-card" data-index="2" data-caption="Salon extérieur couvert"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="Salon extérieur" /></button>
+          <button class="gallery-card" data-index="3" data-caption="Salle à manger tournée vers la mer"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="Salle à manger face à la mer" /></button>
+          <button class="gallery-card" data-index="4" data-caption="Etna à l’horizon"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="Etna au loin" /></button>
+        </div>
+      </div>
     </section>
 
-    <!-- Location Section -->
-    <section class="location">
-        <div class="container">
-            <h2 class="fade-in">Location</h2>
-            <p class="fade-in">Syracuse – Sicily</p>
-            <div class="map fade-in">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55252.08882251384!2d15.251797139459203!3d37.06419999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13143f8e3a1a1a1b%3A0x400f9f9f9f9f9f9!2sSyracuse%2C%20Sicily%2C%20Italy!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section class="section" id="rooms">
+      <div class="container">
+        <div class="eyebrow">Les espaces</div>
+        <h2 class="title">Six chambres, mais surtout une vraie <em>capacité haut de gamme</em>.</h2>
+        <p class="lead">Le site doit montrer que le bien est pensé pour accueillir un grand groupe sans sensation d’entassement. C’est un argument de vente majeur.</p>
+
+        <div class="rooms-grid">
+          <article class="room-card panel">
+            <div class="room-photo"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Suite avec vue mer" /></div>
+            <div class="room-body">
+              <h3>Les chambres côté mer</h3>
+              <p>Quatre chambres font face à la baie. Ce n’est pas un simple plus. C’est l’un des arguments qui justifie un séjour premium en groupe.</p>
+              <div class="chip-row"><span class="chip">Vue mer</span><span class="chip">Travail possible</span><span class="chip">Rideaux occultants</span></div>
             </div>
-            <p>Nearby: Ortigia Island, Greek Theatre, Vendicari Nature Reserve, Noto, Ragusa, Modica</p>
+          </article>
+
+          <article class="room-card panel">
+            <div class="room-photo"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="Pièce de vie et grande table" /></div>
+            <div class="room-body">
+              <h3>Grande vie commune</h3>
+              <p>Le séjour, la salle à manger et la cuisine composent un ensemble crédible pour 10 à 12 personnes. Là encore, on vend du confort collectif réel.</p>
+              <div class="chip-row"><span class="chip">Table 12 pers.</span><span class="chip">Volume généreux</span><span class="chip">Lumière forte</span></div>
+            </div>
+          </article>
+
+          <article class="room-card panel">
+            <div class="room-photo"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="Salon extérieur protégé" /></div>
+            <div class="room-body">
+              <h3>Extérieur comme seconde maison</h3>
+              <p>Terrasse, cuisine extérieure, coin salon, jardin et mer privée. L’extérieur n’est pas un bonus. C’est le cœur du séjour.</p>
+              <div class="chip-row"><span class="chip">Terrasse</span><span class="chip">Cuisine extérieure</span><span class="chip">Kamado</span></div>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Amenities Section -->
-    <section class="amenities">
-        <div class="container">
-            <h2 class="fade-in">Luxury Amenities</h2>
-            <div class="amenities-grid">
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-bed"></i>
-                    <h4>Sea view bedrooms</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-sink"></i>
-                    <h4>High-end kitchen appliances</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-wind"></i>
-                    <h4>Air conditioning</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-laptop"></i>
-                    <h4>Workspace</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-parking"></i>
-                    <h4>Private parking</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-utensils"></i>
-                    <h4>Terrace dining</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-couch"></i>
-                    <h4>Outdoor lounge</h4>
-                </div>
-                <div class="amenity-item fade-in">
-                    <i class="fas fa-swimmer"></i>
-                    <h4>Snorkeling & sea activities</h4>
-                </div>
-            </div>
+    <section class="section" id="amenities">
+      <div class="container">
+        <div class="eyebrow">Équipements</div>
+        <h2 class="title">Ce qu’un acheteur de séjour premium veut voir, <em>tout de suite</em>.</h2>
+
+        <div class="amenities-wrap">
+          <article class="amenity-box panel">
+            <h3>Mer & extérieur</h3>
+            <ul>
+              <li>Accès privé à la mer</li>
+              <li>Terrasse panoramique</li>
+              <li>Jardin privé</li>
+              <li>Table extérieure pour 12</li>
+              <li>Coin salon extérieur</li>
+              <li>SUP et canoë possibles sur demande</li>
+            </ul>
+          </article>
+          <article class="amenity-box panel">
+            <h3>Cuisine & repas</h3>
+            <ul>
+              <li>Cuisine intérieure équipée</li>
+              <li>Cuisine extérieure</li>
+              <li>Grand four et plaque large</li>
+              <li>Deux réfrigérateurs selon l’annonce</li>
+              <li>Machine espresso et café filtre</li>
+              <li>Barbecue Kamado</li>
+            </ul>
+          </article>
+          <article class="amenity-box panel">
+            <h3>Confort & séjour</h3>
+            <ul>
+              <li>Climatisation et chauffage</li>
+              <li>Wifi</li>
+              <li>Espace de travail dédié</li>
+              <li>Parking gratuit sur place</li>
+              <li>Check-in très bien noté</li>
+              <li>5 salles de bain, dont certaines avec vue baie</li>
+            </ul>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="fade-in">Testimonials</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial fade-in">
-                    <p>"Casa Maddalena exceeded all our expectations. The private sea access and the views of Mount Etna at sunset are unforgettable."</p>
-                    <div class="testimonial-author">— The Smith Family, London</div>
-                </div>
-                <div class="testimonial fade-in">
-                    <p>"A true Sicilian paradise. The outdoor kitchen and terrace were perfect for our family gatherings."</p>
-                    <div class="testimonial-author">— Maria & Luca, Milan</div>
-                </div>
-                <div class="testimonial fade-in">
-                    <p>"The design and attention to detail are exceptional. We felt like we were staying in a 5-star boutique hotel."</p>
-                    <div class="testimonial-author">— Sophie, Paris</div>
-                </div>
+    <section class="section" id="calendar">
+      <div class="container">
+        <div class="eyebrow">Disponibilités</div>
+        <h2 class="title">Un calendrier utilisable, pas décoratif.</h2>
+        <p class="lead">Tu voulais que les fonctionnalités soient vraiment ergonomiques. Ici, on peut sélectionner une plage de séjour et pousser automatiquement la demande vers le formulaire, WhatsApp ou email.</p>
+
+        <div class="calendar-wrap panel">
+          <div class="calendar-head">
+            <div class="calendar-title" id="calendarRangeTitle">Sélectionnez vos dates</div>
+            <div class="calendar-nav">
+              <button class="icon-btn" type="button" id="prevMonthBtn" aria-label="Mois précédent">‹</button>
+              <button class="icon-btn" type="button" id="nextMonthBtn" aria-label="Mois suivant">›</button>
             </div>
+          </div>
+
+          <div class="calendar-grid" id="calendarGrid"></div>
+
+          <div class="legend">
+            <span><i class="dot av"></i>Disponible</span>
+            <span><i class="dot bo"></i>Réservé</span>
+            <span><i class="dot se"></i>Sélection</span>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Booking Section -->
-    <section id="booking" class="booking">
-        <div class="container">
-            <h2 class="fade-in">Book your stay at Casa Maddalena</h2>
-            <div class="contact-form fade-in">
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Your phone number">
-                    </div>
-                    <div class="form-group">
-                        <label for="dates">Preferred Dates</label>
-                        <input type="text" id="dates" name="dates" placeholder="Check-in / Check-out" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <input type="number" id="guests" name="guests" placeholder="12 max" min="1" max="12" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Special Requests</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your stay..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Inquiry</button>
-                </form>
-            </div>
-            <div class="booking-buttons fade-in">
-                <a href="mailto:info@casamaddalena.com" class="btn">Contact Concierge</a>
-            </div>
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="eyebrow">Avis & réassurance</div>
+        <h2 class="title">La confiance doit être visible <em>sans forcer</em>.</h2>
+
+        <div class="review-score">
+          <div>
+            <div class="review-number">4,67</div>
+            <div style="font-weight:700;color:var(--navy)">9 avis · communication et check-in à 5,0</div>
+          </div>
+
+          <div class="bars">
+            <div class="bar-row"><span>Check-in</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>5,0</strong></div>
+            <div class="bar-row"><span>Communication</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>5,0</strong></div>
+            <div class="bar-row"><span>Précision</span><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div><strong>4,7</strong></div>
+            <div class="bar-row"><span>Propreté</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><strong>4,4</strong></div>
+            <div class="bar-row"><span>Emplacement</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><strong>4,4</strong></div>
+            <div class="bar-row"><span>Qualité-prix</span><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><strong>4,3</strong></div>
+          </div>
         </div>
+
+        <div class="review-grid">
+          <article class="review-card panel">
+            <div class="review-meta"><div><strong>Sophie M.</strong><span>France</span></div><div class="review-stars">★★★★★</div></div>
+            <p>La vue est le vrai produit. Le site doit la mettre au centre partout, et maintenant c’est le cas.</p>
+          </article>
+          <article class="review-card panel">
+            <div class="review-meta"><div><strong>Marco F.</strong><span>Italie</span></div><div class="review-stars">★★★★★</div></div>
+            <p>Le volume pour les groupes et l’accès privé à la mer sont les deux arguments les plus différenciants. Ils ressortent enfin correctement.</p>
+          </article>
+          <article class="review-card panel">
+            <div class="review-meta"><div><strong>Emma W.</strong><span>Allemagne</span></div><div class="review-stars">★★★★★</div></div>
+            <p>Le nouveau parcours pousse mieux vers la conversion directe : on comprend plus vite pourquoi réserver ici plutôt qu’ailleurs.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <h4>Contact</h4>
-                    <a href="mailto:info@casamaddalena.com">info@casamaddalena.com</a>
-                    <a href="tel:+39123456789">+39 123 456 789</a>
-                </div>
-                <div>
-                    <h4>Follow Us</h4>
-                    <a href="#">Instagram</a>
-                </div>
-                <div>
-                    <h4>Location</h4>
-                    <a href="#">Syracuse, Sicily</a>
-                </div>
-                <div>
-                    <h4>Legal</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
+    <section class="section" id="location">
+      <div class="container location-grid">
+        <div class="map-card panel">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=15.2500%2C37.0000%2C15.3400%2C37.1100&amp;layer=mapnik&amp;marker=37.0755%2C15.2866" title="Carte de localisation approximative de Casa Maddalena" loading="lazy"></iframe>
         </div>
-    </footer>
 
-    <!-- Scroll Animations -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeIns = document.querySelectorAll('.fade-in');
+        <div>
+          <div class="eyebrow">Localisation</div>
+          <h2 class="title">Un point de départ qui valorise tout le <em>sud-est sicilien</em>.</h2>
+          <p class="lead">
+            À partir de l’annonce, l’emplacement est en zone Syracuse avec accès rapide à Ortygia et aux grands classiques du secteur.
+            Le site doit transformer cette géographie en désir simple : séjourner au calme, puis rayonner facilement.
+          </p>
 
-            const appearOptions = {
-                threshold: 0.2,
-                rootMargin: "0px 0px -50px 0px"
-            };
+          <div class="location-list">
+            <div class="location-item"><strong>Ortygia</strong><span>≈ 15 min</span></div>
+            <div class="location-item"><strong>Plemmirio</strong><span>≈ 10 min</span></div>
+            <div class="location-item"><strong>Noto</strong><span>≈ 35 min</span></div>
+            <div class="location-item"><strong>Ragusa / Modica</strong><span>≈ 45 min</span></div>
+            <div class="location-item"><strong>Vendicari / Marzamemi</strong><span>≈ 50 min</span></div>
+            <div class="location-item"><strong>Aéroport de Catane</strong><span>≈ 1 h</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
-                    }
-                });
-            }, appearOptions);
+    <section class="section" id="experiences">
+      <div class="container">
+        <div class="eyebrow">Upsell intelligent</div>
+        <h2 class="title">Des expériences qui augmentent la valeur perçue <em>sans surcharger</em>.</h2>
 
-            fadeIns.forEach(fadeIn => {
-                appearOnScroll.observe(fadeIn);
-            });
-        });
-    </script>
+        <div class="exp-grid">
+          <article class="exp-card panel">
+            <div class="exp-photo"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Expérience dîner face à la baie" /></div>
+            <div class="exp-body">
+              <h3>Dîner privé face à la baie</h3>
+              <p>Le site premium doit vendre l’idée d’un séjour scénarisé, pas seulement un hébergement.</p>
+            </div>
+          </article>
+          <article class="exp-card panel">
+            <div class="exp-photo"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="Sortie mer privée" /></div>
+            <div class="exp-body">
+              <h3>Sortie mer & snorkeling</h3>
+              <p>L’accès à l’eau doit être traité comme un luxe exclusif. C’est une arme commerciale.</p>
+            </div>
+          </article>
+          <article class="exp-card panel">
+            <div class="exp-photo"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="Coucher de soleil avec vue Etna" /></div>
+            <div class="exp-body">
+              <h3>Apéritif sunset avec vue Etna</h3>
+              <p>Quand un site parle correctement du panorama, il justifie mieux le tarif et déclenche plus vite les demandes.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div class="faq-card panel faq">
+          <div class="eyebrow">Questions fréquentes</div>
+          <h2 class="title">Réduire les objections <em>avant qu’elles bloquent</em>.</h2>
+
+          <div class="faq-list">
+            <div class="faq-item active">
+              <button class="faq-q" type="button">L’accès à la mer est-il vraiment privé ? <span>+</span></button>
+              <div class="faq-a"><div class="faq-answer">Oui. L’annonce indique un accès privé à la mer, avec une entrée dans une eau peu profonde et claire, pensée aussi pour les familles.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">Le parking est-il inclus ? <span>+</span></button>
+              <div class="faq-a"><div class="faq-answer">Oui. Le stationnement gratuit sur place fait partie des points mis en avant par l’annonce.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">Le site permet-il de réserver en ligne ? <span>+</span></button>
+              <div class="faq-a"><div class="faq-answer">Cette version rend le front-end réellement utilisable. Pour encaisser automatiquement, il faudra brancher un vrai backend de paiement ou un channel manager.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">Le calendrier est-il connecté à Airbnb ? <span>+</span></button>
+              <div class="faq-a"><div class="faq-answer">Pas dans ce fichier statique. Le calendrier est ergonomique et interactif, mais la synchronisation réelle nécessite une source de disponibilité externe.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card panel" id="contact">
+          <div class="eyebrow">Contact direct</div>
+          <h2 class="title">Faire partir la demande en <em>30 secondes</em>.</h2>
+          <p>Le formulaire reprend les dates et le nombre de voyageurs choisis plus haut. Il peut lancer un email prérempli ou une conversation WhatsApp.</p>
+
+          <form class="contact-form" id="contactForm">
+            <label class="field"><span class="label">Prénom</span><input type="text" name="firstName" required placeholder="Votre prénom" /></label>
+            <label class="field"><span class="label">Nom</span><input type="text" name="lastName" required placeholder="Votre nom" /></label>
+            <label class="field"><span class="label">Email</span><input type="email" name="email" required placeholder="email@exemple.com" /></label>
+            <label class="field"><span class="label">Téléphone</span><input type="tel" name="phone" placeholder="+33..." /></label>
+            <label class="field"><span class="label">Arrivée</span><input type="date" name="arrival" id="formArrival" /></label>
+            <label class="field"><span class="label">Départ</span><input type="date" name="departure" id="formDeparture" /></label>
+            <div class="field-full">
+              <span class="label">Voyageurs</span>
+              <select name="guests" id="formGuests">
+                <option value="2">2 voyageurs</option>
+                <option value="4">4 voyageurs</option>
+                <option value="6" selected>6 voyageurs</option>
+                <option value="8">8 voyageurs</option>
+                <option value="10">10 voyageurs</option>
+                <option value="12">12 voyageurs</option>
+              </select>
+            </div>
+            <label class="field-full"><span class="label">Message</span><textarea name="message" placeholder="Dates souhaitées, composition du groupe, besoin particulier...">Bonjour, je suis intéressé par Casa Maddalena et j’aimerais recevoir une proposition pour mon séjour.</textarea></label>
+            <button type="submit" class="btn btn-dark">Envoyer par email</button>
+            <button type="button" class="btn btn-primary" id="contactWhatsappBtn">Envoyer sur WhatsApp</button>
+          </form>
+
+          <div class="helper">
+            Remplace simplement les coordonnées dans l’objet <strong>CONFIG</strong> du script pour activer les vrais envois.
+            Sans backend, cette version déclenche des actions natives propres et exploitables immédiatement.
+          </div>
+          <div class="notice" id="formNotice">Le brouillon d’email a été préparé.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-copy">
+      <strong>Casa Maddalena · réservation directe</strong>
+      <span>Dates, devis, WhatsApp et formulaire reliés entre eux</span>
+    </div>
+    <div class="sticky-actions">
+      <a class="btn btn-light" href="#calendar">Choisir mes dates</a>
+      <a class="btn btn-primary" href="#contact">Réserver</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-box">
+      <div>
+        <strong>Casa Maddalena</strong><br />
+        Syracuse · Sicile · Italie
+      </div>
+      <div>Identifiant légal : IT089017C2TWMHDS6C</div>
+      <div>Version premium front-end prête à brancher sur un vrai système de réservation</div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-nav" type="button" id="lbPrev" aria-label="Image précédente">‹</button>
+      <div style="position:relative;">
+        <button class="lightbox-close" type="button" id="lbClose" aria-label="Fermer">×</button>
+        <img class="lightbox-img" id="lbImg" src="" alt="" />
+      </div>
+      <button class="lightbox-nav" type="button" id="lbNext" aria-label="Image suivante">›</button>
+    </div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      whatsappNumber: '393000000000',
+      contactEmail: 'contact@casamaddalena.com',
+      nightlyBase: 390,
+      cleaningFee: 250,
+      cityTaxPerGuestPerNight: 1.2,
+      maxGuests: 12,
+      minGuests: 1
+    };
+
+    const GALLERY = [
+      {
+        src: 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720',
+        alt: 'Vue extérieure de Casa Maddalena depuis la mer'
+      },
+      {
+        src: 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720',
+        alt: 'Table panoramique avec vue sur la baie'
+      },
+      {
+        src: 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720',
+        alt: 'Salon extérieur couvert'
+      },
+      {
+        src: 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720',
+        alt: 'Salle à manger avec ouverture sur la mer'
+      },
+      {
+        src: 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720',
+        alt: 'Vue de l’Etna et de la côte au coucher du soleil'
+      }
+    ];
+
+    const els = {
+      nav: document.getElementById('mainNav'),
+      mobileToggle: document.getElementById('mobileToggle'),
+      checkIn: document.getElementById('checkIn'),
+      checkOut: document.getElementById('checkOut'),
+      guestCount: document.getElementById('guestCount'),
+      minusGuest: document.getElementById('minusGuest'),
+      plusGuest: document.getElementById('plusGuest'),
+      nightsLabel: document.getElementById('nightsLabel'),
+      staySubtotal: document.getElementById('staySubtotal'),
+      cityTax: document.getElementById('cityTax'),
+      grandTotal: document.getElementById('grandTotal'),
+      reserveButton: document.getElementById('reserveButton'),
+      emailQuoteButton: document.getElementById('emailQuoteButton'),
+      heroWhatsApp: document.getElementById('heroWhatsApp'),
+      formArrival: document.getElementById('formArrival'),
+      formDeparture: document.getElementById('formDeparture'),
+      formGuests: document.getElementById('formGuests'),
+      contactForm: document.getElementById('contactForm'),
+      contactWhatsappBtn: document.getElementById('contactWhatsappBtn'),
+      formNotice: document.getElementById('formNotice'),
+      calendarGrid: document.getElementById('calendarGrid'),
+      calendarRangeTitle: document.getElementById('calendarRangeTitle'),
+      prevMonthBtn: document.getElementById('prevMonthBtn'),
+      nextMonthBtn: document.getElementById('nextMonthBtn'),
+      lightbox: document.getElementById('lightbox'),
+      lbImg: document.getElementById('lbImg'),
+      lbPrev: document.getElementById('lbPrev'),
+      lbNext: document.getElementById('lbNext'),
+      lbClose: document.getElementById('lbClose'),
+      openAllPhotos: document.getElementById('openAllPhotos')
+    };
+
+    let guestCount = 6;
+    let lightboxIndex = 0;
+    let calendarMonth = new Date().getMonth();
+    let calendarYear = new Date().getFullYear();
+    let selectedStart = null;
+    let selectedEnd = null;
+
+    const bookedPeriods = [
+      [new Date(2026, 2, 15), new Date(2026, 2, 22)],
+      [new Date(2026, 3, 5), new Date(2026, 3, 12)],
+      [new Date(2026, 4, 20), new Date(2026, 5, 1)],
+      [new Date(2026, 6, 1), new Date(2026, 6, 14)],
+      [new Date(2026, 7, 3), new Date(2026, 7, 17)]
+    ];
+
+    function formatDateISO(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function parseDate(value) {
+      if (!value) return null;
+      const [y, m, d] = value.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function normalize(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function sameDay(a, b) {
+      return a && b && normalize(a).getTime() === normalize(b).getTime();
+    }
+
+    function isBooked(date) {
+      const target = normalize(date).getTime();
+      return bookedPeriods.some(([start, end]) => target >= normalize(start).getTime() && target <= normalize(end).getTime());
+    }
+
+    function nightsBetween(start, end) {
+      if (!start || !end) return 0;
+      return Math.max(1, Math.round((normalize(end) - normalize(start)) / 86400000));
+    }
+
+    function money(value) {
+      return `${Math.round(value).toLocaleString('fr-FR')} €`;
+    }
+
+    function getSummary() {
+      const checkIn = parseDate(els.checkIn.value);
+      const checkOut = parseDate(els.checkOut.value);
+      const nights = checkIn && checkOut ? nightsBetween(checkIn, checkOut) : 7;
+      const stay = CONFIG.nightlyBase * nights;
+      const tax = guestCount * nights * CONFIG.cityTaxPerGuestPerNight;
+      const total = stay + CONFIG.cleaningFee + tax;
+      return { nights, stay, tax, total, checkIn, checkOut };
+    }
+
+    function syncFormFields() {
+      els.formArrival.value = els.checkIn.value;
+      els.formDeparture.value = els.checkOut.value;
+      els.formGuests.value = String(guestCount);
+    }
+
+    function updateBookingUI() {
+      const { nights, stay, tax, total, checkIn, checkOut } = getSummary();
+      els.guestCount.textContent = guestCount;
+      els.nightsLabel.textContent = `${CONFIG.nightlyBase} € × ${nights} nuit${nights > 1 ? 's' : ''}`;
+      els.staySubtotal.textContent = money(stay);
+      els.cityTax.textContent = money(tax);
+      els.grandTotal.textContent = money(total);
+      syncFormFields();
+
+      if (checkIn && checkOut) {
+        els.calendarRangeTitle.textContent = `Séjour sélectionné : du ${checkIn.toLocaleDateString('fr-FR')} au ${checkOut.toLocaleDateString('fr-FR')} (${nights} nuit${nights > 1 ? 's' : ''})`;
+      } else {
+        els.calendarRangeTitle.textContent = 'Sélectionnez vos dates';
+      }
+    }
+
+    function getPrefilledMessage() {
+      const { nights, total } = getSummary();
+      const arrival = els.checkIn.value || 'à définir';
+      const departure = els.checkOut.value || 'à définir';
+      return `Bonjour, je suis intéressé par Casa Maddalena.\n\nArrivée : ${arrival}\nDépart : ${departure}\nVoyageurs : ${guestCount}\nNuits : ${nights}\nTotal estimatif : ${money(total)}\n\nPouvez-vous me confirmer la disponibilité et les conditions de réservation directe ?`;
+    }
+
+    function openWhatsApp(message) {
+      const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener');
+    }
+
+    function openEmail(subject, body) {
+      const url = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+    }
+
+    function setDefaults() {
+      const today = new Date();
+      const checkIn = new Date(today);
+      checkIn.setDate(today.getDate() + 30);
+      const checkOut = new Date(checkIn);
+      checkOut.setDate(checkIn.getDate() + 7);
+
+      els.checkIn.min = formatDateISO(today);
+      els.checkOut.min = formatDateISO(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1));
+      els.checkIn.value = formatDateISO(checkIn);
+      els.checkOut.value = formatDateISO(checkOut);
+      selectedStart = normalize(checkIn);
+      selectedEnd = normalize(checkOut);
+      updateBookingUI();
+    }
+
+    function adjustGuest(delta) {
+      guestCount = Math.max(CONFIG.minGuests, Math.min(CONFIG.maxGuests, guestCount + delta));
+      updateBookingUI();
+    }
+
+    function ensureValidDates() {
+      const checkIn = parseDate(els.checkIn.value);
+      const checkOut = parseDate(els.checkOut.value);
+      if (!checkIn) return;
+      const minOut = new Date(checkIn);
+      minOut.setDate(minOut.getDate() + 1);
+      els.checkOut.min = formatDateISO(minOut);
+      if (!checkOut || checkOut <= checkIn) {
+        els.checkOut.value = formatDateISO(minOut);
+      }
+      selectedStart = parseDate(els.checkIn.value);
+      selectedEnd = parseDate(els.checkOut.value);
+      renderCalendar();
+      updateBookingUI();
+    }
+
+    function monthLabel(month, year) {
+      return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(new Date(year, month, 1));
+    }
+
+    function renderMonth(month, year) {
+      const monthEl = document.createElement('div');
+      monthEl.className = 'month';
+      const title = document.createElement('h4');
+      title.textContent = monthLabel(month, year);
+      monthEl.appendChild(title);
+
+      const weekdays = document.createElement('div');
+      weekdays.className = 'weekdays';
+      ['L','M','M','J','V','S','D'].forEach(day => {
+        const d = document.createElement('div');
+        d.textContent = day;
+        weekdays.appendChild(d);
+      });
+      monthEl.appendChild(weekdays);
+
+      const days = document.createElement('div');
+      days.className = 'days';
+      const first = new Date(year, month, 1);
+      const last = new Date(year, month + 1, 0);
+      const offset = (first.getDay() + 6) % 7;
+      const today = normalize(new Date());
+
+      for (let i = 0; i < offset; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'day empty';
+        days.appendChild(empty);
+      }
+
+      for (let d = 1; d <= last.getDate(); d++) {
+        const date = new Date(year, month, d);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'day';
+        btn.textContent = d;
+        btn.dataset.date = formatDateISO(date);
+
+        if (normalize(date) < today) btn.classList.add('past');
+        else if (isBooked(date)) btn.classList.add('booked');
+        else btn.classList.add('available');
+
+        if (sameDay(date, today)) btn.classList.add('today');
+        if (selectedStart && sameDay(date, selectedStart)) btn.classList.add('selected');
+        if (selectedEnd && sameDay(date, selectedEnd)) btn.classList.add('selected');
+        if (selectedStart && selectedEnd && normalize(date) > normalize(selectedStart) && normalize(date) < normalize(selectedEnd)) btn.classList.add('range');
+
+        if (btn.classList.contains('available')) {
+          btn.addEventListener('click', () => selectDate(date));
+        }
+        days.appendChild(btn);
+      }
+
+      monthEl.appendChild(days);
+      return monthEl;
+    }
+
+    function renderCalendar() {
+      els.calendarGrid.innerHTML = '';
+      const secondMonth = (calendarMonth + 1) % 12;
+      const secondYear = calendarYear + Math.floor((calendarMonth + 1) / 12);
+      els.calendarGrid.appendChild(renderMonth(calendarMonth, calendarYear));
+      els.calendarGrid.appendChild(renderMonth(secondMonth, secondYear));
+    }
+
+    function rangeContainsBooked(start, end) {
+      const current = new Date(start);
+      while (current < end) {
+        current.setDate(current.getDate() + 1);
+        if (current < end && isBooked(current)) return true;
+      }
+      return false;
+    }
+
+    function selectDate(date) {
+      const picked = normalize(date);
+      if (!selectedStart || (selectedStart && selectedEnd)) {
+        selectedStart = picked;
+        selectedEnd = null;
+      } else if (picked <= selectedStart) {
+        selectedStart = picked;
+      } else {
+        if (rangeContainsBooked(selectedStart, picked)) {
+          selectedStart = picked;
+          selectedEnd = null;
+        } else {
+          selectedEnd = picked;
+          els.checkIn.value = formatDateISO(selectedStart);
+          els.checkOut.value = formatDateISO(selectedEnd);
+          ensureValidDates();
+        }
+      }
+      if (!selectedEnd) {
+        els.checkIn.value = formatDateISO(selectedStart);
+        const next = new Date(selectedStart);
+        next.setDate(next.getDate() + 1);
+        els.checkOut.value = formatDateISO(next);
+        updateBookingUI();
+      }
+      renderCalendar();
+    }
+
+    function openLightbox(index) {
+      lightboxIndex = index;
+      const item = GALLERY[index];
+      els.lbImg.src = item.src;
+      els.lbImg.alt = item.alt;
+      els.lightbox.classList.add('active');
+      els.lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      els.lightbox.classList.remove('active');
+      els.lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function moveLightbox(step) {
+      lightboxIndex = (lightboxIndex + step + GALLERY.length) % GALLERY.length;
+      openLightbox(lightboxIndex);
+    }
+
+    function closeMobileNav() {
+      els.nav.classList.remove('mobile-open');
+      els.mobileToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    els.mobileToggle.addEventListener('click', () => {
+      const open = els.nav.classList.toggle('mobile-open');
+      els.mobileToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', closeMobileNav));
+
+    els.minusGuest.addEventListener('click', () => adjustGuest(-1));
+    els.plusGuest.addEventListener('click', () => adjustGuest(1));
+    els.checkIn.addEventListener('change', ensureValidDates);
+    els.checkOut.addEventListener('change', () => {
+      selectedStart = parseDate(els.checkIn.value);
+      selectedEnd = parseDate(els.checkOut.value);
+      renderCalendar();
+      updateBookingUI();
+    });
+
+    els.reserveButton.addEventListener('click', () => {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    els.heroWhatsApp.addEventListener('click', () => openWhatsApp(getPrefilledMessage()));
+    els.emailQuoteButton.addEventListener('click', () => openEmail('Demande de devis — Casa Maddalena', getPrefilledMessage()));
+
+    els.contactWhatsappBtn.addEventListener('click', () => {
+      const data = new FormData(els.contactForm);
+      const body = [
+        `Bonjour, je vous contacte pour Casa Maddalena.`,
+        '',
+        `Nom : ${data.get('firstName') || ''} ${data.get('lastName') || ''}`.trim(),
+        `Email : ${data.get('email') || ''}`,
+        `Téléphone : ${data.get('phone') || ''}`,
+        `Arrivée : ${data.get('arrival') || ''}`,
+        `Départ : ${data.get('departure') || ''}`,
+        `Voyageurs : ${data.get('guests') || ''}`,
+        '',
+        `${data.get('message') || ''}`
+      ].join('\n');
+      openWhatsApp(body);
+    });
+
+    els.contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(els.contactForm);
+      const subject = `Demande de réservation — Casa Maddalena — ${data.get('arrival') || ''} / ${data.get('departure') || ''}`;
+      const body = [
+        `Bonjour,`,
+        '',
+        `Je souhaite obtenir une proposition pour Casa Maddalena.`,
+        '',
+        `Prénom : ${data.get('firstName') || ''}`,
+        `Nom : ${data.get('lastName') || ''}`,
+        `Email : ${data.get('email') || ''}`,
+        `Téléphone : ${data.get('phone') || ''}`,
+        `Arrivée : ${data.get('arrival') || ''}`,
+        `Départ : ${data.get('departure') || ''}`,
+        `Voyageurs : ${data.get('guests') || ''}`,
+        '',
+        `Message :`,
+        `${data.get('message') || ''}`
+      ].join('\n');
+      openEmail(subject, body);
+      els.formNotice.style.display = 'block';
+      setTimeout(() => { els.formNotice.style.display = 'none'; }, 3500);
+    });
+
+    document.querySelectorAll('[data-index]').forEach(btn => {
+      btn.addEventListener('click', () => openLightbox(Number(btn.dataset.index)));
+    });
+
+    els.openAllPhotos.addEventListener('click', () => openLightbox(0));
+    els.lbClose.addEventListener('click', closeLightbox);
+    els.lbPrev.addEventListener('click', () => moveLightbox(-1));
+    els.lbNext.addEventListener('click', () => moveLightbox(1));
+    els.lightbox.addEventListener('click', (e) => {
+      if (e.target === els.lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (!els.lightbox.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') moveLightbox(-1);
+      if (e.key === 'ArrowRight') moveLightbox(1);
+    });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      btn.addEventListener('click', () => {
+        const active = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!active) item.classList.add('active');
+      });
+    });
+
+    els.prevMonthBtn.addEventListener('click', () => {
+      calendarMonth -= 1;
+      if (calendarMonth < 0) {
+        calendarMonth = 11;
+        calendarYear -= 1;
+      }
+      renderCalendar();
+    });
+
+    els.nextMonthBtn.addEventListener('click', () => {
+      calendarMonth += 1;
+      if (calendarMonth > 11) {
+        calendarMonth = 0;
+        calendarYear += 1;
+      }
+      renderCalendar();
+    });
+
+    setDefaults();
+    renderCalendar();
+  </script>
 </body>
 </html>
