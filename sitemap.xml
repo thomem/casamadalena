@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.casamaddalena.com/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.casamaddalena.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.casamaddalena.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.casamaddalena.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casamaddalena.com/fr/"/>
+  </url>
+  <url><loc>https://www.casamaddalena.com/en/</loc></url>
+  <url><loc>https://www.casamaddalena.com/it/</loc></url>
+  <url><loc>https://www.casamaddalena.com/fr/villa-luxe-syracuse/</loc></url>
+  <url><loc>https://www.casamaddalena.com/fr/maison-bord-de-mer-syracuse/</loc></url>
+</urlset>
