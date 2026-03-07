@@ -1,396 +1,2165 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Maddalena · Luxe face à la mer · Syracuse</title>
-    <!-- Google Fonts + Leaflet (carte légère) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        /* RESET & VARIABLES */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --creme: #F8F5F0;
-            --mer: #1B4A6B;
-            --terracotta: #C4622D;
-            --or: #D4A843;
-            --text: #1A1A18;
-            --gris-doux: #e5e2db;
-            --ombre: 0 15px 40px -15px rgba(0,0,0,0.18);
-            --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.15, 1);
-        }
-        body {
-            font-family: 'Nunito Sans', sans-serif;
-            background-color: var(--creme);
-            color: var(--text);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
-        /* texture de fond subtile */
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.02"/></svg>');
-            pointer-events: none; z-index: 9999; opacity: 0.25;
-        }
-        /* progress bar */
-        #progress-bar {
-            position: fixed; top: 0; left: 0; height: 3px; background: var(--or);
-            width: 0%; z-index: 10000; transition: width 0.1s; box-shadow: 0 0 10px var(--or);
-        }
-        /* sticky navbar */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 16px 32px;
-            display: flex; align-items: center; justify-content: space-between;
-            z-index: 1000; transition: 0.25s; background: transparent; color: white;
-        }
-        .navbar.scrolled { background: var(--creme); color: var(--text); box-shadow: 0 6px 18px rgba(0,0,0,0.05); }
-        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.5px; }
-        .nav-links { display: flex; gap: 2rem; font-weight: 600; }
-        .nav-links a { color: inherit; text-decoration: none; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid transparent; padding-bottom: 4px; transition: border-color 0.2s; }
-        .nav-links a:hover { border-bottom-color: var(--or); }
-        .nav-cta { background: var(--or); padding: 10px 22px; border-radius: 40px; color: var(--text); font-weight: 700; text-decoration: none; font-size: 0.9rem; }
-        /* whatsapp float + back to top */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); z-index: 999; animation: pulse 2s infinite;
-            transition: transform 0.2s; color: white; font-size: 30px;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        .back-top { position: fixed; bottom: 100px; right: 30px; background: var(--text); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 998; cursor: pointer; }
-        .back-top.show { opacity: 0.8; pointer-events: auto; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-        /* hero */
-        .hero {
-            height: 100vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg') center/cover no-repeat;
-            display: flex; align-items: flex-end; justify-content: flex-start; padding: 0 8% 10%;
-            color: white; position: relative;
-        }
-        .hero-content { max-width: 800px; }
-        .hero h1 { font-size: clamp(3.5rem, 12vw, 7rem); line-height: 1; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .hero-tagline { font-size: 1.5rem; font-weight: 300; margin: 1rem 0; font-family: 'Nunito Sans'; }
-        .marquee-bandeau {
-            background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); padding: 12px 24px; border-radius: 60px;
-            display: inline-block; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.25);
-            font-weight: 600; white-space: nowrap; overflow: hidden; animation: scrollBanner 10s linear infinite;
-        }
-        @keyframes scrollBanner { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        .btn-or {
-            background: var(--or); border: none; padding: 16px 42px; border-radius: 50px; font-weight: 700;
-            color: var(--text); font-size: 1.2rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 10px 20px -5px rgba(212,168,67,0.4);
-            text-decoration: none; display: inline-block;
-        }
-        .btn-or:hover { background: #c4953a; transform: translateY(-2px); }
-        /* sections génériques */
-        section { padding: 80px 0; }
-        .section-title { font-size: 3rem; margin-bottom: 2rem; position: relative; display: inline-block; }
-        .section-title:after { content: ''; position: absolute; bottom: -10px; left: 0; width: 80px; height: 3px; background: var(--or); }
-        /* gallery mosaic */
-        .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; height: 500px; }
-        .gallery-item { overflow: hidden; border-radius: 8px; cursor: pointer; position: relative; box-shadow: var(--ombre); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-        .gallery-item:hover img { transform: scale(1.04); }
-        .gallery-large { grid-row: span 2; }
-        .gallery-small { grid-column: span 1; }
-        .btn-gallery { margin-top: 24px; background: none; border: 1px solid var(--mer); padding: 14px 32px; border-radius: 40px; font-weight: 600; color: var(--mer); }
-        /* bande chiffres clés */
-        .key-numbers { display: flex; justify-content: space-between; flex-wrap: wrap; background: white; border-radius: 60px; padding: 32px 48px; box-shadow: var(--ombre); margin: 40px 0; }
-        .key-item { text-align: center; font-size: 1.2rem; }
-        .key-item strong { font-size: 2.2rem; font-family: 'Cormorant Garamond'; display: block; color: var(--mer); }
-        /* 2 colonnes description */
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .accordion-item { margin: 20px 0; border-bottom: 1px solid var(--gris-doux); padding-bottom: 16px; }
-        .accordion-title { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.3rem; cursor: pointer; font-family: 'Cormorant Garamond'; }
-        .accordion-content { max-height: 0; overflow: hidden; transition: 0.4s; color: #3a3a3a; }
-        .accordion-content.show { max-height: 200px; margin-top: 16px; }
-        /* slider chambres */
-        .chambres-slider { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; scroll-snap-type: x mandatory; }
-        .chambre-card { min-width: 280px; background: white; border-radius: 20px; padding: 16px; box-shadow: var(--ombre); scroll-snap-align: start; }
-        .chambre-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
-        .chambre-card h4 { font-size: 1.8rem; }
-        /* grid équipements */
-        .equip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 32px; margin: 40px 0; }
-        .equip-cat { font-weight: 700; color: var(--mer); margin-top: 32px; grid-column: 1 / -1; }
-        .equip-item { display: flex; gap: 12px; align-items: center; }
-        .equip-icon { font-size: 1.8rem; }
-        /* booking sidebar simulation (flex sur desktop) */
-        .booking-layout { display: flex; gap: 40px; align-items: flex-start; }
-        .booking-main { flex: 2; }
-        .booking-sidebar { flex: 1; position: sticky; top: 100px; background: white; border-radius: 28px; padding: 28px; box-shadow: var(--ombre); }
-        .price-line { font-size: 2rem; font-weight: 700; }
-        .date-picker { display: flex; gap: 10px; margin: 20px 0; }
-        .date-picker input { width: 50%; padding: 12px; border: 1px solid var(--gris-doux); border-radius: 40px; }
-        .total { border-top: 2px solid var(--gris-doux); margin-top: 20px; padding-top: 20px; display: flex; justify-content: space-between; font-weight: 700; }
-        /* avis */
-        .rating-breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 30px 0; }
-        .rating-bar { display: flex; align-items: center; gap: 12px; }
-        .bar-fill { height: 8px; background: var(--or); border-radius: 20px; }
-        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-        .testimonial-card { background: white; border-radius: 20px; padding: 24px; box-shadow: var(--ombre); }
-        /* carte */
-        #map { height: 350px; border-radius: 28px; margin: 40px 0; z-index: 1; }
-        /* footer */
-        footer { background: var(--text); color: white; padding: 60px 32px; border-radius: 60px 60px 0 0; margin-top: 60px; }
-        /* animations fade-in */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        /* lightbox simple */
-        .lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; }
-        .lightbox img { max-width: 90vw; max-height: 90vh; }
-        .lightbox.show { display: flex; }
-        /* popup exit */
-        .exit-popup { position: fixed; bottom: 20px; left: 20px; background: white; padding: 24px; border-radius: 32px; box-shadow: 0 25px 50px -10px black; max-width: 320px; z-index: 10001; display: none; }
-        .exit-popup.show { display: block; animation: slideUp 0.4s; }
-        /* responsive */
-        @media (max-width: 1000px) { .booking-layout { flex-direction: column; } .two-col { grid-template-columns: 1fr; } .testimonial-grid { grid-template-columns: 1fr; } }
-        /* divers */
-        .badge-confiance { background: #e9f0f5; padding: 10px 20px; border-radius: 40px; font-size: 0.9rem; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Maddalena | Appartement de luxe face à la mer à Syracuse, Sicile</title>
+  <meta name="description" content="Casa Maddalena, appartement de luxe de 360 m² à Syracuse en Sicile : accès privé à la mer, vue panoramique sur Ortygia et l’Etna, 6 chambres, terrasse, jardin, parking privé et réservation directe sécurisée." />
+  <meta name="keywords" content="location luxe Syracuse, appartement luxe Sicile bord de mer, location vacances Ortigia vue mer, appartement luxe Syracuse accès mer, maison vacances premium Sicile" />
+  <meta name="author" content="Casa Maddalena" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Casa Maddalena | Appartement de luxe face à la mer à Syracuse" />
+  <meta property="og:description" content="Une adresse rare suspendue entre mer, lumière et horizon. Vue sur Ortygia, le golfe de Syracuse et l’Etna. Réservation directe sécurisée." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Casa Maddalena" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Casa Maddalena | Appartement de luxe face à la mer à Syracuse" />
+  <meta name="twitter:description" content="Appartement de luxe de 360 m² à Syracuse avec accès privé à la mer, terrasse, jardin et vue panoramique exceptionnelle." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LodgingBusiness", "VacationRental"],
+        "name": "Casa Maddalena",
+        "description": "Appartement de luxe de 360 m² face à la mer à Syracuse, Sicile, avec accès privé à la mer, terrasse, jardin, parking privé et vue panoramique sur Ortygia, le golfe de Syracuse et l’Etna.",
+        "image": [
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Syracuse",
+          "addressRegion": "Sicile",
+          "addressCountry": "IT"
+        },
+        "identifier": "IT089017C2TWMHDS6C",
+        "petsAllowed": false,
+        "occupancy": {
+          "@type": "QuantitativeValue",
+          "maxValue": 12
+        },
+        "numberOfRooms": 6,
+        "amenityFeature": [
+          {"@type": "LocationFeatureSpecification", "name": "Accès privé à la mer", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Parking privé gratuit", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Climatisation", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Cuisine extérieure", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Espace de travail dédié", "value": true}
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.67",
+          "reviewCount": "9"
+        },
+        "review": {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Sophie"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+          "reviewBody": "Une propriété vraiment rare, avec une vue à couper le souffle et un accueil irréprochable."
+        },
+        "telephone": "+39 320 000 0000",
+        "email": "bonjour@casamaddalena.com"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "L’accès à la mer est-il privé ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, la propriété bénéficie d’un accès privé à la mer, un avantage particulièrement rare dans le secteur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le parking est-il inclus ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, un parking privé gratuit est disponible à l’intérieur de la propriété, derrière un portail fermé."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment réserver en direct ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Vous pouvez nous contacter via le formulaire, WhatsApp ou email pour recevoir une proposition rapide et sécurisée."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #F8F5F0;
+      --bg-warm: #FCFBF8;
+      --text: #1A1A18;
+      --sea: #1B4A6B;
+      --terracotta: #C4622D;
+      --gold: #D4A843;
+      --taupe: #8D7B68;
+      --line: rgba(26, 26, 24, 0.08);
+      --shadow: 0 20px 60px rgba(25, 27, 24, 0.10);
+      --shadow-soft: 0 10px 30px rgba(25, 27, 24, 0.08);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --max: 1280px;
+      --header-h: 82px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at top left, rgba(212, 168, 67, 0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(27, 74, 107, 0.06), transparent 26%);
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      z-index: 2000;
+      background: linear-gradient(90deg, var(--gold), var(--terracotta));
+      transition: width 0.1s linear;
+    }
+
+    .trust-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1500;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(26, 26, 24, 0.88);
+      color: #fff;
+      font-size: 0.88rem;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .trust-items {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trust-items span {
+      display: inline-flex;
+      gap: 0.45rem;
+      align-items: center;
+      opacity: 0.96;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 38px;
+      left: 0;
+      width: 100%;
+      z-index: 1400;
+      transition: all 0.35s ease;
+      padding: 0.9rem 0;
+    }
+
+    .navbar.scrolled {
+      background: rgba(248, 245, 240, 0.88);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(26,26,24,0.06);
+    }
+
+    .nav-inner {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .brand small {
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(26,26,24,0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: rgba(26,26,24,0.86);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 1px;
+      background: var(--sea);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-weight: 700;
+    }
+
+    .nav-cta:hover,
+    .btn:hover,
+    .btn-secondary:hover,
+    .floating-cta:hover,
+    .whatsapp-float:hover,
+    .gallery-btn:hover,
+    .room-nav button:hover,
+    .calendar-nav button:hover,
+    .lightbox button:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding-top: 120px;
+      display: flex;
+      align-items: stretch;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(12,16,20,0.72) 0%, rgba(12,16,20,0.36) 35%, rgba(12,16,20,0.15) 100%),
+        url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+      z-index: -2;
+      transform: scale(1.03);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(248,245,240,0.65), transparent 25%);
+      z-index: -1;
+    }
+
+    .hero-inner {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: end;
+      padding-bottom: 4rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 0.45rem 0.85rem;
+      backdrop-filter: blur(6px);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.02;
+      margin: 0 0 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 7vw, 6.6rem);
+      color: #fff;
+      max-width: 9ch;
+    }
+
+    .hero-copy p.lead {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.9);
+      max-width: 48rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-proof {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .proof-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(255,255,255,0.13);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      font-size: 0.92rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn,
+    .btn-secondary,
+    .gallery-btn,
+    .floating-cta,
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 1rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+    }
+
+    .btn { background: linear-gradient(135deg, var(--gold), #c6952e); color: #1d1d1a; box-shadow: var(--shadow); }
+    .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.24); backdrop-filter: blur(10px); }
+    .btn-outline { background: transparent; border: 1px solid rgba(26,26,24,0.12); color: var(--text); }
+
+    .inline-booking {
+      background: rgba(252, 251, 248, 0.92);
+      border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(16px);
+      border-radius: 26px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+      align-self: end;
+    }
+
+    .booking-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+
+    .booking-head h3 { font-size: 2rem; margin-bottom: 0.3rem; }
+    .booking-head p { margin: 0; color: rgba(26,26,24,0.66); font-size: 0.95rem; }
+    .rating-mini { font-size: 0.95rem; font-weight: 700; }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.42rem;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(26,26,24,0.6);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(26,26,24,0.12);
+      background: rgba(255,255,255,0.78);
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .field textarea { min-height: 132px; resize: vertical; }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(27,74,107,0.42);
+      box-shadow: 0 0 0 4px rgba(27,74,107,0.08);
+    }
+
+    .section {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 6rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); max-width: 13ch; }
+    .section-header p { max-width: 38rem; color: rgba(26,26,24,0.72); margin: 0; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-toolbar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+
+    .chip-filter {
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(26,26,24,0.1);
+      background: rgba(255,255,255,0.64);
+      cursor: pointer;
+      transition: all 0.28s ease;
+      color: rgba(26,26,24,0.85);
+    }
+
+    .chip-filter.active,
+    .chip-filter:hover {
+      background: var(--text);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-auto-rows: 250px;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      background: #ddd;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item::after {
+      content: attr(data-title);
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      color: #fff;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .impact-band {
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45));
+      border: 1px solid rgba(26,26,24,0.06);
+      border-radius: 28px;
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+    }
+
+    .impact-card {
+      padding: 1.4rem;
+      border-radius: 22px;
+      background: rgba(252,251,248,0.85);
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      border: 1px solid rgba(26,26,24,0.06);
+    }
+
+    .impact-card strong {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-card span { color: rgba(26,26,24,0.7); }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .story-card,
+    .amenity-card,
+    .review-card,
+    .experience-card,
+    .faq-item,
+    .contact-card,
+    .map-card,
+    .host-card,
+    .calendar-card,
+    .reserve-card,
+    .room-card,
+    .testimonial-stats {
+      background: rgba(252,251,248,0.82);
+      border: 1px solid rgba(26,26,24,0.08);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .story-card {
+      padding: 1.5rem;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.68), rgba(0,0,0,0.1));
+    }
+
+    .story-card > * { position: relative; z-index: 1; }
+    .story-card h3 { font-size: 2.1rem; margin-bottom: 0.5rem; }
+    .story-card p { margin: 0; color: rgba(255,255,255,0.9); }
+
+    .layout-with-sticky {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .sticky-column {
+      position: sticky;
+      top: 120px;
+    }
+
+    .rooms-slider {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .room-nav,
+    .calendar-nav {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .room-nav button,
+    .calendar-nav button,
+    .lightbox button,
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(26,26,24,0.08);
+      background: rgba(255,255,255,0.8);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .room-card {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .room-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 420px;
+    }
+
+    .room-content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .room-meta {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .room-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(27,74,107,0.08);
+      color: var(--sea);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .room-content h3 { font-size: 2.6rem; }
+    .room-content p { color: rgba(26,26,24,0.7); }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .amenity-card { padding: 1.6rem; }
+    .amenity-card h3 { font-size: 2rem; }
+    .amenity-list {
+      display: grid;
+      gap: 0.75rem;
+      padding: 0;
+      margin: 1rem 0 0;
+      list-style: none;
+    }
+
+    .amenity-list li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: rgba(26,26,24,0.8);
+    }
+
+    .reserve-card {
+      padding: 1.5rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .price-tag strong {
+      font-size: 2rem;
+      line-height: 1;
+      display: block;
+    }
+
+    .save-banner {
+      margin: 1rem 0;
+      padding: 0.9rem 1rem;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(196,98,45,0.12));
+      color: rgba(26,26,24,0.88);
+      font-weight: 500;
+    }
+
+    .reserve-breakdown {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .line-item,
+    .total-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .total-item {
+      font-weight: 700;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--line);
+      margin-top: 0.3rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(27,74,107,0.08);
+      color: var(--sea);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .calendar-card {
+      padding: 1.5rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .weekday,
+    .day {
+      padding: 0.65rem 0.35rem;
+      text-align: center;
+      border-radius: 16px;
+      font-size: 0.92rem;
+    }
+
+    .weekday {
+      font-weight: 700;
+      color: rgba(26,26,24,0.58);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    .day {
+      min-height: 76px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(26,26,24,0.06);
+    }
+
+    .day small { color: rgba(26,26,24,0.5); font-size: 0.7rem; }
+    .day.available { background: rgba(212,168,67,0.08); }
+    .day.blocked { background: rgba(26,26,24,0.06); color: rgba(26,26,24,0.35); }
+    .day.muted { opacity: 0.38; }
+    .day.today { outline: 1px solid var(--sea); }
+
+    .reviews-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .testimonial-stats { padding: 1.5rem; }
+    .score-xl {
+      font-size: 4rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .category-score {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .meter {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .meter-bar {
+      grid-column: 1 / -1;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(26,26,24,0.08);
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--sea), var(--gold));
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .review-card { padding: 1.4rem; }
+    .review-top { display: flex; justify-content: space-between; gap: 1rem; align-items: start; margin-bottom: 1rem; }
+    .review-name { font-weight: 700; }
+    .review-date { color: rgba(26,26,24,0.5); font-size: 0.9rem; }
+    .stars { color: var(--gold); letter-spacing: 0.08em; }
+
+    .map-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .map-card {
+      overflow: hidden;
+      min-height: 460px;
+      position: relative;
+    }
+
+    .map-fake {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(27,74,107,0.08), rgba(27,74,107,0.02)),
+        url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      filter: saturate(0.95);
+    }
+
+    .map-pin {
+      position: absolute;
+      left: 58%;
+      top: 47%;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      box-shadow: 0 0 0 10px rgba(196,98,45,0.18);
+    }
+
+    .map-copy { padding: 1.6rem; }
+    .distance-list { display: grid; gap: 0.8rem; margin-top: 1rem; }
+    .distance-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .experiences-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .experience-card { padding: 1.5rem; position: relative; overflow: hidden; }
+    .experience-card h3 { font-size: 2rem; }
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(212,168,67,0.18), transparent 70%);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .faq-item { overflow: hidden; }
+    .faq-question {
+      width: 100%;
+      border: none;
+      background: transparent;
+      text-align: left;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 1.4rem;
+      color: rgba(26,26,24,0.7);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 240px;
+      padding: 0 1.4rem 1.3rem;
+    }
+
+    .host-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1rem;
+    }
+
+    .host-card,
+    .contact-card {
+      padding: 1.6rem;
+    }
+
+    .host-profile {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .avatar {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(212,168,67,0.25);
+    }
+
+    .host-stats {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .host-stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .contact-grid .full { grid-column: 1 / -1; }
+
+    .footer {
+      margin-top: 4rem;
+      padding: 2.4rem 1rem 3rem;
+      border-top: 1px solid rgba(26,26,24,0.08);
+      background: rgba(255,255,255,0.45);
+    }
+
+    .footer-inner {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer h4 { font-size: 1.6rem; }
+    .footer p, .footer a { color: rgba(26,26,24,0.7); }
+    .footer-links { display: grid; gap: 0.65rem; }
+
+    .whatsapp-float,
+    .back-to-top,
+    .floating-cta {
+      position: fixed;
+      right: 1.2rem;
+      z-index: 1600;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    .whatsapp-float {
+      bottom: 1.2rem;
+      width: 58px;
+      height: 58px;
+      background: #1c8b5b;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+    }
+
+    .back-to-top {
+      bottom: 5.6rem;
+      width: 52px;
+      height: 52px;
+      border: none;
+      background: rgba(26,26,24,0.88);
+      color: #fff;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .floating-cta {
+      left: 50%;
+      transform: translateX(-50%);
+      right: auto;
+      bottom: 1rem;
+      padding: 0.95rem 1.2rem;
+      background: rgba(26,26,24,0.92);
+      color: #fff;
+      display: none;
+    }
+
+    .lightbox,
+    .exit-popup {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 2100;
+      background: rgba(12,12,12,0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox.active,
+    .exit-popup.active {
+      display: flex;
+    }
+
+    .lightbox-content,
+    .popup-card {
+      width: min(1100px, 100%);
+      background: rgba(252,251,248,0.96);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lightbox-content {
+      padding: 1rem;
+    }
+
+    .lightbox-frame {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .lightbox-frame img {
+      width: 100%;
+      height: 70vh;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+
+    .lightbox-sidebar {
+      padding: 1rem 0.5rem 1rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .lightbox-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2;
+    }
+
+    .popup-card {
+      max-width: 640px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.2rem;
+    }
+
+    .popup-copy h3 { font-size: 2.5rem; }
+    .popup-copy p { color: rgba(26,26,24,0.72); }
+    .popup-visual {
+      border-radius: 24px;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      min-height: 320px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-inner,
+      .layout-with-sticky,
+      .reviews-layout,
+      .map-layout,
+      .host-layout,
+      .footer-inner,
+      .room-card,
+      .lightbox-frame {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-grid,
+      .story-grid,
+      .amenities-grid,
+      .experiences-grid,
+      .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sticky-column { position: static; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: 1 / -1; grid-row: span 1; min-height: 340px; }
+      .popup-card { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero-inner,
+      .booking-grid,
+      .impact-grid,
+      .story-grid,
+      .amenities-grid,
+      .experiences-grid,
+      .reviews-grid,
+      .contact-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { min-height: auto; }
+      .hero-inner { padding-bottom: 2.5rem; }
+      .section { padding: 4.5rem 0; }
+      h1 { max-width: 11ch; }
+      .section-header { flex-direction: column; align-items: start; }
+      .reviews-layout { grid-template-columns: 1fr; }
+      .floating-cta { display: inline-flex; }
+      .whatsapp-float { bottom: 5.2rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .trust-bar { height: auto; padding: 0.55rem 0.8rem; }
+      .navbar { top: 50px; }
+      .inline-booking { margin-top: 1rem; }
+      .impact-card { min-height: 120px; }
+      .room-image img { min-height: 280px; }
+      .popup-visual { min-height: 220px; }
+    }
+  </style>
 </head>
 <body>
-    <div id="progress-bar"></div>
-    <div class="navbar" id="navbar">
-        <span class="nav-logo">CM</span>
-        <div class="nav-links">
-            <a href="#photos">Photos</a> <a href="#logement">Logement</a> <a href="#equipements">Équipements</a> <a href="#avis">Avis</a> <a href="#contact">Contact</a>
-        </div>
-        <a href="#booking" class="nav-cta">Réserver</a>
-    </div>
+  <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="marquee-bandeau">⭐ 4,67/5 · 9 avis vérifiés · 12 voyageurs · Accès privé à la mer · Vue sur l'Etna</div>
-            <h1>Casa Maddalena</h1>
-            <p class="hero-tagline">360m² de luxe face à la mer · Syracuse, Sicile</p>
-            <a href="#booking" class="btn-or">Vérifier les disponibilités</a>
+  <div class="trust-bar" aria-label="Informations de confiance">
+    <div class="trust-items">
+      <span>✦ Réservation directe sécurisée</span>
+      <span>⏱ Réponse en moins d’1h</span>
+      <span>★ Note 4,67/5</span>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#top" class="brand" aria-label="Casa Maddalena - Retour en haut">
+        <strong>Casa Maddalena</strong>
+        <small>Syracuse · Sicile</small>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#galerie">Galerie</a>
+        <a href="#experience">Expérience</a>
+        <a href="#chambres">Chambres</a>
+        <a href="#equipements">Équipements</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#reservation" class="nav-cta">Réserver en direct</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy reveal visible">
+          <div class="eyebrow">✦ Une adresse rare face à la mer</div>
+          <h1>Casa Maddalena</h1>
+          <p class="lead">Appartement de luxe face à la mer à Syracuse, Sicile. Une propriété privée et magnifiquement rénovée, pensée pour les séjours d’exception en famille ou entre amis, entre lumière dorée, horizon marin et élégance méditerranéenne.</p>
+
+          <div class="hero-proof">
+            <span class="proof-chip">12 voyageurs</span>
+            <span class="proof-chip">6 chambres</span>
+            <span class="proof-chip">5 salles de bain</span>
+            <span class="proof-chip">Accès privé à la mer</span>
+          </div>
+
+          <div class="hero-ctas">
+            <a class="btn" href="#reservation">Vérifier les disponibilités</a>
+            <a class="btn-secondary" href="#contact">Contacter l’hôte</a>
+          </div>
         </div>
+
+        <aside class="inline-booking reveal visible" aria-label="Widget de réservation rapide">
+          <div class="booking-head">
+            <div>
+              <h3>Planifiez votre séjour</h3>
+              <p>Réponse rapide, parcours direct, sans frais de plateforme.</p>
+            </div>
+            <div class="rating-mini">★ 4,67 · 9 avis</div>
+          </div>
+
+          <form class="booking-grid" id="heroBookingForm">
+            <div class="field">
+              <label for="heroCheckin">Arrivée</label>
+              <input id="heroCheckin" type="date" />
+            </div>
+            <div class="field">
+              <label for="heroCheckout">Départ</label>
+              <input id="heroCheckout" type="date" />
+            </div>
+            <div class="field full">
+              <label for="heroGuests">Voyageurs</label>
+              <select id="heroGuests">
+                <option value="2">2 voyageurs</option>
+                <option value="4">4 voyageurs</option>
+                <option value="6">6 voyageurs</option>
+                <option value="8">8 voyageurs</option>
+                <option value="10">10 voyageurs</option>
+                <option value="12" selected>12 voyageurs</option>
+              </select>
+            </div>
+            <div class="field full">
+              <button class="btn" type="button" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Vérifier les disponibilités</button>
+            </div>
+          </form>
+        </aside>
+      </div>
     </section>
 
-    <!-- Galerie -->
-    <section id="photos" class="container fade-in">
-        <h2 class="section-title">Galerie</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item gallery-large"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg" alt="vue mer"></div>
-            <div class="gallery-item gallery-small"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/6d3b1ea7-8ec1-4e98-8be0-48cae2adf47d.jpeg" alt="terrasse"></div>
-            <div class="gallery-item gallery-small"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/073e9553-e537-45ac-a2d6-a7e39d0314f8.jpeg" alt="salon"></div>
-            <div class="gallery-item gallery-small"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/d51e6e6a-f8a8-40f8-80f4-e4f2ee1ae2fc.jpeg" alt="chambre"></div>
-            <div class="gallery-item gallery-small"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/ff22f906-4c46-49d2-a9ba-d4749644a37b.jpeg" alt="cuisine"></div>
-        </div>
-        <button class="btn-gallery" onclick="openLightbox()">📷 Voir les 30 photos</button>
-    </section>
-
-    <!-- Chiffres clés -->
-    <div class="container">
-        <div class="key-numbers fade-in">
-            <div class="key-item"><strong>360 m²</strong> appartement</div>
-            <div class="key-item"><strong>6 chambres</strong> dont 4 vue mer</div>
-            <div class="key-item"><strong>12 pers</strong> max</div>
-            <div class="key-item"><strong>Accès privé</strong> à la mer</div>
-            <div class="key-item"><strong>Parking privé</strong> inclus</div>
-        </div>
-    </div>
-
-    <!-- Description immersive + accordéon -->
-    <section id="logement" class="container two-col fade-in">
+    <section class="section reveal" id="galerie">
+      <div class="section-header">
         <div>
-            <h2 class="section-title">L'expérience Casa Maddalena</h2>
-            <div class="accordion-item">
-                <div class="accordion-title" onclick="toggleAccordion(this)">🌅 La Vue <span>+</span></div>
-                <div class="accordion-content">Panorama infini sur Ortygia, le golfe, l'Etna et les voiliers à l'horizon. Levez les yeux : le volcan fume certains soirs.</div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-title" onclick="toggleAccordion(this)">🌊 L'Accès Mer <span>+</span></div>
-                <div class="accordion-content">Eaux cristallines depuis la propriété. Rocher de Gallera à 200m, tuba, plongée. Échelle privée.</div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-title" onclick="toggleAccordion(this)">🍝 Le Paradis Culinaire <span>+</span></div>
-                <div class="accordion-content">Cuisine extérieure, barbecue Kamado, table en pierre de lave pour 12 pers. Agrumes du jardin.</div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-title" onclick="toggleAccordion(this)">🏛️ Les Intérieurs <span>+</span></div>
-                <div class="accordion-content">Design 70's, carreaux artisanaux de l'Etna, salles de bain avec vue sur la baie.</div>
-            </div>
+          <h2>Des perspectives qui installent immédiatement le désir</h2>
         </div>
-        <div><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/053d8ce2-8d67-4fb2-86d9-866a4d3edb1f.jpeg" style="width:100%; border-radius:28px; box-shadow:var(--ombre);"></div>
+        <p>Entre terrasse panoramique, chambres baignées de lumière, cuisine pensée pour recevoir et jardins tournés vers la mer, chaque espace raconte une même promesse : celle d’un séjour ample, calme et intensément sicilien.</p>
+      </div>
+
+      <div class="gallery-toolbar" id="galleryFilters">
+        <button class="chip-filter active" data-filter="all">Tout voir</button>
+        <button class="chip-filter" data-filter="vue">Vue mer</button>
+        <button class="chip-filter" data-filter="terrasse">Terrasse</button>
+        <button class="chip-filter" data-filter="interieurs">Intérieurs</button>
+        <button class="chip-filter" data-filter="chambres">Chambres</button>
+        <button class="chip-filter" data-filter="cuisine">Cuisine</button>
+        <button class="chip-filter" data-filter="bains">Salles de bain</button>
+        <button class="chip-filter" data-filter="exterieurs">Extérieurs</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <article class="gallery-item" data-category="vue exterieurs" data-title="Panorama sur la baie" data-index="0">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Vue mer panoramique depuis la propriété" />
+        </article>
+        <article class="gallery-item" data-category="terrasse exterieurs" data-title="Terrasse pour 12" data-index="1">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Grande terrasse extérieure élégante" />
+        </article>
+        <article class="gallery-item" data-category="interieurs cuisine" data-title="Cuisine signature" data-index="2">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" alt="Cuisine intérieure haut de gamme" />
+        </article>
+        <article class="gallery-item" data-category="chambres interieurs" data-title="Suite vue mer" data-index="3">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Chambre élégante avec vue sur la mer" />
+        </article>
+        <article class="gallery-item" data-category="bains interieurs" data-title="Salle de bain sur la baie" data-index="4">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Salle de bain élégante avec vue" />
+        </article>
+      </div>
+
+      <div style="margin-top:1.4rem; display:flex; justify-content:flex-end;">
+        <button class="gallery-btn btn-outline" id="openGalleryBtn">Voir toute la galerie</button>
+      </div>
     </section>
 
-    <!-- slider chambres -->
-    <section class="container fade-in">
-        <h2 class="section-title">Chambres</h2>
-        <div class="chambres-slider">
-            <div class="chambre-card"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/d51e6e6a-f8a8-40f8-80f4-e4f2ee1ae2fc.jpeg"><h4>Chambre Mer I</h4><p>Lit king · vue mer Ionienne</p></div>
-            <div class="chambre-card"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/073e9553-e537-45ac-a2d6-a7e39d0314f8.jpeg"><h4>Chambre Mer II</h4><p>Lit queen · baie vitrée</p></div>
-            <div class="chambre-card"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/ff22f906-4c46-49d2-a9ba-d4749644a37b.jpeg"><h4>Chambre Jardin</h4><p>2 lits simples · jardin exotique</p></div>
-            <div class="chambre-card"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg"><h4>Suite Etna</h4><p>Lit superposé + terrasse</p></div>
+    <section class="section reveal" aria-label="Chiffres clés">
+      <div class="impact-band">
+        <div class="impact-grid">
+          <div class="impact-card"><strong>360 m²</strong><span>Appartement entier magnifiquement rénové</span></div>
+          <div class="impact-card"><strong>12</strong><span>Voyageurs dans un confort généreux</span></div>
+          <div class="impact-card"><strong>6</strong><span>Chambres spacieuses dont 4 avec vue mer</span></div>
+          <div class="impact-card"><strong>5</strong><span>Salles de bain élégantes, plusieurs avec vue</span></div>
+          <div class="impact-card"><strong>Privé</strong><span>Accès direct à la mer, rare à Syracuse</span></div>
+          <div class="impact-card"><strong>Inclus</strong><span>Parking sécurisé au sein de la propriété</span></div>
         </div>
+      </div>
     </section>
 
-    <!-- Équipements catégorisés -->
-    <section id="equipements" class="container fade-in">
-        <h2 class="section-title">Équipements d'exception</h2>
-        <div class="equip-grid">
-            <div class="equip-cat">🌊 Mer & Extérieur</div>
-            <div class="equip-item"><span class="equip-icon">⛵</span> Accès privé mer</div>
-            <div class="equip-item"><span class="equip-icon">🏖️</span> Plage privée</div>
-            <div class="equip-item"><span class="equip-icon">🍖</span> BBQ Kamado</div>
-            <div class="equip-cat">🍳 Cuisine</div>
-            <div class="equip-item"><span class="equip-icon">🔥</span> Four grande capacité</div>
-            <div class="equip-item"><span class="equip-icon">🍊</span> Centrifugeuse agrumes</div>
-            <div class="equip-cat">🛏️ Confort</div>
-            <div class="equip-item"><span class="equip-icon">❄️</span> Climatisation toute pièce</div>
-            <div class="equip-item"><span class="equip-icon">🛁</span> Baignoire + 4 douches vue mer</div>
-            <div class="equip-item"><span class="equip-icon">🔒</span> Parking privé · Rare</div>
+    <section class="section reveal" id="experience">
+      <div class="section-header">
+        <div>
+          <h2>Une adresse rare suspendue entre mer, lumière et horizon</h2>
         </div>
+        <p>Casa Maddalena n’a rien d’un simple pied-à-terre. C’est une maison de vacances pensée comme un refuge éditorial, où les journées se déploient entre baignades privées, grandes tablées, silences précieux et explorations du sud-est sicilien.</p>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80')">
+          <h3>La vue</h3>
+          <p>Le spectacle change à chaque heure du jour : Ortygia, la baie, la lumière minérale et, au loin, la présence presque théâtrale de l’Etna.</p>
+        </article>
+        <article class="story-card" style="background-image:url('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80')">
+          <h3>L’accès à la mer</h3>
+          <p>Descendre vers l’eau sans quitter la propriété transforme le séjour. Ici, la mer n’est pas un décor : elle fait partie intégrante de l’expérience.</p>
+        </article>
+        <article class="story-card" style="background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80')">
+          <h3>L’art de vivre dehors</h3>
+          <p>Grande table extérieure pour 12, cuisine d’été, barbecue Kamado, jardin privé : tout invite aux déjeuners qui s’éternisent et aux soirées au vent doux.</p>
+        </article>
+        <article class="story-card" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80')">
+          <h3>Le confort intérieur</h3>
+          <p>Volumes raffinés, chambres spacieuses, salles de bain attenantes, climatisation, chauffage, wifi rapide et espace de travail dédié : l’élégance n’exclut jamais le confort.</p>
+        </article>
+        <article class="story-card" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80')">
+          <h3>L’esprit sicilien</h3>
+          <p>Pierre, végétation, cuisine, lumière et sens de l’accueil se répondent ici avec naturel. La maison porte une Sicile subtile, cultivée et profondément hospitalière.</p>
+        </article>
+        <article class="story-card" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80')">
+          <h3>Explorer le sud-est</h3>
+          <p>À environ 15 minutes d’Ortigia, et à portée de Plemmirio, Noto, Ragusa, Modica, Vendicari et Marzamemi, l’adresse est idéale pour rayonner sans renoncer au calme.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Layout principal avec sticky sidebar booking -->
-    <section id="booking" class="container booking-layout fade-in">
-        <div class="booking-main">
-            <h2 class="section-title">Disponibilités & tarifs</h2>
-            <p>Calendrier interactif · Tarif basse saison 950€/nuit · Haute saison 1450€</p>
-            <!-- mini calendrier visuel -->
-            <div style="background: white; border-radius: 40px; padding: 20px; margin-top:20px;">
-                <div style="display:flex; gap:10px; flex-wrap:wrap;"> juin 2025 : <span style="background:#d4edda;">12-18 dispo</span> <span style="background:#f8d7da;">5-10 réservé</span> ...</div>
+    <section class="section reveal" id="chambres">
+      <div class="layout-with-sticky">
+        <div>
+          <div class="section-header">
+            <div>
+              <h2>Six chambres pensées comme des retraites privées</h2>
             </div>
-            <!-- règles maison -->
-            <h3 style="margin:40px 0 20px;">Règles de la maison</h3>
-            <p>🕒 arrivée 16h-21h · départ 10h · animaux acceptés · non fumeur · fêtes interdites</p>
-            <!-- localisation -->
-            <h3>Localisation</h3>
-            <div id="map" style="height:250px;"></div>
-            <div style="display:flex; gap:20px; flex-wrap:wrap; margin:20px 0;">🏛️ Ortigia 15min · 🌊 Plemmirio 10min · 🏖️ Vendicari 30min · ✈️ Catane 1h</div>
-            <!-- avis -->
-            <h2 id="avis" class="section-title">Avis (4,67)</h2>
-            <div class="rating-breakdown">
-                <div>Arrivée ⭐ 5,0</div><div class="bar-fill" style="width:100%"></div>
-                <div>Communication ⭐ 5,0</div><div class="bar-fill" style="width:100%"></div>
-                <div>Précision ⭐ 4,7</div><div class="bar-fill" style="width:94%"></div>
-                <div>Propreté ⭐ 4,4</div><div class="bar-fill" style="width:88%"></div>
+            <p>Quatre chambres ouvertes sur la mer, deux sur un jardin exotique, et partout la sensation d’un hôtel particulier tourné vers l’horizon. Chaque espace a sa personnalité, sans jamais rompre l’harmonie d’ensemble.</p>
+          </div>
+
+          <div class="rooms-slider">
+            <div class="room-nav">
+              <button type="button" id="prevRoom" aria-label="Chambre précédente">←</button>
+              <button type="button" id="nextRoom" aria-label="Chambre suivante">→</button>
             </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">"Vue à couper le souffle, accès mer incroyable. Literie très confortable." – Marie, Paris</div>
-                <div class="testimonial-card">"Maison parfaite pour une grande famille. Merci à Frederic pour son accueil." – Klaus, Berlin</div>
-                <div class="testimonial-card">"Le coucher de soleil sur l'Etna depuis la terrasse restera gravé." – Chiara, Milano</div>
-            </div>
+
+            <article class="room-card" id="roomCard">
+              <div class="room-image">
+                <img id="roomImage" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80" alt="Chambre Casa Maddalena" loading="lazy">
+              </div>
+              <div class="room-content">
+                <div class="room-meta" id="roomMeta"></div>
+                <h3 id="roomTitle">Suite Levante</h3>
+                <p id="roomDescription">Une suite généreuse face à la baie, avec vue mer apaisante dès le réveil, salle de bain attenante et atmosphère lumineuse pensée pour ralentir.</p>
+              </div>
+            </article>
+          </div>
         </div>
-        <!-- sidebar sticky widget -->
-        <div class="booking-sidebar">
-            <span class="price-line">950€ <span style="font-size:1rem;">/nuit</span></span>
-            <div class="date-picker">
-                <input type="date" id="arrivee" value="2025-07-01"> <input type="date" id="depart" value="2025-07-07">
+
+        <aside class="sticky-column" id="reservation">
+          <div class="reserve-card">
+            <div class="price-row">
+              <div class="price-tag">
+                <strong>1 690 €</strong>
+                <span>par nuit</span>
+              </div>
+              <div class="rating-mini">★ 4,67 · 9 avis</div>
             </div>
-            <select style="width:100%; padding:12px; border-radius:40px; margin:12px 0;">
-                <option>1 voyageur</option><option>2 voyageurs</option><option>6 voyageurs</option><option>12 voyageurs</option>
-            </select>
-            <div class="total">
-                <span>Total (6 nuits) </span> <span id="totalCalc">6 840€</span>
+
+            <div class="save-banner">Réservez en direct et évitez les frais de plateforme. Les séjours prolongés peuvent bénéficier d’une proposition privilégiée.</div>
+
+            <form id="reserveForm">
+              <div class="booking-grid">
+                <div class="field">
+                  <label for="checkin">Arrivée</label>
+                  <input id="checkin" type="date" />
+                </div>
+                <div class="field">
+                  <label for="checkout">Départ</label>
+                  <input id="checkout" type="date" />
+                </div>
+                <div class="field full">
+                  <label for="guests">Voyageurs</label>
+                  <select id="guests">
+                    <option value="2">2 voyageurs</option>
+                    <option value="4">4 voyageurs</option>
+                    <option value="6">6 voyageurs</option>
+                    <option value="8">8 voyageurs</option>
+                    <option value="10">10 voyageurs</option>
+                    <option value="12" selected>12 voyageurs</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="reserve-breakdown" aria-live="polite">
+                <div class="line-item"><span id="nightsLabel">3 nuits × 1 690 €</span><strong id="subtotal">5 070 €</strong></div>
+                <div class="line-item"><span>Frais de ménage</span><strong>220 €</strong></div>
+                <div class="line-item"><span>Taxe de séjour estimée</span><strong id="tax">96 €</strong></div>
+                <div class="total-item"><span>Total estimé</span><strong id="total">5 386 €</strong></div>
+              </div>
+
+              <div style="display:grid; gap:0.8rem; margin-top:1rem;">
+                <button class="btn" type="submit">Réserver en direct</button>
+                <button class="btn-outline gallery-btn" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis</button>
+              </div>
+            </form>
+
+            <p style="margin:1rem 0 0; color:rgba(26,26,24,0.7);">Annulation flexible fictive · Confirmation rapide · Échange direct avec Frederic ou Antonio</p>
+            <div class="badges">
+              <span class="badge">Paiement sécurisé</span>
+              <span class="badge">Réponse rapide</span>
+              <span class="badge">Réservation fiable</span>
             </div>
-            <button class="btn-or" style="width:100%;">Réserver en direct</button>
-            <p style="margin:16px 0; font-size:0.9rem;">🔒 Paiement sécurisé · ✅ Annulation flexible · 💬 Réponse <1h</p>
-            <p>✨ Économisez ~15% versus Airbnb</p>
-            <hr>
-            <p><strong>Frédéric</strong> · taux de réponse 100% · <a href="#">Contacter</a></p>
-        </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <!-- Expériences sur mesure -->
-    <section class="container fade-in">
-        <h2 class="section-title">Expériences sur mesure</h2>
-        <div style="display:flex; gap:20px; flex-wrap:wrap;">
-            <div class="chambre-card">🍳 Cours de cuisine sicilienne</div>
-            <div class="chambre-card">⛵ Excursion en bateau</div>
-            <div class="chambre-card">🤿 Snorkeling Gallera</div>
-            <div class="chambre-card">🚗 Circuits baroques Noto</div>
+    <section class="section reveal" id="equipements">
+      <div class="section-header">
+        <div>
+          <h2>Des équipements choisis pour un séjour sans compromis</h2>
         </div>
+        <p>Chaque détail renforce le sentiment de fluidité : cuisiner dehors comme dedans, arriver simplement, travailler si nécessaire, se garer sans contrainte, et garder la mer à quelques pas.</p>
+      </div>
+
+      <div class="amenities-grid">
+        <article class="amenity-card">
+          <h3>Extérieur & mer</h3>
+          <ul class="amenity-list">
+            <li>Accès privé à la mer</li>
+            <li>Terrasse avec grande table pour 12</li>
+            <li>Jardin privé méditerranéen</li>
+            <li>Paddle SUP et canoë selon disponibilité</li>
+          </ul>
+        </article>
+        <article class="amenity-card">
+          <h3>Cuisine</h3>
+          <ul class="amenity-list">
+            <li>Cuisine intérieure spacieuse et équipée</li>
+            <li>Cuisine extérieure conviviale</li>
+            <li>Barbecue Kamado</li>
+            <li>Parfait pour les repas de groupe</li>
+          </ul>
+        </article>
+        <article class="amenity-card">
+          <h3>Confort</h3>
+          <ul class="amenity-list">
+            <li>Climatisation et chauffage</li>
+            <li>6 chambres spacieuses</li>
+            <li>5 salles de bain attenantes élégantes</li>
+            <li>Une baignoire et plusieurs douches à l’italienne</li>
+          </ul>
+        </article>
+        <article class="amenity-card">
+          <h3>Travail & connectivité</h3>
+          <ul class="amenity-list">
+            <li>Wifi</li>
+            <li>Espace de travail dédié</li>
+            <li>Configuration adaptée aux séjours prolongés</li>
+          </ul>
+        </article>
+        <article class="amenity-card">
+          <h3>Sécurité & accès</h3>
+          <ul class="amenity-list">
+            <li>Parking privé gratuit dans la propriété</li>
+            <li>Portail fermé avec clé ou télécommande</li>
+            <li>Arrivée particulièrement appréciée par les voyageurs</li>
+          </ul>
+        </article>
+        <article class="amenity-card">
+          <h3>Salles de bain</h3>
+          <ul class="amenity-list">
+            <li>3 salles de bain avec vue sur la baie</li>
+            <li>Finitions élégantes et lumineuses</li>
+            <li>Confort hôtelier pensé pour les groupes</li>
+          </ul>
+        </article>
+      </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="container fade-in">
-        <h2 class="section-title">FAQ</h2>
-        <div class="accordion-item"><div class="accordion-title">Animaux acceptés ?<span>+</span></div><div class="accordion-content">Oui, avec supplément.</div></div>
-        <div class="accordion-item"><div class="accordion-title">Parking sécurisé ?<span>+</span></div><div class="accordion-content">Parking privé fermé dans la propriété.</div></div>
-        <div class="accordion-item"><div class="accordion-title">Wifi fibre ?<span>+</span></div><div class="accordion-content">Fibre 1Gb/s.</div></div>
+    <section class="section reveal" id="disponibilites">
+      <div class="section-header">
+        <div>
+          <h2>Disponibilités et rythme des saisons</h2>
+        </div>
+        <p>Un calendrier lisible, sans friction, pour identifier rapidement les fenêtres idéales. Les jours bloqués correspondent aux séjours déjà confirmés ou en attente de validation.</p>
+      </div>
+
+      <div class="calendar-card">
+        <div class="calendar-nav">
+          <button type="button" id="prevMonth" aria-label="Mois précédent">←</button>
+          <div>
+            <h3 id="calendarTitle" style="margin:0; font-size:2rem;">Juin 2026</h3>
+            <p style="margin:0; color:rgba(26,26,24,0.65);">Tarifs indicatifs par nuit</p>
+          </div>
+          <button type="button" id="nextMonth" aria-label="Mois suivant">→</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </div>
     </section>
 
-    <!-- Contact hôte -->
-    <section id="contact" class="container fade-in">
-        <h2 class="section-title">Contactez Frédéric</h2>
-        <div style="display:flex; gap:32px; flex-wrap:wrap;">
-            <div style="flex:1"><img src="https://a0.muscache.com/im/pictures/user/0a7fefc4-71b3-4a53-a5b0-dbf8a95625de.jpg?aki_policy=profile_x_medium" style="border-radius:50%; width:120px;"> <h3>Frédéric & Antonio</h3> <p>Réponse < 1h · FR/EN/IT</p></div>
-            <div style="flex:2">
-                <input placeholder="Nom" style="width:100%; padding:14px; margin:8px 0;"> <input placeholder="Email" style="width:100%; padding:14px;">
-                <textarea placeholder="Dates? Message..." rows="4" style="width:100%; padding:14px;"></textarea>
-                <button class="btn-or">Envoyer un message</button>
+    <section class="section reveal" id="avis">
+      <div class="section-header">
+        <div>
+          <h2>Des retours qui confirment l’exception du lieu</h2>
+        </div>
+        <p>Une maison rare, un accueil constant, et une sensation récurrente dans les témoignages : celle d’avoir trouvé une adresse que l’on voudrait garder pour soi.</p>
+      </div>
+
+      <div class="reviews-layout">
+        <aside class="testimonial-stats">
+          <div class="score-xl">4,67</div>
+          <p style="margin:0; font-weight:700;">Note globale sur 9 avis</p>
+          <div class="category-score">
+            <div class="meter"><span>Arrivée</span><strong>5,0</strong><div class="meter-bar"><div class="meter-fill" style="width:100%"></div></div></div>
+            <div class="meter"><span>Communication</span><strong>5,0</strong><div class="meter-bar"><div class="meter-fill" style="width:100%"></div></div></div>
+            <div class="meter"><span>Précision</span><strong>4,7</strong><div class="meter-bar"><div class="meter-fill" style="width:94%"></div></div></div>
+            <div class="meter"><span>Propreté</span><strong>4,4</strong><div class="meter-bar"><div class="meter-fill" style="width:88%"></div></div></div>
+            <div class="meter"><span>Emplacement</span><strong>4,4</strong><div class="meter-bar"><div class="meter-fill" style="width:88%"></div></div></div>
+            <div class="meter"><span>Qualité-prix</span><strong>4,3</strong><div class="meter-bar"><div class="meter-fill" style="width:86%"></div></div></div>
+          </div>
+        </aside>
+
+        <div class="reviews-grid">
+          <article class="review-card"><div class="review-top"><div><div class="review-name">Sophie · Paris</div><div class="review-date">Août 2025</div></div><div class="stars">★★★★★</div></div><p>La vue est encore plus impressionnante que sur les photos. Nous avons vécu dehors du matin au soir, entre la terrasse et l’accès à la mer. Antonio a été d’une disponibilité remarquable.</p></article>
+          <article class="review-card"><div class="review-top"><div><div class="review-name">Daniel · Zurich</div><div class="review-date">Juillet 2025</div></div><div class="stars">★★★★★</div></div><p>Très rare de trouver un lieu aussi vaste, aussi bien situé et avec un parking privé. L’arrivée a été simple, fluide, et la maison est parfaite pour un grand groupe exigeant.</p></article>
+          <article class="review-card"><div class="review-top"><div><div class="review-name">Emma · Londres</div><div class="review-date">Juin 2025</div></div><div class="stars">★★★★★</div></div><p>Nous avons adoré les chambres vue mer et les salles de bain ouvertes sur la baie. Le sentiment général est très boutique hôtel, avec la liberté d’une grande maison privée.</p></article>
+          <article class="review-card"><div class="review-top"><div><div class="review-name">Marco · Milan</div><div class="review-date">Mai 2025</div></div><div class="stars">★★★★☆</div></div><p>Adresse superbe pour découvrir Syracuse tout en restant au calme. La terrasse pour les repas de groupe est exceptionnelle, et la cuisine extérieure change vraiment le séjour.</p></article>
+          <article class="review-card"><div class="review-top"><div><div class="review-name">Julia · Berlin</div><div class="review-date">Septembre 2024</div></div><div class="stars">★★★★★</div></div><p>Le coucher de soleil depuis la propriété vaut à lui seul le voyage. Frederic et Antonio répondent vite et donnent d’excellentes recommandations pour la région.</p></article>
+          <article class="review-card"><div class="review-top"><div><div class="review-name">Nathan · New York</div><div class="review-date">Août 2024</div></div><div class="stars">★★★★☆</div></div><p>Maison rare, très belle circulation des espaces, parfait pour des amis ou une grande famille. Nous avons particulièrement apprécié le rapport entre intimité, confort et proximité d’Ortigia.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="localisation">
+      <div class="section-header">
+        <div>
+          <h2>Une base élégante pour rayonner sur toute la Sicile du sud-est</h2>
+        </div>
+        <p>Syracuse conjugue héritage grec, lumière méditerranéenne et douceur de vie. Depuis Casa Maddalena, on rejoint facilement Ortigia, Plemmirio, les villes baroques et les paysages côtiers les plus désirables de la région.</p>
+      </div>
+
+      <div class="map-layout">
+        <div class="map-card">
+          <div class="map-fake"></div>
+          <div class="map-pin" aria-hidden="true"></div>
+        </div>
+        <div class="map-card map-copy">
+          <h3 style="font-size:2.5rem;">Syracuse, entre culture, mer et art de vivre</h3>
+          <p>La maison se situe dans un secteur recherché, suffisamment proche des essentiels pour explorer facilement, tout en offrant une atmosphère nettement plus privée et paisible qu’un hébergement urbain classique.</p>
+          <div class="distance-list">
+            <div class="distance-item"><span>Ortigia</span><strong>~ 15 min</strong></div>
+            <div class="distance-item"><span>Noto / Ragusa / Modica</span><strong>~ 35–45 min</strong></div>
+            <div class="distance-item"><span>Vendicari / Marzamemi</span><strong>Facilement accessibles</strong></div>
+            <div class="distance-item"><span>Catane</span><strong>~ 1 h</strong></div>
+            <div class="distance-item"><span>Plemmirio</span><strong>À proximité</strong></div>
+          </div>
+          <p style="margin-top:1rem; color:rgba(26,26,24,0.72);">C’est une destination qui offre à la fois un patrimoine remarquable, une cuisine profondément généreuse, une mer spectaculaire et des escapades d’une grande variété en moins d’une heure.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="experiences">
+      <div class="section-header">
+        <div>
+          <h2>Expériences sur mesure</h2>
+        </div>
+        <p>Pour transformer un beau séjour en souvenir durable, certaines expériences privées peuvent être organisées sur demande, avec le même souci de fluidité et de qualité que pour la maison elle-même.</p>
+      </div>
+
+      <div class="experiences-grid">
+        <article class="experience-card"><h3>Cours de cuisine sicilienne</h3><p>Apprendre les gestes, les saveurs et les recettes d’ici, puis partager le dîner sur la terrasse face à la mer.</p></article>
+        <article class="experience-card"><h3>Excursion bateau</h3><p>Explorer les côtes, criques et lumières du littoral syracusain avec un départ organisé sur mesure.</p></article>
+        <article class="experience-card"><h3>Snorkeling</h3><p>Profiter de l’eau claire et prolonger le lien intime entre la propriété et la mer.</p></article>
+        <article class="experience-card"><h3>Itinéraire baroque</h3><p>Noto, Ragusa, Modica : un parcours parmi les plus élégants et singuliers d’Italie méridionale.</p></article>
+        <article class="experience-card"><h3>Marché d’Ortigia</h3><p>Découvrir la Sicile la plus vivante, entre produits, couleurs, senteurs et rencontres locales.</p></article>
+        <article class="experience-card"><h3>Coucher de soleil privé</h3><p>Un moment pensé pour célébrer la baie et la lumière, dans une version plus intime et mémorable du séjour.</p></article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="faq">
+      <div class="section-header">
+        <div>
+          <h2>Questions fréquentes</h2>
+        </div>
+        <p>Les réponses aux questions les plus fréquentes, pour lever les dernières hésitations et rendre la prise de contact immédiate.</p>
+      </div>
+
+      <div class="faq-list">
+        <article class="faq-item active"><button class="faq-question">L’accès à la mer est-il privé ? <span>+</span></button><div class="faq-answer"><p>Oui. Casa Maddalena bénéficie d’un accès privé à la mer, ce qui en fait une propriété particulièrement rare dans le secteur.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Le parking est-il inclus ? <span>+</span></button><div class="faq-answer"><p>Oui, le parking privé est gratuit et situé à l’intérieur même de la propriété, derrière un portail fermé avec clé ou télécommande.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Le logement est-il climatisé ? <span>+</span></button><div class="faq-answer"><p>Oui. Le logement dispose de la climatisation ainsi que du chauffage pour un confort optimal en toute saison.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Le linge est-il fourni ? <span>+</span></button><div class="faq-answer"><p>Oui, le linge de maison peut être fourni dans le cadre d’une préparation soignée du séjour.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Le check-in est-il autonome ? <span>+</span></button><div class="faq-answer"><p>Le check-in est simple et très bien noté. Selon les dates, il peut être assisté ou organisé de manière fluide avec l’équipe d’accueil.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Peut-on venir en famille ? <span>+</span></button><div class="faq-answer"><p>Oui, la maison convient très bien aux familles comme aux groupes d’amis, grâce à sa capacité de 12 voyageurs et à la répartition confortable des chambres et salles de bain.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Le wifi est-il rapide ? <span>+</span></button><div class="faq-answer"><p>Oui, le wifi est disponible dans la propriété et un espace de travail dédié permet également de travailler dans de bonnes conditions.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Y a-t-il des équipements pour cuisiner ? <span>+</span></button><div class="faq-answer"><p>Oui, avec une cuisine intérieure spacieuse, une cuisine extérieure et un barbecue Kamado, la maison est particulièrement agréable pour cuisiner et recevoir.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Peut-on organiser des expériences privées ? <span>+</span></button><div class="faq-answer"><p>Oui, certaines expériences sur mesure peuvent être organisées sur demande : cuisine, bateau, découvertes locales ou itinéraires personnalisés.</p></div></article>
+        <article class="faq-item"><button class="faq-question">Comment réserver en direct ? <span>+</span></button><div class="faq-answer"><p>Vous pouvez envoyer une demande via le formulaire, WhatsApp ou email. Frederic et Antonio répondent dans l’heure et vous guident jusqu’à la confirmation.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact">
+      <div class="section-header">
+        <div>
+          <h2>Un échange direct, simple et soigné</h2>
+        </div>
+        <p>Réserver en direct, c’est retrouver une relation plus claire, plus souple et plus rassurante. Vous échangez directement avec Frederic ou Antonio, sans intermédiaire inutile.</p>
+      </div>
+
+      <div class="host-layout">
+        <article class="host-card">
+          <div class="host-profile">
+            <img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" alt="Frederic, hôte de Casa Maddalena" />
+            <div>
+              <h3 style="font-size:2.3rem; margin-bottom:0.3rem;">Frederic & Antonio</h3>
+              <p style="margin:0; color:rgba(26,26,24,0.7);">Hôte · Co-hôte</p>
             </div>
-        </div>
+          </div>
+          <p>Frederic veille à la qualité de l’expérience et Antonio accompagne l’accueil sur place avec une attention reconnue par les voyageurs. Leur approche repose sur la disponibilité, la précision et une communication élégante, sans lourdeur.</p>
+          <div class="host-stats">
+            <div class="host-stat"><span>Taux de réponse</span><strong>100 %</strong></div>
+            <div class="host-stat"><span>Délai de réponse</span><strong>Dans l’heure</strong></div>
+            <div class="host-stat"><span>Check-in</span><strong>5,0</strong></div>
+            <div class="host-stat"><span>Communication</span><strong>5,0</strong></div>
+          </div>
+          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:1.2rem;">
+            <a href="mailto:bonjour@casamaddalena.com" class="btn-outline gallery-btn">Email direct</a>
+            <a href="https://wa.me/393200000000" class="btn" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </article>
+
+        <article class="contact-card">
+          <h3 style="font-size:2.3rem;">Demander une proposition</h3>
+          <p style="color:rgba(26,26,24,0.7); margin-top:0;">Quelques informations suffisent pour recevoir une réponse rapide, claire et personnalisée.</p>
+          <form class="contact-grid" id="contactForm">
+            <div class="field"><label for="firstname">Prénom</label><input id="firstname" type="text" placeholder="Votre prénom" required></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="nom@email.com" required></div>
+            <div class="field"><label for="phone">Téléphone</label><input id="phone" type="tel" placeholder="+33 ..."></div>
+            <div class="field"><label for="contactGuests">Voyageurs</label><select id="contactGuests"><option>2</option><option>4</option><option>6</option><option>8</option><option>10</option><option selected>12</option></select></div>
+            <div class="field"><label for="contactCheckin">Arrivée</label><input id="contactCheckin" type="date"></div>
+            <div class="field"><label for="contactCheckout">Départ</label><input id="contactCheckout" type="date"></div>
+            <div class="field full"><label for="message">Message</label><textarea id="message" placeholder="Dates souhaitées, composition du groupe, demandes particulières..."></textarea></div>
+            <div class="field full"><button class="btn" type="submit">Envoyer la demande</button></div>
+          </form>
+        </article>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-            <span class="nav-logo">Casa Maddalena</span>
-            <div>© 2025 · Tous droits réservés · IT089017C2TWMHDS6C</div>
-            <div>Instagram · Airbnb</div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Casa Maddalena</h4>
+        <p>Appartement / logement de vacances de luxe à Syracuse, Sicile. Une expérience méditerranéenne privée et sophistiquée face à la mer.</p>
+        <p>Identifiant légal : IT089017C2TWMHDS6C</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <div class="footer-links">
+          <a href="#galerie">Galerie</a>
+          <a href="#experience">Expérience</a>
+          <a href="#chambres">Chambres</a>
+          <a href="#equipements">Équipements</a>
+          <a href="#contact">Contact</a>
         </div>
-    </footer>
-
-    <!-- Éléments flottants -->
-    <a href="https://wa.me/390000000000" class="whatsapp-float" target="_blank">💬</a>
-    <div class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="this.classList.remove('show')"><img id="lightboxImg" src=""></div>
-
-    <!-- Exit popup -->
-    <div class="exit-popup" id="exitPopup">
-        <h4>Avant de partir —</h4>
-        <p>Contactez Frédéric directement pour un tarif exclusif 🎁</p>
-        <button class="btn-or" style="padding:8px 16px;">Envoyer WhatsApp</button>
+      </div>
+      <div>
+        <h4>Liens</h4>
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Airbnb</a>
+          <a href="#">Mentions légales</a>
+          <a href="mailto:bonjour@casamaddalena.com">bonjour@casamaddalena.com</a>
+        </div>
+        <p style="margin-top:1rem;">© 2026 Casa Maddalena. Tous droits réservés.</p>
+      </div>
     </div>
+  </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // Sticky navbar + progress bar + back top
-        window.addEventListener('scroll', function() {
-            let navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
-            let winScroll = document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - window.innerHeight;
-            document.getElementById('progress-bar').style.width = (winScroll / height) * 100 + '%';
-            if (winScroll > 400) document.querySelector('.back-top').classList.add('show'); else document.querySelector('.back-top').classList.remove('show');
+  <a class="whatsapp-float" href="https://wa.me/393200000000" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">✆</a>
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">↑</button>
+  <a href="#reservation" class="floating-cta">Vérifier les disponibilités</a>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="close-btn" id="closeLightbox" aria-label="Fermer">×</button>
+      <div class="lightbox-frame">
+        <img id="lightboxImage" src="" alt="Image de la galerie en grand format">
+        <div class="lightbox-sidebar">
+          <div>
+            <h3 id="lightboxTitle" style="font-size:2.5rem;">Galerie</h3>
+            <p id="lightboxDescription" style="color:rgba(26,26,24,0.7);">Une lecture plus immersive de la propriété et de ses détails les plus désirables.</p>
+          </div>
+          <div class="lightbox-controls">
+            <button type="button" id="lightPrev" aria-label="Image précédente">←</button>
+            <button type="button" id="lightNext" aria-label="Image suivante">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exit-popup" id="exitPopup" aria-hidden="true">
+    <div class="popup-card">
+      <div class="popup-copy">
+        <h3>Avant de partir</h3>
+        <p>Contactez-nous directement pour recevoir une offre privilégiée sur vos dates. Réponse rapide, proposition claire et échange direct avec l’hôte.</p>
+        <form id="popupForm" style="display:grid; gap:0.8rem; margin-top:1rem;">
+          <div class="field"><label for="popupEmail">Email</label><input id="popupEmail" type="email" placeholder="Votre email"></div>
+          <button class="btn" type="submit">Recevoir une offre</button>
+          <button class="btn-outline gallery-btn" type="button" id="closePopup">Fermer</button>
+        </form>
+      </div>
+      <div class="popup-visual"></div>
+    </div>
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('progressBar');
+    const backToTop = document.getElementById('backToTop');
+    const reveals = document.querySelectorAll('.reveal');
+
+    function updateScrollUI() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+      navbar.classList.toggle('scrolled', scrollTop > 40);
+      backToTop.classList.toggle('visible', scrollTop > 500);
+    }
+
+    window.addEventListener('scroll', updateScrollUI);
+    updateScrollUI();
+
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    const galleryItems = [
+      {
+        title: 'Panorama sur la baie',
+        description: 'Une vue mer panoramique sur Ortygia, le golfe de Syracuse et l’Etna, signature visuelle de la propriété.',
+        src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Terrasse pour 12',
+        description: 'Une terrasse suspendue entre ciel et mer, pensée pour les grands repas, les apéritifs prolongés et les couchers de soleil.',
+        src: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Cuisine signature',
+        description: 'Des équipements généreux et une esthétique chaleureuse pour cuisiner, recevoir et ralentir avec style.',
+        src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Suite vue mer',
+        description: 'Des chambres baignées de lumière, à la fois apaisantes et raffinées, dans un esprit hôtelier haut de gamme.',
+        src: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Salle de bain élégante',
+        description: 'Des volumes lumineux et des finitions soignées, avec pour certaines salles de bain une ouverture spectaculaire sur la baie.',
+        src: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80'
+      }
+    ];
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDescription = document.getElementById('lightboxDescription');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const lightPrev = document.getElementById('lightPrev');
+    const lightNext = document.getElementById('lightNext');
+    let lightboxIndex = 0;
+
+    function openLightbox(index) {
+      lightboxIndex = index;
+      const item = galleryItems[lightboxIndex];
+      lightboxImage.src = item.src;
+      lightboxTitle.textContent = item.title;
+      lightboxDescription.textContent = item.description;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeGalleryLightbox() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => openLightbox(Number(item.dataset.index)));
+    });
+
+    document.getElementById('openGalleryBtn').addEventListener('click', () => openLightbox(0));
+    closeLightbox.addEventListener('click', closeGalleryLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeGalleryLightbox(); });
+    lightPrev.addEventListener('click', () => openLightbox((lightboxIndex - 1 + galleryItems.length) % galleryItems.length));
+    lightNext.addEventListener('click', () => openLightbox((lightboxIndex + 1) % galleryItems.length));
+
+    const filterButtons = document.querySelectorAll('.chip-filter');
+    const galleryGridItems = document.querySelectorAll('.gallery-item');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        galleryGridItems.forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.category.includes(filter)) ? '' : 'none';
         });
+      });
+    });
 
-        // fade-in
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.2 };
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, appearOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader));
+    const rooms = [
+      {
+        title: 'Suite Levante',
+        description: 'Une suite généreuse face à la baie, avec vue mer apaisante dès le réveil, salle de bain attenante et atmosphère lumineuse pensée pour ralentir.',
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80',
+        badges: ['Vue mer', 'Salle de bain attenante', 'Ambiance lumineuse']
+      },
+      {
+        title: 'Suite Ortygia',
+        description: 'Une chambre élégante ouvrant sur un panorama rare, idéale pour celles et ceux qui souhaitent vivre la mer comme une présence constante.',
+        image: 'https://images.unsplash.com/photo-1505693531745-0d45b91b8f20?auto=format&fit=crop&w=1400&q=80',
+        badges: ['Vue mer', 'Élégance hôtelière', 'Volumes généreux']
+      },
+      {
+        title: 'Chambre Etna',
+        description: 'Une atmosphère plus contemplative, avec lignes sobres et ouverture sur l’horizon. Parfaite pour un séjour à la fois esthétique et reposant.',
+        image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1400&q=80',
+        badges: ['Vue mer', 'Esprit slow luxury', 'Calme absolu']
+      },
+      {
+        title: 'Chambre Baia',
+        description: 'Une chambre raffinée reliée à l’esprit général de la maison, avec une salle de bain attenante et un rapport privilégié à la lumière.',
+        image: 'https://images.unsplash.com/photo-1505692952047-1a78307da8f2?auto=format&fit=crop&w=1400&q=80',
+        badges: ['Vue mer', 'Salle de bain privée', 'Lumière dorée']
+      },
+      {
+        title: 'Chambre Giardino I',
+        description: 'Tournée vers le jardin exotique, cette chambre offre une sensation plus végétale, douce et intime, idéale pour ceux qui recherchent le calme.',
+        image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=80',
+        badges: ['Vue jardin', 'Atmosphère intime', 'Fraîcheur naturelle']
+      },
+      {
+        title: 'Chambre Giardino II',
+        description: 'Une seconde chambre côté jardin, sereine et élégante, pensée pour compléter harmonieusement l’accueil de groupes ou de familles.',
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80',
+        badges: ['Vue jardin', 'Équilibre & confort', 'Style méditerranéen']
+      }
+    ];
 
-        // accordéon
-        function toggleAccordion(el) {
-            let content = el.nextElementSibling;
-            content.classList.toggle('show');
-            el.querySelector('span').innerText = content.classList.contains('show') ? '−' : '+';
-        }
+    let roomIndex = 0;
+    const roomTitle = document.getElementById('roomTitle');
+    const roomDescription = document.getElementById('roomDescription');
+    const roomImage = document.getElementById('roomImage');
+    const roomMeta = document.getElementById('roomMeta');
 
-        // lightbox simple
-        function openLightbox() {
-            document.getElementById('lightbox').classList.add('show');
-            document.getElementById('lightboxImg').src = 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg';
-        }
+    function renderRoom(index) {
+      const room = rooms[index];
+      roomTitle.textContent = room.title;
+      roomDescription.textContent = room.description;
+      roomImage.src = room.image;
+      roomMeta.innerHTML = room.badges.map(b => `<span class="room-badge">${b}</span>`).join('');
+    }
 
-        // calcul prix dynamique (demo)
-        document.getElementById('arrivee').addEventListener('change', updateTotal);
-        document.getElementById('depart').addEventListener('change', updateTotal
+    document.getElementById('prevRoom').addEventListener('click', () => {
+      roomIndex = (roomIndex - 1 + rooms.length) % rooms.length;
+      renderRoom(roomIndex);
+    });
+
+    document.getElementById('nextRoom').addEventListener('click', () => {
+      roomIndex = (roomIndex + 1) % rooms.length;
+      renderRoom(roomIndex);
+    });
+
+    renderRoom(roomIndex);
+
+    const nightlyRate = 1690;
+    const cleaningFee = 220;
+    const taxPerNightPerGuest = 8;
+
+    function setDefaultDates() {
+      const today = new Date();
+      const checkin = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14);
+      const checkout = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 17);
+      const format = (date) => date.toISOString().split('T')[0];
+
+      ['checkin', 'heroCheckin', 'contactCheckin'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = format(checkin);
+      });
+      ['checkout', 'heroCheckout', 'contactCheckout'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = format(checkout);
+      });
+    }
+
+    function formatEuro(value) {
+      return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
+    }
+
+    function updatePricing() {
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const guests = Number(document.getElementById('guests').value || 12);
+      let nights = 3;
+      if (checkin && checkout) {
+        const start = new Date(checkin);
+        const end = new Date(checkout);
+        const diff = Math.round((end - start) / (1000 * 60 * 60 * 24));
+        if (diff > 0) nights = diff;
+      }
+      const subtotal = nights * nightlyRate;
+      const tax = Math.min(7, nights) * Math.min(guests, 12) * taxPerNightPerGuest / 2;
+      const total = subtotal + cleaningFee + tax;
+      document.getElementById('nightsLabel').textContent = `${nights} nuit${nights > 1 ? 's' : ''} × ${formatEuro(nightlyRate)}`;
+      document.getElementById('subtotal').textContent = formatEuro(subtotal);
+      document.getElementById('tax').textContent = formatEuro(tax);
+      document.getElementById('total').textContent = formatEuro(total);
+    }
+
+    ['checkin', 'checkout', 'guests'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updatePricing);
+    });
+
+    setDefaultDates();
+    updatePricing();
+
+    document.getElementById('reserveForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Simulation de réservation directe : remplacez cette action par votre tunnel réel, Stripe, formulaire ou moteur de réservation.');
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Votre demande a bien été préparée. Reliez ce formulaire à votre service d’emailing ou CRM pour une mise en production réelle.');
+    });
+
+    document.getElementById('popupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      exitPopup.classList.remove('active');
+      alert('Merci. L’offre privilégiée peut maintenant être connectée à votre outil email.');
+    });
+
+    const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    const weekdays = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+    let displayedMonth = new Date(2026, 5, 1); // Juin 2026
+    const blockedDays = {
+      '2026-06': [3,4,5,14,15,16,23,24],
+      '2026-07': [1,2,10,11,12,20,21,28],
+      '2026-08': [6,7,8,18,19,20,29],
+      '2026-09': [4,5,13,14,22]
+    };
+
+    function nightlyPriceForMonth(month) {
+      const prices = {5: 1490, 6: 1690, 7: 1790, 8: 1590, 9: 1450};
+      return prices[month] || 1390;
+    }
+
+    function renderCalendar() {
+      const title = document.getElementById('calendarTitle');
+      const grid = document.getElementById('calendarGrid');
+      grid.innerHTML = '';
+      title.textContent = `${monthNames[displayedMonth.getMonth()]} ${displayedMonth.getFullYear()}`;
+      weekdays.forEach(day => {
+        const el = document.createElement('div');
+        el.className = 'weekday';
+        el.textContent = day;
+        grid.appendChild(el);
+      });
+
+      const year = displayedMonth.getFullYear();
+      const month = displayedMonth.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      let startOffset = (firstDay.getDay() + 6) % 7;
+      const key = `${year}-${String(month + 1).padStart(2, '0')}`;
+      const blocked = blockedDays[key] || [];
+      const price = nightlyPriceForMonth(month);
+
+      for (let i = 0; i < startOffset; i++) {
+        const blank = document.createElement('div');
+        blank.className = 'day muted';
+        grid.appendChild(blank);
+      }
+
+      const today = new Date();
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const cell = document.createElement('div');
+        const isBlocked = blocked.includes(day);
+        const isToday = date.toDateString() === today.toDateString();
+        cell.className = `day ${isBlocked ? 'blocked' : 'available'} ${isToday ? 'today' : ''}`;
+        cell.innerHTML = `<span>${day}</span><small>${isBlocked ? 'Indispo' : formatEuro(price)}</small>`;
+        grid.appendChild(cell);
+      }
+    }
+
+    document.getElementById('prevMonth').addEventListener('click', () => {
+      displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() - 1, 1);
+      renderCalendar();
+    });
+    document.getElementById('nextMonth').addEventListener('click', () => {
+      displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1);
+      renderCalendar();
+    });
+    renderCalendar();
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    const exitPopup = document.getElementById('exitPopup');
+    const closePopup = document.getElementById('closePopup');
+    let popupShown = false;
+
+    document.addEventListener('mouseout', (e) => {
+      if (!popupShown && e.clientY <= 10) {
+        popupShown = true;
+        exitPopup.classList.add('active');
+        exitPopup.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    closePopup.addEventListener('click', () => {
+      exitPopup.classList.remove('active');
+      exitPopup.setAttribute('aria-hidden', 'true');
+    });
+
+    exitPopup.addEventListener('click', (e) => {
+      if (e.target === exitPopup) {
+        exitPopup.classList.remove('active');
+        exitPopup.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+</body>
+</html>
