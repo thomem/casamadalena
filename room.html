@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chambres &amp; Espaces — Casa Maddalena Syracuse Sicile</title>
+  <meta name="description" content="Découvrez les 6 chambres et tous les espaces de Casa Maddalena : chambres vue mer, espaces communs, terrasse, jardin privé et accès à la mer à Syracuse, Sicile." />
+  <link rel="canonical" href="https://casamaddalena.com/rooms.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #f5efe6; --cream-2: #ede4d7; --paper: #faf7f2; --sand: #d6c9b4;
+      --gold: #c2935a; --gold-lt: #e8d5b5; --gold-dk: #9c6e38;
+      --navy: #0e1f2c; --navy-2: #1a3347; --navy-3: #253d50;
+      --muted: #6b7280; --muted-lt: #9ca3af; --text: #1a1a1a; --white: #ffffff;
+      --shadow-sm: 0 2px 12px rgba(14,31,44,.07);
+      --shadow: 0 8px 32px rgba(14,31,44,.10);
+      --shadow-lg: 0 24px 80px rgba(14,31,44,.18);
+      --shadow-xl: 0 40px 120px rgba(14,31,44,.26);
+      --r-sm: 10px; --r: 18px; --r-lg: 26px; --r-xl: 34px;
+      --max: 1260px; --hh: 80px; --tr: .22s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; line-height: 1; }
+    h1 { font-size: clamp(44px, 6vw, 80px); font-weight: 600; letter-spacing: -.02em; }
+    h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 600; letter-spacing: -.02em; }
+    h3 { font-size: clamp(24px, 2.5vw, 32px); font-weight: 500; }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--gold-dk); margin-bottom: 12px; }
+    .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+    .lead { font-size: 17px; color: var(--muted); line-height: 1.85; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 15px 28px; border-radius: 999px; font-size: 14px; font-weight: 500; letter-spacing: .02em; transition: transform var(--tr), box-shadow var(--tr); white-space: nowrap; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gold { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dk) 100%); color: #fff; box-shadow: 0 8px 24px rgba(194,147,90,.30); }
+    .btn-gold:hover { box-shadow: 0 14px 36px rgba(194,147,90,.42); }
+    .btn-navy { background: var(--navy); color: #fff; box-shadow: var(--shadow); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border: 1px solid rgba(14,31,44,.18); }
+    .btn-sm { padding: 11px 20px; font-size: 13px; }
+
+    /* HEADER */
+    .header { position: sticky; top: 0; z-index: 100; height: var(--hh); backdrop-filter: blur(20px) saturate(1.2); background: rgba(250,247,242,.88); border-bottom: 1px solid rgba(14,31,44,.07); }
+    .header-inner { height: var(--hh); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { display: flex; align-items: center; gap: 13px; }
+    .logo-mark { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: var(--gold-lt); display: grid; place-items: center; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; }
+    .logo-text strong { display: block; font-size: 15px; font-weight: 600; }
+    .logo-text span { display: block; font-size: 11px; color: var(--muted); }
+    .header-nav { display: flex; align-items: center; gap: 20px; }
+    .header-nav a { font-size: 13.5px; color: var(--muted); transition: color var(--tr); }
+    .header-nav a:hover { color: var(--text); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 60px 0 80px; }
+    .page-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .page-hero-img { border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 1.3; box-shadow: var(--shadow-xl); }
+    .page-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .page-hero-breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .page-hero-breadcrumb a { color: var(--gold-dk); transition: color var(--tr); }
+    .page-hero-breadcrumb a:hover { color: var(--gold); }
+    .page-hero h1 { margin-bottom: 20px; }
+    .page-hero h1 em { font-style: italic; color: var(--gold-dk); }
+    .page-hero-stats { display: flex; gap: 28px; margin-top: 28px; flex-wrap: wrap; }
+    .ph-stat { text-align: center; padding: 14px 20px; background: #fff; border-radius: var(--r); border: 1px solid rgba(14,31,44,.08); box-shadow: var(--shadow-sm); }
+    .ph-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--navy); line-height: 1; }
+    .ph-stat-lbl { font-size: 11px; color: var(--muted); letter-spacing: .06em; margin-top: 3px; }
+
+    /* ROOMS FILTER */
+    .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; padding: 20px 0; border-bottom: 1px solid rgba(14,31,44,.07); }
+    .filter-btn { padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--muted); background: #fff; border: 1px solid rgba(14,31,44,.12); cursor: pointer; transition: all var(--tr); }
+    .filter-btn.active, .filter-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    /* ROOM DETAIL CARDS */
+    .rooms-section { padding: 0 0 100px; }
+    .room-detail { margin-bottom: 80px; scroll-margin-top: calc(var(--hh) + 20px); }
+    .room-detail-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-lg); background: #fff; border: 1px solid rgba(14,31,44,.06); }
+    .room-detail:nth-child(even) .room-detail-inner { direction: rtl; }
+    .room-detail:nth-child(even) .room-detail-inner > * { direction: ltr; }
+    .room-gallery { position: relative; overflow: hidden; }
+    .room-gallery-main { aspect-ratio: 1; overflow: hidden; }
+    .room-gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .room-detail:hover .room-gallery-main img { transform: scale(1.04); }
+    .room-gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; background: rgba(14,31,44,.03); }
+    .room-thumb { aspect-ratio: 1; overflow: hidden; cursor: pointer; border-radius: 6px; }
+    .room-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease, opacity var(--tr); opacity: .75; }
+    .room-thumb:hover img, .room-thumb.active img { opacity: 1; transform: scale(1.05); }
+    .room-info { padding: 44px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .room-number { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .room-info h3 { font-size: clamp(26px, 3vw, 36px); font-weight: 600; color: var(--navy); margin-bottom: 16px; line-height: 1.1; }
+    .room-info h3 em { font-style: italic; color: var(--gold-dk); }
+    .room-desc { font-size: 14.5px; color: var(--muted); line-height: 1.85; margin-bottom: 24px; }
+    .room-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .room-feature { display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: var(--cream); border-radius: var(--r-sm); }
+    .room-feature-icon { font-size: 18px; line-height: 1; flex: 0 0 auto; }
+    .room-feature-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--navy); }
+    .room-feature-text span { display: block; font-size: 12px; color: var(--muted); }
+    .room-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+    .room-chip { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid rgba(14,31,44,.12); font-size: 12px; font-weight: 500; color: var(--navy-2); }
+    .room-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* SPACES SECTION */
+    .spaces-section { background: var(--navy); border-radius: var(--r-xl); margin: 0 20px 80px; padding: 72px 60px; }
+    .spaces-section .eyebrow { color: var(--gold); }
+    .spaces-section .eyebrow::before { background: var(--gold); }
+    .spaces-section h2 { color: #fff; margin-bottom: 8px; }
+    .spaces-section h2 em { font-style: italic; color: var(--gold-lt); }
+    .spaces-section .lead { color: rgba(255,255,255,.65); margin-bottom: 44px; }
+    .spaces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .space-card { border-radius: var(--r-lg); overflow: hidden; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); transition: transform var(--tr), background var(--tr); }
+    .space-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.10); }
+    .space-photo { aspect-ratio: 4/3; overflow: hidden; }
+    .space-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; filter: brightness(.85); }
+    .space-card:hover .space-photo img { transform: scale(1.05); filter: brightness(1); }
+    .space-body { padding: 22px; }
+    .space-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold-lt); margin-bottom: 8px; }
+    .space-body p { font-size: 13.5px; color: rgba(255,255,255,.65); line-height: 1.7; }
+    .space-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .space-tag { padding: 4px 10px; border-radius: 999px; background: rgba(194,147,90,.2); border: 1px solid rgba(194,147,90,.3); font-size: 11px; color: var(--gold-lt); font-weight: 500; }
+
+    /* FLOOR PLAN */
+    .floorplan-section { padding: 80px 0; }
+    .floorplan-inner { background: #fff; border-radius: var(--r-xl); border: 1px solid rgba(14,31,44,.07); box-shadow: var(--shadow); padding: 52px; }
+    .floorplan-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 44px; gap: 40px; }
+    .floorplan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(14,31,44,.06); border-radius: var(--r); overflow: hidden; }
+    .fp-zone { padding: 28px 22px; background: #fff; transition: background var(--tr); }
+    .fp-zone:hover { background: var(--cream); }
+    .fp-zone-label { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dk); font-weight: 600; margin-bottom: 8px; }
+    .fp-zone-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .fp-zone-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    .fp-zone-size { display: inline-block; margin-top: 10px; padding: 3px 10px; background: var(--cream); border-radius: 999px; font-size: 11px; color: var(--navy-2); font-weight: 500; }
+
+    /* CTA BAND */
+    .cta-band { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); border-radius: var(--r-xl); padding: 60px 52px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; margin: 0 0 80px; box-shadow: var(--shadow-lg); }
+    .cta-band h2 { color: #fff; font-size: clamp(28px,3vw,44px); margin-bottom: 8px; }
+    .cta-band h2 em { font-style: italic; color: var(--gold-lt); }
+    .cta-band p { color: rgba(255,255,255,.6); font-size: 15px; }
+    .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; white-space: nowrap; }
+
+    /* LIGHTBOX */
+    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(8,16,24,.96); backdrop-filter: blur(20px); display: none; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox.open { display: flex; }
+    .lb-inner { position: relative; width: min(1200px,100%); display: grid; grid-template-columns: 56px 1fr 56px; gap: 16px; align-items: center; }
+    .lb-img-wrap { position: relative; }
+    .lb-img { width: 100%; max-height: 84vh; object-fit: contain; border-radius: var(--r-lg); }
+    .lb-close { position: absolute; top: -14px; right: -14px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 20px; display: grid; place-items: center; }
+    .lb-close:hover { background: rgba(255,255,255,.22); }
+    .lb-nav { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.16); color: #fff; font-size: 22px; display: grid; place-items: center; }
+    .lb-nav:hover { background: rgba(255,255,255,.20); }
+    .lb-caption { text-align: center; font-size: 13px; color: rgba(255,255,255,.55); margin-top: 12px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-img { aspect-ratio: 1.6; }
+      .room-detail-inner { grid-template-columns: 1fr; }
+      .room-detail:nth-child(even) .room-detail-inner { direction: ltr; }
+      .room-gallery-main { aspect-ratio: 1.5; }
+      .room-info { padding: 32px; }
+      .spaces-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-band { grid-template-columns: 1fr; }
+      .floorplan-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .header-nav a { display: none; }
+      .spaces-section { margin: 0 0 60px; padding: 44px 24px; }
+      .spaces-grid { grid-template-columns: 1fr; }
+      .room-features { grid-template-columns: 1fr; }
+      .floorplan-inner { padding: 28px; }
+      .floorplan-grid { grid-template-columns: 1fr; }
+      .cta-band { padding: 36px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Casa Maddalena — accueil">
+        <div class="logo-mark">C</div>
+        <div class="logo-text">
+          <strong>Casa Maddalena</strong>
+          <span>Syracuse · Sicile</span>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="index.html#gallery">Galerie</a>
+        <a href="index.html#overview">La villa</a>
+        <a href="rooms.html" style="color:var(--navy); font-weight:600;">Chambres</a>
+        <a href="index.html#calendar">Disponibilités</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="btn btn-gold btn-sm" href="index.html#calendar">Réserver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <div>
+            <div class="page-hero-breadcrumb">
+              <a href="index.html">Casa Maddalena</a> &rsaquo; Chambres &amp; Espaces
+            </div>
+            <div class="eyebrow">6 chambres · 5 salles de bain</div>
+            <h1>Des espaces conçus pour <em>vivre ensemble</em>.</h1>
+            <p class="lead" style="margin-top:16px;max-width:560px;">Chaque chambre a été pensée pour offrir intimité, lumière et confort. Quatre avec vue directe sur la mer. Toutes climatisées. Un appartement de 360 m² qui ne ressemble à aucun autre.</p>
+            <div class="page-hero-stats">
+              <div class="ph-stat"><div class="ph-stat-val">360</div><div class="ph-stat-lbl">m² totaux</div></div>
+              <div class="ph-stat"><div class="ph-stat-val">6</div><div class="ph-stat-lbl">chambres</div></div>
+              <div class="ph-stat"><div class="ph-stat-val">5</div><div class="ph-stat-lbl">salles de bain</div></div>
+              <div class="ph-stat"><div class="ph-stat-val">12</div><div class="ph-stat-lbl">voyageurs max</div></div>
+            </div>
+          </div>
+          <div class="page-hero-img">
+            <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Vue panoramique de la terrasse de Casa Maddalena" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER -->
+    <div class="container">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Tout voir</button>
+        <button class="filter-btn" data-filter="sea">Vue mer</button>
+        <button class="filter-btn" data-filter="double">Lits doubles</button>
+        <button class="filter-btn" data-filter="twin">Lits jumeaux</button>
+        <button class="filter-btn" data-filter="outdoor">Espaces extérieurs</button>
+        <button class="filter-btn" data-filter="common">Espaces communs</button>
+      </div>
+    </div>
+
+    <!-- ROOMS DETAILED -->
+    <section class="rooms-section">
+      <div class="container">
+
+        <!-- CH. 1 — Master Suite -->
+        <div class="room-detail" id="chambre-1" data-tags="sea double">
+          <div class="room-detail-inner">
+            <div class="room-gallery">
+              <div class="room-gallery-main">
+                <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Suite Master vue mer" id="rm1-main" />
+              </div>
+              <div class="room-gallery-thumbs">
+                <div class="room-thumb active" onclick="switchRoomImg('rm1-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm1-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm1-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm1-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="" /></div>
+              </div>
+            </div>
+            <div class="room-info">
+              <div class="room-number">Chambre 01</div>
+              <h3>Suite Master<br><em>Vue Panoramique</em></h3>
+              <p class="room-desc">La chambre principale. Réveils face à la baie de Syracuse et à l'Etna. Un grand lit double, lumière naturelle abondante, salle de bain privative avec vue mer partielle. La chambre qui justifie à elle seule le choix de cette propriété.</p>
+              <div class="room-features">
+                <div class="room-feature"><div class="room-feature-icon">🌊</div><div class="room-feature-text"><strong>Vue mer directe</strong><span>Baie de Syracuse</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🛏️</div><div class="room-feature-text"><strong>Grand lit double</strong><span>200×200 cm</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🚿</div><div class="room-feature-text"><strong>Salle de bain privée</strong><span>Douche &amp; baignoire</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">❄️</div><div class="room-feature-text"><strong>Climatisation</strong><span>Chaud &amp; froid</span></div></div>
+              </div>
+              <div class="room-chips">
+                <span class="room-chip">Vue mer</span><span class="room-chip">Salle de bain privée</span><span class="room-chip">Occultants</span><span class="room-chip">Espace dressing</span>
+              </div>
+              <div class="room-cta">
+                <a class="btn btn-gold" href="index.html#calendar">Vérifier les dates</a>
+                <a class="btn btn-outline-dark" href="index.html#contact">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CH. 2 — Chambre Vue Mer 2 -->
+        <div class="room-detail" id="chambre-2" data-tags="sea double">
+          <div class="room-detail-inner">
+            <div class="room-gallery">
+              <div class="room-gallery-main">
+                <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="Chambre vue mer 2" id="rm2-main" />
+              </div>
+              <div class="room-gallery-thumbs">
+                <div class="room-thumb active" onclick="switchRoomImg('rm2-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm2-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm2-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm2-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="" /></div>
+              </div>
+            </div>
+            <div class="room-info">
+              <div class="room-number">Chambre 02</div>
+              <h3>Chambre <em>Vue Baie</em></h3>
+              <p class="room-desc">Seconde chambre côté mer. Grand lit double, exposition plein sud, lumière du matin sur la Méditerranée. Accès à la salle de bain attenante partagée avec la chambre 03. Idéale pour un couple cherchant l'intimité sans isolement du groupe.</p>
+              <div class="room-features">
+                <div class="room-feature"><div class="room-feature-icon">🌊</div><div class="room-feature-text"><strong>Vue baie</strong><span>Exposition sud</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🛏️</div><div class="room-feature-text"><strong>Lit double</strong><span>160×200 cm</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🚿</div><div class="room-feature-text"><strong>Salle de bain attenante</strong><span>Partagée ch. 03</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">❄️</div><div class="room-feature-text"><strong>Climatisation</strong><span>Chaud &amp; froid</span></div></div>
+              </div>
+              <div class="room-chips">
+                <span class="room-chip">Vue mer</span><span class="room-chip">Lit double</span><span class="room-chip">Occultants</span><span class="room-chip">Lumière naturelle</span>
+              </div>
+              <div class="room-cta">
+                <a class="btn btn-gold" href="index.html#calendar">Vérifier les dates</a>
+                <a class="btn btn-outline-dark" href="index.html#contact">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CH. 3 — Chambre Vue Mer 3 -->
+        <div class="room-detail" id="chambre-3" data-tags="sea twin">
+          <div class="room-detail-inner">
+            <div class="room-gallery">
+              <div class="room-gallery-main">
+                <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="Chambre vue Etna" id="rm3-main" />
+              </div>
+              <div class="room-gallery-thumbs">
+                <div class="room-thumb active" onclick="switchRoomImg('rm3-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm3-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm3-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm3-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="" /></div>
+              </div>
+            </div>
+            <div class="room-info">
+              <div class="room-number">Chambre 03</div>
+              <h3>Chambre <em>Vue Etna</em></h3>
+              <p class="room-desc">La chambre avec vue sur l'Etna au coucher du soleil. Deux lits simples modulables en lit double selon les besoins. Idéale pour des amis ou des enfants plus grands. Partage la salle de bain avec la chambre 02.</p>
+              <div class="room-features">
+                <div class="room-feature"><div class="room-feature-icon">🏔️</div><div class="room-feature-text"><strong>Vue Etna</strong><span>Couchers de soleil magiques</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🛏️</div><div class="room-feature-text"><strong>2 lits simples</strong><span>Modulables en double</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🚿</div><div class="room-feature-text"><strong>Salle de bain attenante</strong><span>Partagée ch. 02</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">❄️</div><div class="room-feature-text"><strong>Climatisation</strong><span>Chaud &amp; froid</span></div></div>
+              </div>
+              <div class="room-chips">
+                <span class="room-chip">Vue Etna</span><span class="room-chip">Lits jumeaux</span><span class="room-chip">Modulable</span><span class="room-chip">Idéale ados</span>
+              </div>
+              <div class="room-cta">
+                <a class="btn btn-gold" href="index.html#calendar">Vérifier les dates</a>
+                <a class="btn btn-outline-dark" href="index.html#contact">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CH. 4 — Chambre Vue Mer 4 -->
+        <div class="room-detail" id="chambre-4" data-tags="sea double">
+          <div class="room-detail-inner">
+            <div class="room-gallery">
+              <div class="room-gallery-main">
+                <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="Chambre double vue mer" id="rm4-main" />
+              </div>
+              <div class="room-gallery-thumbs">
+                <div class="room-thumb active" onclick="switchRoomImg('rm4-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm4-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm4-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm4-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="" /></div>
+              </div>
+            </div>
+            <div class="room-info">
+              <div class="room-number">Chambre 04</div>
+              <h3>Suite <em>Côté Jardin &amp; Mer</em></h3>
+              <p class="room-desc">Quatrième chambre côté mer, avec accès terrasse jardin. Grand lit double et espace ouvert sur le salon extérieur. La chambre idéale pour ceux qui veulent être les premiers sur la terrasse au petit déjeuner. Salle de bain partagée accessible.</p>
+              <div class="room-features">
+                <div class="room-feature"><div class="room-feature-icon">🌊</div><div class="room-feature-text"><strong>Vue mer &amp; jardin</strong><span>Accès terrasse direct</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🛏️</div><div class="room-feature-text"><strong>Grand lit double</strong><span>160×200 cm</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🌿</div><div class="room-feature-text"><strong>Accès terrasse</strong><span>Depuis la chambre</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">❄️</div><div class="room-feature-text"><strong>Climatisation</strong><span>Chaud &amp; froid</span></div></div>
+              </div>
+              <div class="room-chips">
+                <span class="room-chip">Vue mer</span><span class="room-chip">Accès terrasse</span><span class="room-chip">Lit double</span><span class="room-chip">Occultants</span>
+              </div>
+              <div class="room-cta">
+                <a class="btn btn-gold" href="index.html#calendar">Vérifier les dates</a>
+                <a class="btn btn-outline-dark" href="index.html#contact">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CH. 5 — Chambre famille -->
+        <div class="room-detail" id="chambre-5" data-tags="twin">
+          <div class="room-detail-inner">
+            <div class="room-gallery">
+              <div class="room-gallery-main">
+                <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="Chambre famille" id="rm5-main" />
+              </div>
+              <div class="room-gallery-thumbs">
+                <div class="room-thumb active" onclick="switchRoomImg('rm5-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm5-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm5-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm5-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="" /></div>
+              </div>
+            </div>
+            <div class="room-info">
+              <div class="room-number">Chambre 05</div>
+              <h3>Chambre <em>Famille</em></h3>
+              <p class="room-desc">Spacieuse chambre intérieure conçue pour les familles avec enfants. Possibilité de 2 lits simples ou configuration double. Calme et fraîche même en plein été, protégée du soleil. Salle de bain complète à proximité. Un cocon pour les plus jeunes voyageurs.</p>
+              <div class="room-features">
+                <div class="room-feature"><div class="room-feature-icon">👨‍👩‍👧</div><div class="room-feature-text"><strong>Idéale familles</strong><span>Espace généreux</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🛏️</div><div class="room-feature-text"><strong>2 lits simples</strong><span>Ou 1 grand double</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🌡️</div><div class="room-feature-text"><strong>Fraîche naturellement</strong><span>+ Climatisation</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🔒</div><div class="room-feature-text"><strong>Porte verrouillable</strong><span>Intimité assurée</span></div></div>
+              </div>
+              <div class="room-chips">
+                <span class="room-chip">Famille</span><span class="room-chip">Lits simples</span><span class="room-chip">Calme</span><span class="room-chip">Climatisation</span>
+              </div>
+              <div class="room-cta">
+                <a class="btn btn-gold" href="index.html#calendar">Vérifier les dates</a>
+                <a class="btn btn-outline-dark" href="index.html#contact">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CH. 6 — Studio séparé -->
+        <div class="room-detail" id="chambre-6" data-tags="double sea">
+          <div class="room-detail-inner">
+            <div class="room-gallery">
+              <div class="room-gallery-main">
+                <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="Chambre 6 salon vue mer" id="rm6-main" />
+              </div>
+              <div class="room-gallery-thumbs">
+                <div class="room-thumb active" onclick="switchRoomImg('rm6-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm6-main', 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm6-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="" /></div>
+                <div class="room-thumb" onclick="switchRoomImg('rm6-main', 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720', this)"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="" /></div>
+              </div>
+            </div>
+            <div class="room-info">
+              <div class="room-number">Chambre 06</div>
+              <h3>Suite <em>Terrasse Privée</em></h3>
+              <p class="room-desc">La chambre avec terrasse semi-privée. Accès direct à l'extérieur depuis la chambre, vue dégagée côté mer. Grand lit double, espace ouvert, atmosphère de bungalow au bord de l'eau. La plus intime pour un couple en quête d'indépendance au sein du groupe.</p>
+              <div class="room-features">
+                <div class="room-feature"><div class="room-feature-icon">🌿</div><div class="room-feature-text"><strong>Terrasse semi-privée</strong><span>Accès direct extérieur</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🛏️</div><div class="room-feature-text"><strong>Grand lit double</strong><span>160×200 cm</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">🌊</div><div class="room-feature-text"><strong>Vue mer côté</strong><span>Ambiance bord de mer</span></div></div>
+                <div class="room-feature"><div class="room-feature-icon">❄️</div><div class="room-feature-text"><strong>Climatisation</strong><span>Chaud &amp; froid</span></div></div>
+              </div>
+              <div class="room-chips">
+                <span class="room-chip">Terrasse privée</span><span class="room-chip">Vue mer</span><span class="room-chip">Couple</span><span class="room-chip">Accès direct extérieur</span>
+              </div>
+              <div class="room-cta">
+                <a class="btn btn-gold" href="index.html#calendar">Vérifier les dates</a>
+                <a class="btn btn-outline-dark" href="index.html#contact">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ESPACES COMMUNS -->
+    <div class="spaces-section">
+      <div class="container">
+        <div class="eyebrow">Espaces communs</div>
+        <h2>Bien plus que des chambres — <em>une maison</em>.</h2>
+        <p class="lead">L'extérieur et les espaces partagés sont le cœur de Casa Maddalena. Ils ont été conçus pour 12 personnes qui vivent ensemble avec élégance.</p>
+        <div class="spaces-grid">
+          <div class="space-card">
+            <div class="space-photo"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Terrasse panoramique" loading="lazy" /></div>
+            <div class="space-body">
+              <h4>Terrasse panoramique</h4>
+              <p>180° sur la baie de Syracuse, l'Etna et le golfe. Table pour 12. Le lieu de vie principal de la villa.</p>
+              <div class="space-tags"><span class="space-tag">Vue 180°</span><span class="space-tag">Table 12 pers.</span><span class="space-tag">Couchers de soleil</span></div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-photo"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720" alt="Accès mer privé" loading="lazy" /></div>
+            <div class="space-body">
+              <h4>Accès privé à la mer</h4>
+              <p>Descente directe dans l'eau claire et peu profonde. Exclusif aux résidents. Fond rocheux, idéal pour le snorkeling.</p>
+              <div class="space-tags"><span class="space-tag">Eau cristalline</span><span class="space-tag">Snorkeling</span><span class="space-tag">Exclusif</span></div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-photo"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720" alt="Salon extérieur" loading="lazy" /></div>
+            <div class="space-body">
+              <h4>Salon extérieur couvert</h4>
+              <p>Espace ombragé avec canapés, table basse. Protégé du vent, face à la mer. Parfait pour les apéritifs du soir.</p>
+              <div class="space-tags"><span class="space-tag">Couvert</span><span class="space-tag">Apéritifs</span><span class="space-tag">Face à la mer</span></div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-photo"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720" alt="Séjour et salle à manger" loading="lazy" /></div>
+            <div class="space-body">
+              <h4>Grand séjour &amp; salle à manger</h4>
+              <p>Intérieur ouvert de 80 m². Canapés, table pour 12, cuisine ouverte entièrement équipée. Lumière naturelle toute la journée.</p>
+              <div class="space-tags"><span class="space-tag">80 m²</span><span class="space-tag">Table 12</span><span class="space-tag">Cuisine équipée</span></div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-photo"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720" alt="Jardin et barbecue" loading="lazy" /></div>
+            <div class="space-body">
+              <h4>Jardin &amp; cuisine extérieure</h4>
+              <p>Barbecue Kamado professionnel, plancha, cuisine d'été équipée. Jardin privatif. Espace idéal pour des repas en plein air.</p>
+              <div class="space-tags"><span class="space-tag">Kamado</span><span class="space-tag">Cuisine d'été</span><span class="space-tag">Jardin privé</span></div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-photo"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720" alt="Parking et accès" loading="lazy" /></div>
+            <div class="space-body">
+              <h4>Parking &amp; accès</h4>
+              <p>Parking gratuit sur place pour plusieurs véhicules. Accès direct au rez-de-chaussée. Idéal pour les groupes avec bagages volumineux.</p>
+              <div class="space-tags"><span class="space-tag">Parking gratuit</span><span class="space-tag">Accès direct</span><span class="space-tag">Sécurisé</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOOR PLAN SCHEMATIQUE -->
+    <section class="floorplan-section">
+      <div class="container">
+        <div class="floorplan-inner">
+          <div class="floorplan-header">
+            <div>
+              <div class="eyebrow">Plan schématique</div>
+              <h2>Organisation <em>des espaces</em>.</h2>
+              <p class="lead" style="margin-top:12px;font-size:15px;">360 m² répartis sur un seul niveau. Fluidité de circulation maximale entre intérieur et extérieur.</p>
+            </div>
+            <a class="btn btn-gold" href="index.html#calendar">Réserver la villa</a>
+          </div>
+          <div class="floorplan-grid">
+            <div class="fp-zone"><div class="fp-zone-label">Zone Nord · Face mer</div><div class="fp-zone-name">Suite Master</div><div class="fp-zone-desc">Chambre 01 — Grand lit double, salle de bain privée, vue panoramique</div><span class="fp-zone-size">Ch. 01 · ~28 m²</span></div>
+            <div class="fp-zone"><div class="fp-zone-label">Zone Nord · Face mer</div><div class="fp-zone-name">Chambre Vue Baie</div><div class="fp-zone-desc">Chambre 02 — Lit double, accès SDB attenante partagée avec ch.03</div><span class="fp-zone-size">Ch. 02 · ~22 m²</span></div>
+            <div class="fp-zone"><div class="fp-zone-label">Zone Nord-Est</div><div class="fp-zone-name">Chambre Vue Etna</div><div class="fp-zone-desc">Chambre 03 — 2 lits simples modulables, vue volcanique au couchant</div><span class="fp-zone-size">Ch. 03 · ~20 m²</span></div>
+            <div class="fp-zone"><div class="fp-zone-label">Zone Centrale · Vie commune</div><div class="fp-zone-name">Séjour &amp; Salle à manger</div><div class="fp-zone-desc">Grand espace ouvert 80 m², table 12, cuisine ouverte, lumière naturelle</div><span class="fp-zone-size">Salon · ~80 m²</span></div>
+            <div class="fp-zone"><div class="fp-zone-label">Zone Sud · Jardin</div><div class="fp-zone-name">Terrasse &amp; Extérieur</div><div class="fp-zone-desc">Terrasse panoramique, salon ext., cuisine d'été, jardin, accès mer</div><span class="fp-zone-size">Ext. · ~120 m²</span></div>
+            <div class="fp-zone"><div class="fp-zone-label">Zone Ouest</div><div class="fp-zone-name">Chambres 04, 05, 06</div><div class="fp-zone-desc">Suite terrasse privée, chambre famille, chambre standard — 3 × SDB accessibles</div><span class="fp-zone-size">Ch. 04–06 · ~90 m²</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>La villa est disponible<br><em>pour votre groupe</em>.</h2>
+          <p>À partir de 390 € / nuit · Réservation directe · Économisez jusqu'à 15 % vs Airbnb</p>
+        </div>
+        <div class="cta-btns">
+          <a class="btn btn-gold" href="index.html#calendar">Vérifier les disponibilités</a>
+          <a class="btn btn-outline-dark" href="index.html#contact" style="color:#fff; border-color:rgba(255,255,255,.3);">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="lb-inner">
+      <button class="lb-nav" id="lbPrev" type="button">‹</button>
+      <div class="lb-img-wrap">
+        <button class="lb-close" id="lbClose" type="button">×</button>
+        <img class="lb-img" id="lbImg" src="" alt="" />
+        <div class="lb-caption" id="lbCaption"></div>
+      </div>
+      <button class="lb-nav" id="lbNext" type="button">›</button>
+    </div>
+  </div>
+
+  <script>
+  'use strict';
+
+  /* ── ROOM IMG SWITCHER ── */
+  function switchRoomImg(mainId, src, thumbEl) {
+    const mainImg = document.getElementById(mainId);
+    if (!mainImg) return;
+    mainImg.style.opacity = '0';
+    mainImg.style.transform = 'scale(1.04)';
+    mainImg.style.transition = 'opacity .25s ease, transform .4s ease';
+    setTimeout(() => {
+      mainImg.src = src;
+      mainImg.style.opacity = '1';
+      mainImg.style.transform = 'scale(1)';
+    }, 200);
+    // Update active thumb
+    if (thumbEl) {
+      const siblings = thumbEl.parentElement.querySelectorAll('.room-thumb');
+      siblings.forEach(t => t.classList.remove('active'));
+      thumbEl.classList.add('active');
+    }
+  }
+
+  /* ── FILTER ── */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.room-detail').forEach(room => {
+        if (filter === 'all') {
+          room.style.display = '';
+        } else {
+          const tags = (room.dataset.tags || '').split(' ');
+          room.style.display = tags.includes(filter) ? '' : 'none';
+        }
+      });
+      // Handle outdoor / common filters (always show)
+      if (filter === 'outdoor' || filter === 'common') {
+        document.querySelectorAll('.room-detail').forEach(room => { room.style.display = 'none'; });
+        document.querySelector('.spaces-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        btn.classList.remove('active');
+        document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        document.querySelectorAll('.room-detail').forEach(room => { room.style.display = ''; });
+      }
+    });
+  });
+
+  /* ── LIGHTBOX (for future direct image clicks) ── */
+  const GALLERY = [
+    { src: 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720', alt: 'Accès mer' },
+    { src: 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720', alt: 'Terrasse' },
+    { src: 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720', alt: 'Salon ext.' },
+    { src: 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720', alt: 'Séjour' },
+    { src: 'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720', alt: 'Vue Etna' }
+  ];
+  let lbIndex = 0;
+
+  function openLightbox(idx) {
+    lbIndex = (idx + GALLERY.length) % GALLERY.length;
+    const item = GALLERY[lbIndex];
+    document.getElementById('lbImg').src = item.src;
+    document.getElementById('lbImg').alt = item.alt;
+    document.getElementById('lbCaption').textContent = `${lbIndex+1} / ${GALLERY.length} · ${item.alt}`;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => openLightbox(lbIndex-1));
+  document.getElementById('lbNext').addEventListener('click', () => openLightbox(lbIndex+1));
+  document.getElementById('lightbox').addEventListener('click', e => { if(e.target === document.getElementById('lightbox')) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  openLightbox(lbIndex-1);
+    if (e.key === 'ArrowRight') openLightbox(lbIndex+1);
+  });
+
+  // Allow clicking main room images to open lightbox
+  document.querySelectorAll('.room-gallery-main img').forEach((img, i) => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => openLightbox(i % GALLERY.length));
+  });
+  </script>
+
+</body>
+</html>
