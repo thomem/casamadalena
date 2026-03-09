@@ -468,7 +468,7 @@
               <div class="bc-header">
                 <div>
                   <div class="bc-price-label">À partir de</div>
-                  <div class="bc-price-value" id="heroPrice">390 €</div>
+                  <div class="bc-price-value" id="heroPrice">952 €</div>
                   <div class="bc-price-sub">par nuit · prix direct hôte</div>
                 </div>
                 <div class="bc-rating">
@@ -506,7 +506,7 @@
               </div>
 
               <div class="bc-summary" aria-live="polite">
-                <div class="bc-row"><span id="nightsLabel">390 € × 7 nuits</span><span id="staySubtotal">2 730 €</span></div>
+                <div class="bc-row"><span id="nightsLabel">952 € × 7 nuits · Basse saison</span><span id="staySubtotal">6 664 €</span></div>
                 <div class="bc-row"><span>Frais de ménage</span><span>250 €</span></div>
                 <div class="bc-row"><span>Taxe de séjour estimée</span><span id="cityTax">50 €</span></div>
                 <div class="bc-row total"><span>Total estimatif</span><strong id="grandTotal">3 030 €</strong></div>
@@ -777,7 +777,7 @@
   <!-- STICKY CTA -->
   <div class="sticky-cta" id="stickyCta">
     <div class="sticky-copy">
-      <strong>Casa Maddalena · à partir de 390 € / nuit</strong>
+      <strong>Casa Maddalena · à partir de 952 € / nuit</strong>
       <span id="stickyDates">Sélectionnez vos dates pour voir le prix total</span>
     </div>
     <div class="sticky-btns">
@@ -864,7 +864,11 @@
     cityTaxPerGuestNight: 1.2,
     maxGuests: 12,
     minGuests: 1,
-    stripePublishableKey: 'pk_live_VOTRE_CLE_ICI'  // Remplacer par votre vraie clé Stripe publishable
+    stripePublishableKey: 'pk_live_VOTRE_CLE_ICI',  // Remplacer par votre vraie clé Stripe publishable
+    // Lien ICS Airbnb — synchronisation calendrier en temps réel
+    airbnbIcsUrl: 'https://www.airbnb.fr/calendar/ical/1325959052450938203.ics?t=17bceb6081ea4b7287f35fb8243ea050',
+    // Proxy CORS pour lire l'ICS côté frontend (avant déploiement backend)
+    corsProxy: 'https://corsproxy.io/?'
   };
 
   /* ── GALLERY DATA ── */
@@ -893,7 +897,7 @@
   let calMonth = new Date().getMonth();
   let calYear  = new Date().getFullYear();
   let lbIndex  = 0;
-  let currentPricing = { nightlyRate: 390, nights: 7, staySubtotal: 2730, cleaningFee: 250, cityTax: 50, total: 3030 };
+  let currentPricing = { nightlyRate: 952, nights: 7, staySubtotal: 6664, cleaningFee: 250, cityTax: 76, total: 6990, minNights: 5, seasonLabel: 'Basse saison' };
   let checkTimer = null;
 
   /* ── UTILS ── */
@@ -977,43 +981,167 @@
     }
   }
 
-  /* ── Fetch all blocked periods from API ── */
+  /* ── Parse ICS text → array of [start, end] Date pairs ── */
+  function parseICS(icsText) {
+    const periods = [];
+    const events = icsText.split('BEGIN:VEVENT');
+    for (let i = 1; i < events.length; i++) {
+      const block = events[i];
+      const dtstart = block.match(/DTSTART[;:][^\r\n]*[:;]?(\d{8})/);
+      const dtend   = block.match(/DTEND[;:][^\r\n]*[:;]?(\d{8})/);
+      if (dtstart && dtend) {
+        const parseDate = s => {
+          const m = s.match(/(\d{4})(\d{2})(\d{2})/);
+          return m ? new Date(+m[1], +m[2]-1, +m[3]) : null;
+        };
+        const s = parseDate(dtstart[1]);
+        const e = parseDate(dtend[1]);
+        if (s && e && e > s) periods.push([s, e]);
+      }
+    }
+    return periods;
+  }
+
+  /* ── Fetch blocked periods: ICS direct → API fallback ── */
   async function fetchBlockedPeriods() {
+    // 1. Essayer de lire l'ICS Airbnb directement (via proxy CORS)
+    try {
+      const proxyUrl = CFG.corsProxy + encodeURIComponent(CFG.airbnbIcsUrl);
+      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(6000) });
+      if (res.ok) {
+        const text = await res.text();
+        if (text.includes('BEGIN:VCALENDAR')) {
+          const parsed = parseICS(text);
+          if (parsed.length > 0) {
+            BOOKED_PERIODS = parsed;
+            renderCalendar();
+            console.log(`✓ Calendrier Airbnb chargé : ${parsed.length} période(s) bloquée(s)`);
+            return;
+          }
+        }
+      }
+    } catch(e) { /* proxy indisponible, on essaie l'API */ }
+
+    // 2. Fallback : API backend (quand déployé)
     try {
       const url = `${CFG.apiBase}/api/availability?allPeriods=1`;
-      const res = await fetch(url);
+      const res = await fetch(url, { signal: AbortSignal.timeout(4000) });
       if (!res.ok) return;
       const data = await res.json();
-      if (data.blockedPeriods) {
+      if (data.blockedPeriods && data.blockedPeriods.length > 0) {
         BOOKED_PERIODS = data.blockedPeriods.map(p => [new Date(p.start), new Date(p.end)]);
         renderCalendar();
       }
-    } catch(e) { /* silently use fallback */ }
+    } catch(e) { /* utilise les dates de secours statiques */ }
+  }
+
+  /* ════════════════════════════════════════
+     TARIFS PAR SAISON
+     Basés sur les vrais prix Airbnb (9 voyageurs, tout inclus)
+     Recalculés hors frais ménage (250€) et taxe séjour (1,2€/pers/nuit)
+     ════════════════════════════════════════ */
+  const SEASONS = [
+    // Noël & Nouvel An : 24 déc → 2 jan
+    { label: 'Noël & Nouvel An', rate: 1200, minNights: 5,
+      check: (m, d) => (m === 12 && d >= 24) || (m === 1 && d <= 2) },
+    // Haute saison : juillet & août
+    // Calculé : (11905 - 250 - 76) / 7 ≈ 1654 €/nuit
+    { label: 'Haute saison', rate: 1654, minNights: 7,
+      check: (m) => m === 7 || m === 8 },
+    // Mi-saison : juin & septembre (interpolé)
+    { label: 'Mi-saison', rate: 1100, minNights: 5,
+      check: (m) => m === 6 || m === 9 },
+    // Basse saison : oct → mai hors Noël
+    // Calculé : (6994 - 250 - 76) / 7 ≈ 952 €/nuit
+    { label: 'Basse saison', rate: 952, minNights: 5,
+      check: () => true }
+  ];
+
+  /* Saison d'une date donnée */
+  function getSeason(date) {
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    for (const s of SEASONS) { if (s.check(m, d)) return s; }
+    return SEASONS[SEASONS.length - 1];
+  }
+
+  /* Calcul nuit par nuit — gère les séjours multi-saisons */
+  function calcSeasonalPricing(checkIn, checkOut) {
+    const n = (checkIn && checkOut) ? nightsFn(checkIn, checkOut) : 7;
+    const startDate = checkIn || new Date();
+
+    // Comptage par saison
+    const seasonCounts = {};
+    let totalStay = 0;
+    const cur = new Date(startDate);
+    for (let i = 0; i < n; i++) {
+      const s = getSeason(cur);
+      if (!seasonCounts[s.label]) seasonCounts[s.label] = { count: 0, season: s };
+      seasonCounts[s.label].count++;
+      totalStay += s.rate;
+      cur.setDate(cur.getDate() + 1);
+    }
+
+    // Saison dominante (plus de nuits)
+    let dominant = SEASONS[SEASONS.length - 1];
+    let maxCount = 0;
+    for (const key in seasonCounts) {
+      if (seasonCounts[key].count > maxCount) {
+        maxCount = seasonCounts[key].count;
+        dominant = seasonCounts[key].season;
+      }
+    }
+
+    const avgRate = Math.round(totalStay / n);
+    const tax = Math.round(guests * n * CFG.cityTaxPerGuestNight);
+    const total = Math.round(totalStay + CFG.cleaningFee + tax);
+
+    return {
+      nightlyRate: avgRate,
+      nights: n,
+      staySubtotal: Math.round(totalStay),
+      cleaningFee: CFG.cleaningFee,
+      cityTax: tax,
+      total,
+      minNights: dominant.minNights,
+      seasonLabel: dominant.label
+    };
   }
 
   /* ── PRICING ── */
   function calcLocalPricing() {
     const ci = parseISO($('checkIn').value);
     const co = parseISO($('checkOut').value);
-    const n  = ci && co ? nightsFn(ci, co) : 7;
-    const rate = 390;
-    const stay = rate * n;
-    const tax  = guests * n * CFG.cityTaxPerGuestNight;
-    const total = stay + CFG.cleaningFee + tax;
-    currentPricing = { nightlyRate: rate, nights: n, staySubtotal: stay, cleaningFee: CFG.cleaningFee, cityTax: tax, total };
+    currentPricing = calcSeasonalPricing(ci, co);
   }
 
   function updatePricingUI() {
-    const { nightlyRate, nights, staySubtotal, cityTax, total } = currentPricing;
-    $('nightsLabel').textContent  = `${nightlyRate} € × ${nights} nuit${nights>1?'s':''}`;
+    const { nightlyRate, nights, staySubtotal, cityTax, total, minNights, seasonLabel } = currentPricing;
+
+    // Ligne nuits : affiche le tarif moyen et le label de saison
+    $('nightsLabel').textContent  = `${money(nightlyRate).replace(' €','')} € × ${nights} nuit${nights>1?'s':''} · ${seasonLabel || ''}`;
     $('staySubtotal').textContent = money(staySubtotal);
     $('cityTax').textContent      = money(cityTax);
     $('grandTotal').textContent   = money(total);
+
+    // Mise à jour du prix "à partir de" dans le header du widget
+    const baseRate = getSeason(parseISO($('checkIn').value) || new Date()).rate;
+    $('heroPrice').textContent = `${baseRate.toLocaleString('fr-FR')} €`;
+
+    // Statut de disponibilité local (avant réponse API)
+    const statusEl = $('availStatus');
+    if (statusEl.className.includes('loading') || statusEl.className.includes('unavailable')) {
+      // ne pas écraser si l'API a déjà répondu
+    } else {
+      statusEl.className = 'bc-avail-status promo';
+      statusEl.textContent = `✦ ${seasonLabel || 'Basse saison'} · min. ${minNights} nuit${minNights>1?'s':''} · Réservation directe −15% vs Airbnb`;
+    }
+
     const ci = parseISO($('checkIn').value);
     const co = parseISO($('checkOut').value);
     if (ci && co) {
       $('stickyDates').textContent = `${ci.toLocaleDateString('fr-FR')} → ${co.toLocaleDateString('fr-FR')} · ${money(total)}`;
-      $('calRangeText').textContent = `${ci.toLocaleDateString('fr-FR')} → ${co.toLocaleDateString('fr-FR')} · ${nights} nuit${nights>1?'s':''}`;
+      $('calRangeText').textContent = `${ci.toLocaleDateString('fr-FR')} → ${co.toLocaleDateString('fr-FR')} · ${nights} nuit${nights>1?'s':''} · ${seasonLabel}`;
     } else {
       $('stickyDates').textContent = 'Sélectionnez vos dates pour voir le prix total';
       $('calRangeText').textContent = 'Sélectionnez vos dates';
