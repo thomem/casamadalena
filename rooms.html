@@ -1,647 +1,769 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chambres &amp; Espaces — Casa Maddalena · Syracuse, Sicile</title>
-  <meta name="description" content="81 photos de Casa Maddalena : 6 chambres, terrasse panoramique 180°, accès privé mer. Villa de luxe 360m² à Syracuse."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root{--ink:#0a0a0a;--ink-2:#1c1c1c;--warm:#faf7f2;--warm-2:#f2ece2;--gold:#b8843a;--gold-lt:#d4aa6e;--gold-pale:#f5ead8;--gold-dk:#8a5f22;--stone:#9a8f82;--sea:#0d2438;--white:#fff;--hh:70px;--max:1480px;--ease:.28s cubic-bezier(.4,0,.2,1)}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Jost',sans-serif;background:var(--warm);color:var(--ink);line-height:1.6;overflow-x:hidden}
-    img{display:block;max-width:100%}
-    a{color:inherit;text-decoration:none}
-    button{cursor:pointer;border:none;background:none;font:inherit}
-    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.02;font-weight:400}
-    .container{width:min(var(--max),calc(100% - 60px));margin:0 auto}
-    .label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--gold-dk);display:flex;align-items:center;gap:12px;margin-bottom:14px}
-    .label::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chambres & Espaces — Casa Maddalena · Syracuse, Sicile</title>
+<meta name="description" content="Découvrez les 6 chambres et espaces de Casa Maddalena, villa de luxe 360m² à Syracuse, Sicile."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@200;300;400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0c0a08;
+  --warm:#faf6ef;
+  --warm2:#f2ebe0;
+  --gold:#c49a45;
+  --gold2:#e8c97a;
+  --gold3:#8a6520;
+  --stone:#7a7060;
+  --sea:#0a1e30;
+  --sea2:#0e2840;
+  --cream:#fffdf8;
+  --h:72px;
+  --max:1560px;
+  --ease:.32s cubic-bezier(.25,0,.1,1);
+  --ease-out:.48s cubic-bezier(0,.55,.45,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Raleway',sans-serif;background:var(--warm);color:var(--ink);overflow-x:hidden;line-height:1.6}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit}
+h1,h2,h3,h4,h5{font-family:'Playfair Display',serif;font-weight:300;line-height:1}
 
-    /* HEADER */
-    .hd{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hh);transition:all var(--ease)}
-    .hd.solid{background:rgba(250,247,242,.96);backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(0,0,0,.07)}
-    .hd-inner{height:var(--hh);display:flex;align-items:center;justify-content:space-between}
-    .hd-logo{display:flex;align-items:center;gap:14px}
-    .hd-mark{width:40px;height:40px;border-radius:50%;border:1px solid rgba(184,132,58,.5);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold-lt);transition:all var(--ease)}
-    .hd.solid .hd-mark{background:var(--ink);color:var(--gold-lt);border-color:var(--ink)}
-    .hd-name strong{display:block;font-size:14px;font-weight:600;letter-spacing:.06em;color:#fff;transition:color var(--ease)}
-    .hd-name span{display:block;font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.08em;transition:color var(--ease)}
-    .hd.solid .hd-name strong{color:var(--ink)}
-    .hd.solid .hd-name span{color:var(--stone)}
-    .hd-nav{display:flex;align-items:center;gap:28px}
-    .hd-nav a{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.65);transition:all var(--ease);font-weight:500}
-    .hd.solid .hd-nav a{color:var(--stone)}
-    .hd-nav a:hover{color:var(--gold)!important}
-    .hd-nav a.cur,.hd-nav a.cur:hover{color:#fff!important}
-    .hd.solid .hd-nav a.cur{color:var(--ink)!important}
-    .btn-book{padding:11px 24px!important;border-radius:2px;background:var(--gold);color:#fff!important;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-    .btn-book:hover{background:var(--gold-dk)!important}
+/* ─── CURSOR ─── */
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,width .3s,height .3s,background .3s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .22s ease,width .3s,height .3s,opacity .3s}
+body:has(.lb.open) .cursor,body:has(.lb.open) .cursor-ring{display:none}
 
-    /* HERO */
-    .hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:flex-end}
-    .hero-bg{position:absolute;inset:0;overflow:hidden}
-    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
-    .hero-slide.on{opacity:1}
-    .hero-slide img{width:100%;height:100%;object-fit:cover}
-    .hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,20,.2) 0%,rgba(6,12,20,.05) 35%,rgba(6,12,20,.6) 100%)}
-    .hero-body{position:relative;z-index:2;padding-bottom:80px;width:100%}
-    .hero-body .container{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:flex-end}
-    .hero-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--gold-lt);display:flex;align-items:center;gap:12px;margin-bottom:22px}
-    .hero-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold-lt)}
-    .hero-h1{font-size:clamp(54px,7.5vw,108px);font-weight:300;color:#fff;letter-spacing:-.02em;line-height:.92;margin-bottom:24px}
-    .hero-h1 em{font-style:italic;color:var(--gold-lt)}
-    .hero-p{font-size:15px;color:rgba(255,255,255,.6);max-width:480px;line-height:1.85;font-weight:300}
-    .hero-panel{background:rgba(8,18,28,.55);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:32px 28px}
-    .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;margin-bottom:24px}
-    .hstat{background:rgba(255,255,255,.04);padding:16px;text-align:center}
-    .hstat-v{font-family:'Cormorant Garamond',serif;font-size:38px;color:#fff;line-height:1}
-    .hstat-l{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px}
-    .hero-ctas{display:flex;flex-direction:column;gap:10px}
-    .btn-p{display:flex;align-items:center;justify-content:center;padding:16px 28px;border-radius:2px;background:var(--gold);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:all var(--ease)}
-    .btn-p:hover{background:var(--gold-dk);transform:translateY(-2px);box-shadow:0 12px 32px rgba(184,132,58,.35)}
-    .btn-s{display:flex;align-items:center;justify-content:center;padding:14px 28px;border-radius:2px;background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.22);font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:all var(--ease)}
-    .btn-s:hover{background:rgba(255,255,255,.1);color:#fff}
-    .hero-dots{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
-    .hdot{width:28px;height:2px;background:rgba(255,255,255,.3);cursor:pointer;border-radius:1px;transition:all var(--ease)}
-    .hdot.on{width:48px;background:var(--gold-lt)}
+/* ─── HEADER ─── */
+.hd{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--h);transition:all .4s ease}
+.hd.solid{background:rgba(250,246,239,.97);backdrop-filter:blur(30px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.hd-inner{height:var(--h);display:flex;align-items:center;justify-content:space-between;width:min(var(--max),calc(100% - 80px));margin:0 auto}
+.hd-logo{display:flex;align-items:center;gap:16px}
+.hd-sigil{width:44px;height:44px;border-radius:50%;border:1px solid rgba(196,154,69,.4);display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2);transition:all .3s}
+.hd.solid .hd-sigil{background:var(--sea);color:var(--gold2);border-color:var(--sea)}
+.hd-wordmark strong{display:block;font-size:13.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;transition:color .3s}
+.hd-wordmark span{display:block;font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.12em;transition:color .3s}
+.hd.solid .hd-wordmark strong{color:var(--ink)}
+.hd.solid .hd-wordmark span{color:var(--stone)}
+.hd-nav{display:flex;align-items:center;gap:32px}
+.hd-nav a{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);transition:all .3s}
+.hd.solid .hd-nav a{color:var(--stone)}
+.hd-nav a:hover,.hd-nav a.act{color:var(--gold)!important}
+.btn-rsv{padding:12px 26px;background:var(--gold);color:#fff!important;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-rsv:hover{background:var(--gold3)!important;transform:translateY(-1px)}
 
-    /* FILTER */
-    .filter-bar{position:sticky;top:var(--hh);z-index:100;background:rgba(250,247,242,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.07)}
-    .filter-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px;overflow-x:auto}
-    .ftabs{display:flex;gap:4px}
-    .ftab{padding:9px 20px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);background:transparent;border:1px solid transparent;transition:all var(--ease);white-space:nowrap}
-    .ftab.on{background:var(--ink);color:#fff}
-    .ftab:hover:not(.on){color:var(--ink);border-color:rgba(0,0,0,.15)}
-    .finfo{font-size:11px;color:var(--stone);letter-spacing:.04em;flex-shrink:0}
+/* ─── HERO CINEMATIC ─── */
+.hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-reel{position:absolute;inset:0}
+.hero-frame{position:absolute;inset:0;opacity:0;transition:opacity 2s ease}
+.hero-frame.on{opacity:1}
+.hero-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 8s ease}
+.hero-frame.on img{transform:scale(1)}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,20,35,.15) 0%,rgba(10,20,35,.02) 30%,rgba(10,20,35,.72) 100%)}
+.hero-noise{position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 
-    /* SECTION */
-    .sec{padding:100px 0}
-    .sec-head{margin-bottom:56px}
-    .sec-head h2{font-size:clamp(38px,5vw,70px);font-weight:300;color:var(--ink);margin-top:12px;line-height:.95}
-    .sec-head h2 em{font-style:italic;color:var(--gold-dk)}
+.hero-content{position:relative;z-index:2;width:min(var(--max),calc(100% - 80px));margin:0 auto;padding-bottom:90px;display:grid;grid-template-columns:1fr 360px;gap:60px;align-items:flex-end}
+.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
+.hero-h1{font-size:clamp(62px,9vw,130px);font-weight:300;color:#fff;letter-spacing:-.025em;line-height:.88;margin-bottom:28px;opacity:0;animation:fadeUp .9s .5s forwards}
+.hero-h1 em{display:block;font-style:italic;color:var(--gold2)}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:2;font-weight:300;max-width:500px;opacity:0;animation:fadeUp .9s .7s forwards}
 
-    /* HERO GALLERY GRID */
-    .hgrid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:200px 200px 180px;gap:5px;border-radius:3px;overflow:hidden}
-    .hgi{overflow:hidden;cursor:zoom-in;position:relative}
-    .hgi img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .4s ease;filter:brightness(.88)}
-    .hgi:hover img{transform:scale(1.06);filter:brightness(1.04)}
-    .hgi-cnt{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);color:rgba(255,255,255,.8);font-size:10.5px;letter-spacing:.1em;padding:6px 13px;border-radius:2px}
-    .hg1{grid-column:1/8;grid-row:1/3}
-    .hg2{grid-column:8/13}
-    .hg3{grid-column:8/10;grid-row:2/3}
-    .hg4{grid-column:10/13;grid-row:2/3}
-    .hg5{grid-column:1/5}
-    .hg6{grid-column:5/9}
-    .hg7{grid-column:9/13}
+.hero-panel{background:rgba(10,20,30,.6);backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,.1);padding:36px 30px;border-radius:2px;opacity:0;animation:fadeUp .9s .9s forwards}
+.hstats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);margin-bottom:28px;border-radius:1px;overflow:hidden}
+.hst{background:rgba(255,255,255,.04);padding:20px 16px;text-align:center}
+.hst-n{font-family:'Playfair Display',serif;font-size:44px;font-weight:300;color:#fff;line-height:1}
+.hst-l{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
+.hero-btns{display:flex;flex-direction:column;gap:10px}
+.btn-pri{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;background:var(--gold);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-pri:hover{background:var(--gold3);transform:translateY(-2px);box-shadow:0 14px 40px rgba(196,154,69,.35)}
+.btn-sec{display:flex;align-items:center;justify-content:center;padding:16px;background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-sec:hover{background:rgba(255,255,255,.08);color:#fff}
 
-    /* ROOMS */
-    .room{border-top:1px solid rgba(0,0,0,.08);padding:72px 0}
-    .room-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-    .room:nth-child(even) .room-inner{direction:rtl}
-    .room:nth-child(even) .room-inner>*{direction:ltr}
-    .rm-main{aspect-ratio:4/3;border-radius:3px;overflow:hidden;cursor:zoom-in;position:relative}
-    .rm-main img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
-    .room:hover .rm-main img{transform:scale(1.04)}
-    .rm-badges{position:absolute;top:14px;left:14px;display:flex;gap:6px;z-index:1}
-    .bdg{padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:2px}
-    .bdg-g{background:var(--gold);color:#fff}
-    .bdg-d{background:rgba(8,16,26,.75);color:rgba(255,255,255,.9);backdrop-filter:blur(6px)}
-    .rm-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:4px}
-    .rm-thumb{aspect-ratio:1;overflow:hidden;cursor:pointer;border-radius:2px;position:relative}
-    .rm-thumb img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:all .3s ease}
-    .rm-thumb:hover img,.rm-thumb.on img{opacity:1}
-    .rm-thumb.on::after{content:'';position:absolute;inset:0;border:2px solid var(--gold);border-radius:2px}
-    .rm-info{padding:16px 0}
-    .rm-no{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
-    .rm-name{font-size:clamp(34px,3.5vw,54px);font-weight:300;color:var(--ink);line-height:1}
-    .rm-sub{font-size:clamp(22px,2vw,32px);font-style:italic;color:var(--stone);font-family:'Cormorant Garamond',serif;margin-bottom:20px}
-    .rm-desc{font-size:14px;color:var(--stone);line-height:1.9;margin-bottom:28px;font-weight:300}
-    .rm-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
-    .spec{display:flex;align-items:flex-start;gap:11px;padding:13px 15px;background:var(--warm-2);border-radius:2px;border-left:2px solid var(--gold-lt)}
-    .spec-i{font-size:16px;flex-shrink:0;margin-top:1px}
-    .spec-l{font-size:11.5px;font-weight:600;color:var(--ink);display:block}
-    .spec-v{font-size:11px;color:var(--stone);display:block;margin-top:1px}
-    .rm-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
-    .chip{padding:6px 14px;border-radius:2px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid rgba(0,0,0,.14);color:var(--ink-2)}
-    .rm-acts{display:flex;gap:12px}
-    .btn-cta{padding:15px 32px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:all var(--ease)}
-    .btn-gold{background:var(--gold);color:#fff}
-    .btn-gold:hover{background:var(--gold-dk);transform:translateY(-2px);box-shadow:0 10px 28px rgba(184,132,58,.3)}
-    .btn-outline{background:transparent;color:var(--ink);border:1.5px solid rgba(0,0,0,.2)}
-    .btn-outline:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.1);z-index:3}
+.hero-bar{height:100%;background:var(--gold);width:0;transition:none}
+.hero-bar.animate{transition:width 5.2s linear}
+.hero-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:4}
+.hdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .3s}
+.hdot.on{background:var(--gold);transform:scale(1.4)}
 
-    /* SPACES */
-    .spaces-sec{background:var(--sea);padding:100px 0}
-    .spaces-sec .label{color:var(--gold-lt)}
-    .spaces-sec .label::before{background:var(--gold)}
-    .spaces-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px}
-    .spaces-head h2{font-size:clamp(36px,5vw,66px);color:#fff;line-height:.95}
-    .spaces-head h2 em{color:var(--gold-lt)}
-    .spaces-head p{font-size:14px;color:rgba(255,255,255,.4);max-width:360px;line-height:1.85;font-weight:300;margin-top:14px}
-    .spgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-    .sp-card{position:relative;overflow:hidden;cursor:zoom-in}
-    .sp-card:first-child{grid-column:span 2;grid-row:span 2}
-    .sp-img{width:100%;min-height:250px;height:100%;overflow:hidden;position:relative}
-    .sp-card:first-child .sp-img{min-height:500px}
-    .sp-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease,filter .4s ease;filter:brightness(.65)}
-    .sp-card:hover .sp-img img{transform:scale(1.07);filter:brightness(.88)}
-    .sp-body{position:absolute;bottom:0;left:0;right:0;padding:28px 22px 20px;background:linear-gradient(to top,rgba(8,16,26,.9) 0%,transparent 100%)}
-    .sp-body h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:5px}
-    .sp-card:first-child .sp-body h3{font-size:32px}
-    .sp-body p{font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:10px}
-    .sp-tags{display:flex;flex-wrap:wrap;gap:5px}
-    .stag{padding:3px 9px;border-radius:2px;background:rgba(184,132,58,.2);border:1px solid rgba(184,132,58,.4);font-size:9.5px;color:var(--gold-lt);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+/* ─── FILTER BAR ─── */
+.fbar{position:sticky;top:var(--h);z-index:200;background:rgba(250,246,239,.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06)}
+.fbar-inner{display:flex;align-items:center;justify-content:space-between;height:58px;width:min(var(--max),calc(100% - 80px));margin:0 auto;gap:16px;overflow-x:auto}
+.ftabs{display:flex;gap:2px;flex-shrink:0}
+.ftab{padding:8px 20px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);border:1px solid transparent;border-radius:1px;transition:all .25s;white-space:nowrap}
+.ftab.on{background:var(--sea);color:#fff}
+.ftab:hover:not(.on){color:var(--ink);border-color:rgba(0,0,0,.14)}
+.fcount{font-size:11px;color:var(--stone);flex-shrink:0;letter-spacing:.04em}
 
-    /* FULL GALLERY */
-    .fullgal{padding:100px 0}
-    .fullgal-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px}
-    .gmasonry{columns:4;gap:5px}
-    .gmi{break-inside:avoid;margin-bottom:5px;border-radius:2px;overflow:hidden;cursor:zoom-in;position:relative}
-    .gmi img{width:100%;display:block;transition:transform .5s ease,filter .3s ease;filter:brightness(.85)}
-    .gmi:hover img{transform:scale(1.04);filter:brightness(1.02)}
-    .gmi-ov{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:flex-end;padding:12px;transition:background var(--ease)}
-    .gmi:hover .gmi-ov{background:rgba(0,0,0,.28)}
-    .gmi-ov span{font-size:10.5px;color:rgba(255,255,255,0);letter-spacing:.06em;transition:color var(--ease)}
-    .gmi:hover .gmi-ov span{color:rgba(255,255,255,.75)}
-    .load-more-wrap{text-align:center;margin-top:44px}
-    .btn-load{padding:14px 44px;border-radius:2px;border:1.5px solid rgba(0,0,0,.2);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);transition:all var(--ease)}
-    .btn-load:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* ─── SECTIONS ─── */
+.sec{padding:110px 0}
+.wrap{width:min(var(--max),calc(100% - 80px));margin:0 auto}
+.sec-tag{font-size:9.5px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold3);display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.sec-tag::before{content:'';width:36px;height:1px;background:var(--gold)}
+.sec-title{font-size:clamp(42px,5.5vw,78px);font-weight:300;line-height:.9;color:var(--ink);margin-top:10px}
+.sec-title em{font-style:italic;color:var(--gold3)}
 
-    /* CTA */
-    .cta-sec{background:var(--gold-dk);padding:100px 0}
-    .cta-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
-    .cta-inner h2{font-size:clamp(36px,5vw,68px);font-weight:300;color:#fff;line-height:.95}
-    .cta-inner h2 em{font-style:italic;color:var(--gold-pale)}
-    .cta-inner p{color:rgba(255,255,255,.5);font-size:15px;margin-top:14px;font-weight:300}
-    .cta-btns{display:flex;flex-direction:column;gap:12px;min-width:220px}
-    .btn-wh{display:flex;align-items:center;justify-content:center;padding:17px 32px;border-radius:2px;background:#fff;color:var(--ink);font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:all var(--ease)}
-    .btn-wh:hover{background:var(--warm-2);transform:translateY(-1px)}
-    .btn-wo{display:flex;align-items:center;justify-content:center;padding:15px 32px;border-radius:2px;background:transparent;color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.28);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:all var(--ease)}
-    .btn-wo:hover{background:rgba(255,255,255,.1);color:#fff}
+/* ─── HERO MOSAIC ─── */
+.mosaic{display:grid;grid-template-columns:repeat(16,1fr);grid-template-rows:220px 180px 200px;gap:4px;border-radius:2px;overflow:hidden;margin-top:52px}
+.mc{overflow:hidden;position:relative;cursor:zoom-in}
+.mc img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,0,.1,1),filter .4s;filter:brightness(.82) saturate(1.05)}
+.mc:hover img{transform:scale(1.07);filter:brightness(1) saturate(1.1)}
+.mc-badge{position:absolute;top:12px;right:12px;background:rgba(10,20,30,.7);backdrop-filter:blur(8px);color:rgba(255,255,255,.75);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:1px}
+/* mosaic positions */
+.mc:nth-child(1){grid-column:1/10;grid-row:1/3}
+.mc:nth-child(2){grid-column:10/14;grid-row:1}
+.mc:nth-child(3){grid-column:14/17;grid-row:1}
+.mc:nth-child(4){grid-column:10/13;grid-row:2}
+.mc:nth-child(5){grid-column:13/17;grid-row:2}
+.mc:nth-child(6){grid-column:1/5;grid-row:3}
+.mc:nth-child(7){grid-column:5/9;grid-row:3}
+.mc:nth-child(8){grid-column:9/13;grid-row:3}
+.mc:nth-child(9){grid-column:13/17;grid-row:3}
 
-    /* LIGHTBOX */
-    .lb{position:fixed;inset:0;z-index:500;background:rgba(3,7,12,.97);display:none;flex-direction:column}
-    .lb.open{display:flex}
-    .lb-bar{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0}
-    .lb-tit{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.06em}
-    .lb-ctr{color:rgba(255,255,255,.3);font-size:12px;letter-spacing:.1em}
-    .lb-x{width:40px;height:40px;border-radius:2px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.65);font-size:18px;display:grid;place-items:center;transition:all var(--ease)}
-    .lb-x:hover{background:rgba(255,255,255,.14);color:#fff}
-    .lb-stage{flex:1;display:flex;align-items:center;min-height:0}
-    .lb-nav{width:64px;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:30px;flex-shrink:0;transition:all var(--ease)}
-    .lb-nav:hover{color:#fff;background:rgba(255,255,255,.04)}
-    .lb-mid{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 0;min-width:0}
-    .lb-img{max-height:100%;max-width:100%;object-fit:contain;border-radius:2px;transition:opacity .18s ease}
-    .lb-strip{height:70px;flex-shrink:0;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:3px;padding:3px;overflow-x:auto}
-    .lb-thb{width:66px;flex-shrink:0;border-radius:1px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity var(--ease);border:2px solid transparent}
-    .lb-thb img{width:100%;height:100%;object-fit:cover}
-    .lb-thb.on{opacity:1;border-color:var(--gold)}
+/* ─── ROOM ENTRIES ─── */
+#rooms-wrap>.room-entry:nth-child(odd) .re-layout{flex-direction:row}
+#rooms-wrap>.room-entry:nth-child(even) .re-layout{flex-direction:row-reverse}
+.room-entry{border-top:1px solid rgba(0,0,0,.07);padding:90px 0}
+.re-layout{display:flex;gap:80px;align-items:flex-start}
+.re-media{flex:0 0 54%;position:relative}
+.re-main{aspect-ratio:16/10;overflow:hidden;border-radius:2px;cursor:zoom-in;position:relative}
+.re-main img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,0,.1,1)}
+.re-main:hover img{transform:scale(1.04)}
+.re-bdgs{position:absolute;top:16px;left:16px;display:flex;gap:7px;z-index:1}
+.bdg{padding:6px 14px;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:1px}
+.bdg-g{background:var(--gold);color:#fff}
+.bdg-d{background:rgba(10,20,30,.75);backdrop-filter:blur(8px);color:rgba(255,255,255,.85)}
+.re-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:4px}
+.re-th{aspect-ratio:3/2;overflow:hidden;cursor:pointer;border-radius:1px;position:relative}
+.re-th img{width:100%;height:100%;object-fit:cover;opacity:.5;transition:all .3s}
+.re-th.on img,.re-th:hover img{opacity:1}
+.re-th.on::after{content:'';position:absolute;inset:0;border:2px solid var(--gold)}
+.re-info{flex:1;padding-top:8px}
+.re-num{font-size:9.5px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.re-name{font-size:clamp(40px,3.8vw,60px);color:var(--ink);margin-bottom:4px}
+.re-sub{font-size:clamp(22px,2vw,30px);font-style:italic;color:var(--stone);font-family:'Libre Baskerville',serif;margin-bottom:22px}
+.re-desc{font-size:13.5px;color:var(--stone);line-height:2;font-weight:300;margin-bottom:30px;max-width:500px}
+.re-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:28px}
+.rspec{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--warm2);border-left:2px solid var(--gold);border-radius:0 1px 1px 0}
+.rspec-icon{font-size:15px;flex-shrink:0;margin-top:2px}
+.rspec-l{font-size:11px;font-weight:600;color:var(--ink);display:block;letter-spacing:.02em}
+.rspec-v{font-size:10.5px;color:var(--stone);display:block;margin-top:2px}
+.re-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:30px}
+.chip{padding:6px 14px;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(0,0,0,.14);border-radius:1px;color:var(--ink)}
+.re-ctas{display:flex;gap:12px}
+.btn-book2{padding:16px 36px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-book2:hover{background:var(--gold3);transform:translateY(-2px);box-shadow:0 12px 32px rgba(196,154,69,.3)}
+.btn-contact{padding:14px 32px;background:transparent;color:var(--ink);border:1.5px solid rgba(0,0,0,.18);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-contact:hover{background:var(--ink);color:#fff}
 
-    @media(max-width:1200px){
-      .hero-body .container,.cta-inner{grid-template-columns:1fr}
-      .hero-panel,.cta-btns{margin-top:24px}
-      .room-inner{grid-template-columns:1fr;gap:40px}
-      .room:nth-child(even) .room-inner{direction:ltr}
-      .hgrid{grid-template-rows:160px 160px 140px}
-      .gmasonry{columns:3}
-      .spgrid{grid-template-columns:repeat(2,1fr)}
-      .sp-card:first-child{grid-column:span 2}
-    }
-    @media(max-width:900px){
-      .hd-nav a:not(.btn-book){display:none}
-      .gmasonry{columns:2}
-      .rm-specs{grid-template-columns:1fr}
-      .hgrid{grid-template-columns:repeat(4,1fr);grid-template-rows:180px 180px;grid-template-areas:none}
-      .hg1{grid-column:1/5;grid-row:1}
-      .hg2,.hg3,.hg4{grid-column:auto;grid-row:2}
-      .hg5,.hg6,.hg7{display:none}
-      .spgrid{grid-template-columns:1fr}
-      .sp-card:first-child{grid-column:auto}
-    }
-    @media(max-width:600px){
-      .gmasonry{columns:1}
-      .container{width:calc(100% - 32px)}
-      .hero-h1{font-size:50px}
-    }
-  </style>
+/* ─── SPACES SECTION ─── */
+.spaces-sec{background:var(--sea);padding:110px 0;overflow:hidden;position:relative}
+.spaces-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.sp-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:flex-end;margin-bottom:64px}
+.sp-header h2{font-size:clamp(40px,5vw,68px);color:#fff;line-height:.9}
+.sp-header h2 em{color:var(--gold2)}
+.sp-header p{font-size:13.5px;color:rgba(255,255,255,.35);line-height:1.9;font-weight:300;max-width:340px;margin-top:16px}
+.sp-tag{font-size:9.5px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.sp-tag::before{content:'';width:36px;height:1px;background:var(--gold)}
+.spgrid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 260px;gap:4px;border-radius:2px;overflow:hidden}
+.spc{position:relative;overflow:hidden;cursor:zoom-in}
+.spc:nth-child(1){grid-column:1/8;grid-row:1/3}
+.spc:nth-child(2){grid-column:8/13}
+.spc:nth-child(3){grid-column:8/10;grid-row:2}
+.spc:nth-child(4){grid-column:10/13;grid-row:2}
+.spc:nth-child(5){grid-column:1/4;grid-row:3}
+.spc:nth-child(6){grid-column:4/8;grid-row:3}
+.spc:nth-child(7){grid-column:8/13;grid-row:3}
+.spc-img{width:100%;height:100%;overflow:hidden}
+.spc-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,0,.1,1),filter .5s;filter:brightness(.55) saturate(1.1)}
+.spc:hover .spc-img img{transform:scale(1.08);filter:brightness(.75) saturate(1.15)}
+.spc-body{position:absolute;bottom:0;left:0;right:0;padding:30px 24px 22px;background:linear-gradient(to top,rgba(5,15,25,.92) 0%,transparent)}
+.spc-body h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px}
+.spc:nth-child(1) .spc-body h3{font-size:30px}
+.spc-body p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:10px}
+.spc-tags{display:flex;flex-wrap:wrap;gap:5px}
+.stag{padding:3px 10px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(196,154,69,.18);border:1px solid rgba(196,154,69,.35);color:var(--gold2);border-radius:1px}
+
+/* ─── FULL GALLERY ─── */
+.fullgal{padding:110px 0;background:var(--cream)}
+.fg-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px}
+.fg-hint{font-size:11px;color:var(--stone);align-self:flex-end;letter-spacing:.06em}
+.gmasonry{columns:4;gap:4px;column-fill:balance}
+.gmi{break-inside:avoid;margin-bottom:4px;overflow:hidden;border-radius:1px;cursor:zoom-in;position:relative;display:block}
+.gmi img{width:100%;display:block;filter:brightness(.85) saturate(1.05);transition:transform .6s ease,filter .4s}
+.gmi:hover img{transform:scale(1.04);filter:brightness(1) saturate(1.1)}
+.gmi-ov{position:absolute;inset:0;background:rgba(10,20,30,0);display:flex;align-items:flex-end;padding:14px;transition:background .3s}
+.gmi:hover .gmi-ov{background:rgba(10,20,30,.3)}
+.gmi-ov span{font-size:10px;color:rgba(255,255,255,0);letter-spacing:.06em;transition:color .3s;font-weight:400}
+.gmi:hover .gmi-ov span{color:rgba(255,255,255,.7)}
+.load-wrap{text-align:center;margin-top:50px}
+.btn-loadmore{padding:15px 52px;border:1.5px solid rgba(0,0,0,.18);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);border-radius:1px;transition:all .3s}
+.btn-loadmore:hover{background:var(--ink);color:#fff}
+
+/* ─── CTA ─── */
+.cta-final{background:var(--sea2);padding:110px 0;position:relative;overflow:hidden}
+.cta-final::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(196,154,69,.12),transparent 70%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.cta-grid h2{font-size:clamp(40px,5vw,70px);color:#fff;line-height:.92}
+.cta-grid h2 em{color:var(--gold2)}
+.cta-grid p{font-size:14px;color:rgba(255,255,255,.4);margin-top:16px;font-weight:300}
+.cta-actions{display:flex;flex-direction:column;gap:12px;min-width:240px}
+.btn-cta-w{display:flex;align-items:center;justify-content:center;padding:19px 36px;background:#fff;color:var(--ink);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-cta-w:hover{background:var(--warm2);transform:translateY(-1px)}
+.btn-cta-o{display:flex;align-items:center;justify-content:center;padding:17px 36px;background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.22);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border-radius:1px;transition:all .3s}
+.btn-cta-o:hover{background:rgba(255,255,255,.08);color:#fff}
+
+/* ─── LIGHTBOX ─── */
+.lb{position:fixed;inset:0;z-index:800;background:rgba(4,8,14,.97);display:none;flex-direction:column}
+.lb.open{display:flex}
+.lb-top{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.lb-label{color:rgba(255,255,255,.4);font-size:12px;letter-spacing:.06em;font-family:'Raleway',sans-serif}
+.lb-meta{display:flex;align-items:center;gap:16px}
+.lb-ctr{color:rgba(255,255,255,.25);font-size:11px;letter-spacing:.14em}
+.lb-close{width:42px;height:42px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.55);font-size:20px;display:grid;place-items:center;border-radius:1px;transition:all .3s}
+.lb-close:hover{background:rgba(255,255,255,.12);color:#fff}
+.lb-stage{flex:1;display:flex;align-items:stretch;min-height:0}
+.lb-arrow{width:70px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.25);font-size:32px;flex-shrink:0;transition:all .3s;cursor:pointer}
+.lb-arrow:hover{color:#fff;background:rgba(255,255,255,.04)}
+.lb-view{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0;min-width:0}
+.lb-photo{max-height:100%;max-width:100%;object-fit:contain;transition:opacity .2s;border-radius:1px}
+.lb-film{height:72px;flex-shrink:0;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:3px;padding:3px;overflow-x:auto}
+.lb-film::-webkit-scrollbar{height:3px;background:rgba(255,255,255,.05)}
+.lb-film::-webkit-scrollbar-thumb{background:var(--gold)}
+.lf-th{width:68px;flex-shrink:0;overflow:hidden;cursor:pointer;opacity:.3;transition:opacity .3s;border:2px solid transparent;border-radius:1px}
+.lf-th img{width:100%;height:100%;object-fit:cover}
+.lf-th.on{opacity:1;border-color:var(--gold)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.12s}
+.reveal-delay-2{transition-delay:.24s}
+.reveal-delay-3{transition-delay:.36s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1200px){
+  .hero-content{grid-template-columns:1fr;padding-bottom:60px}
+  .hero-panel{display:none}
+  .re-layout{flex-direction:column!important;gap:40px}
+  .re-media{flex:none;width:100%}
+  .mosaic{grid-template-columns:repeat(8,1fr);grid-template-rows:180px 180px}
+  .mc:nth-child(1){grid-column:1/9;grid-row:1}
+  .mc:nth-child(2){grid-column:1/5;grid-row:2}
+  .mc:nth-child(3){grid-column:5/9;grid-row:2}
+  .mc:nth-child(n+4){display:none}
+  .spgrid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .spc:nth-child(1){grid-column:1/3;grid-row:auto}
+  .gmasonry{columns:3}
+  .cta-grid{grid-template-columns:1fr}
+}
+@media(max-width:800px){
+  .hd-nav a:not(.btn-rsv){display:none}
+  .sp-header{grid-template-columns:1fr}
+  .gmasonry{columns:2}
+  .wrap{width:calc(100% - 40px)}
+  .hd-inner{width:calc(100% - 40px)}
+  .fbar-inner{width:calc(100% - 40px)}
+  .hero-content{width:calc(100% - 40px)}
+}
+@media(max-width:540px){
+  .gmasonry{columns:1}
+  .hero-h1{font-size:54px}
+  .re-specs{grid-template-columns:1fr}
+  .fg-head{flex-direction:column;gap:12px;align-items:flex-start}
+}
+</style>
 </head>
 <body>
 
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+
+<!-- ─── HEADER ─── -->
 <header class="hd" id="hd">
-  <div class="container hd-inner">
+  <div class="hd-inner">
     <a class="hd-logo" href="index.html">
-      <div class="hd-mark">C</div>
-      <div class="hd-name"><strong>Casa Maddalena</strong><span>Syracuse · Sicile</span></div>
+      <div class="hd-sigil">C</div>
+      <div class="hd-wordmark"><strong>Casa Maddalena</strong><span>Syracuse · Sicile</span></div>
     </a>
     <nav class="hd-nav">
       <a href="index.html#gallery">Galerie</a>
       <a href="index.html#overview">La villa</a>
-      <a href="rooms.html" class="cur">Chambres</a>
+      <a href="rooms.html" class="act">Chambres</a>
       <a href="index.html#calendar">Disponibilités</a>
       <a href="index.html#contact">Contact</a>
-      <a href="index.html#calendar" class="btn-book">Réserver</a>
+      <a href="index.html#calendar" class="btn-rsv">Réserver</a>
     </nav>
   </div>
 </header>
 
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-reel" id="reel"></div>
   <div class="hero-veil"></div>
-  <div class="hero-body">
-    <div class="container">
-      <div>
-        <div class="hero-label">6 chambres · 5 salles de bain · 360 m² · Syracuse, Sicile</div>
-        <h1 class="hero-h1">Chaque espace<br>conçu pour<br><em>vous</em>.</h1>
-        <p class="hero-p">Une villa qui ne ressemble à aucune autre. Quatre chambres avec vue directe sur la Méditerranée. Une terrasse panoramique à 180°. Un accès privé à la mer à quelques marches.</p>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">6 chambres · 5 salles de bain · 360 m² · Syracuse, Sicile</div>
+      <h1 class="hero-h1">Chaque espace<br>conçu pour<br><em>vous.</em></h1>
+      <p class="hero-sub">Quatre chambres face à la Méditerranée. Une terrasse panoramique à 180°. Un accès privé à la mer à quelques marches de la porte.</p>
+    </div>
+    <div class="hero-panel">
+      <div class="hstats">
+        <div class="hst"><div class="hst-n">360</div><div class="hst-l">m² totaux</div></div>
+        <div class="hst"><div class="hst-n">6</div><div class="hst-l">chambres</div></div>
+        <div class="hst"><div class="hst-n">5</div><div class="hst-l">salles de bain</div></div>
+        <div class="hst"><div class="hst-n">12</div><div class="hst-l">voyageurs max</div></div>
       </div>
-      <div class="hero-panel">
-        <div class="hero-stats">
-          <div class="hstat"><div class="hstat-v">360</div><div class="hstat-l">m² totaux</div></div>
-          <div class="hstat"><div class="hstat-v">6</div><div class="hstat-l">chambres</div></div>
-          <div class="hstat"><div class="hstat-v">5</div><div class="hstat-l">salles de bain</div></div>
-          <div class="hstat"><div class="hstat-v">12</div><div class="hstat-l">voyageurs max</div></div>
-        </div>
-        <div class="hero-ctas">
-          <a href="index.html#calendar" class="btn-p">Vérifier les disponibilités</a>
-          <a href="index.html#contact" class="btn-s">Nous contacter</a>
-        </div>
+      <div class="hero-btns">
+        <a href="index.html#calendar" class="btn-pri">Vérifier les disponibilités</a>
+        <a href="index.html#contact" class="btn-sec">Nous contacter</a>
       </div>
     </div>
   </div>
-  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-progress"><div class="hero-bar" id="hbar"></div></div>
+  <div class="hero-dots" id="hdots"></div>
 </section>
 
-<div class="filter-bar">
-  <div class="container filter-inner">
+<!-- ─── FILTER ─── -->
+<div class="fbar">
+  <div class="fbar-inner">
     <div class="ftabs">
-      <button class="ftab on" data-f="all">Tout</button>
+      <button class="ftab on" data-f="all">Tout voir</button>
       <button class="ftab" data-f="sea">Vue mer</button>
       <button class="ftab" data-f="double">Lit double</button>
       <button class="ftab" data-f="twin">Lits jumeaux</button>
-      <button class="ftab" data-f="exterior">Extérieur</button>
-      <button class="ftab" data-f="interior">Intérieur</button>
+      <button class="ftab" data-f="exterior">Terrasse</button>
     </div>
-    <span class="finfo" id="finfo">6 chambres · 81 photos</span>
+    <span class="fcount" id="fcount">6 chambres affichées</span>
   </div>
 </div>
 
+<!-- ─── MOSAIC OVERVIEW ─── -->
 <section class="sec" id="gallery-overview">
-  <div class="container">
-    <div class="sec-head">
-      <div class="label">La villa en images</div>
-      <h2>81 photos <em>exclusives</em>.</h2>
-    </div>
-    <div class="hgrid" id="hgrid"></div>
+  <div class="wrap">
+    <div class="reveal"><div class="sec-tag">La villa en images</div></div>
+    <div class="reveal reveal-delay-1"><h2 class="sec-title">La beauté à <em>chaque angle.</em></h2></div>
+    <div class="mosaic" id="mosaic"></div>
   </div>
 </section>
 
+<!-- ─── ROOMS ─── -->
 <section class="sec" id="rooms" style="padding-top:0">
-  <div class="container">
-    <div class="sec-head">
-      <div class="label">Par chambre</div>
-      <h2>Les <em>6 chambres</em>.</h2>
-    </div>
-    <div id="roomsGrid"></div>
+  <div class="wrap">
+    <div class="reveal"><div class="sec-tag">Par chambre</div></div>
+    <div class="reveal reveal-delay-1"><h2 class="sec-title">Les <em>6 chambres.</em></h2></div>
+    <div id="rooms-wrap"></div>
   </div>
 </section>
 
+<!-- ─── SPACES ─── -->
 <section class="spaces-sec" id="spaces">
-  <div class="container">
-    <div class="spaces-head">
+  <div class="wrap">
+    <div class="sp-header">
       <div>
-        <div class="label">Espaces communs</div>
-        <h2>Bien plus<br>que des chambres —<br><em>une maison</em>.</h2>
-        <p>L'extérieur et les espaces partagés sont le vrai luxe de Casa Maddalena. Conçus pour 12 personnes qui vivent ensemble avec élégance.</p>
+        <div class="sp-tag">Espaces communs</div>
+        <h2 class="reveal" style="color:#fff">Bien plus que des chambres —<br><em>une maison entière.</em></h2>
+        <p class="reveal reveal-delay-1">Terrasse panoramique, accès privé mer, salon extérieur couvert, jardin avec cuisine d'été. L'extérieur est le vrai luxe de Casa Maddalena.</p>
       </div>
-      <a href="index.html#calendar" class="btn-p" style="align-self:flex-end;white-space:nowrap">Réserver la villa</a>
+      <a href="index.html#calendar" class="btn-pri" style="align-self:flex-end;white-space:nowrap">Réserver la villa</a>
     </div>
     <div class="spgrid" id="spgrid"></div>
   </div>
 </section>
 
+<!-- ─── FULL GALLERY ─── -->
 <section class="fullgal" id="all-photos">
-  <div class="container">
-    <div class="fullgal-head">
+  <div class="wrap">
+    <div class="fg-head reveal">
       <div>
-        <div class="label">Galerie complète</div>
-        <h2 style="font-size:clamp(34px,4vw,60px);font-weight:300;color:var(--ink);margin-top:12px">Toutes les <em style="font-style:italic;color:var(--gold-dk)">photos</em>.</h2>
+        <div class="sec-tag">Galerie complète</div>
+        <h2 class="sec-title" style="margin-top:10px">Toutes les <em>photos.</em></h2>
       </div>
-      <div style="font-size:12px;color:var(--stone);align-self:flex-end">81 photos · cliquez pour agrandir</div>
+      <span class="fg-hint">Cliquez pour agrandir · Navigation clavier ←→</span>
     </div>
     <div class="gmasonry" id="gmasonry"></div>
-    <div class="load-more-wrap" id="lmw">
-      <button class="btn-load" id="btnLoad">Voir toutes les 81 photos</button>
+    <div class="load-wrap" id="lw"><button class="btn-loadmore" id="btnLoad">Voir toutes les photos</button></div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="reveal">
+        <h2>La villa est disponible<br><em>pour votre groupe.</em></h2>
+        <p>À partir de 952 € / nuit · Réservation directe · Économisez jusqu'à 15 % vs Airbnb</p>
+      </div>
+      <div class="cta-actions reveal reveal-delay-2">
+        <a href="index.html#calendar" class="btn-cta-w">Vérifier les disponibilités</a>
+        <a href="index.html#contact" class="btn-cta-o">Nous contacter</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="cta-sec">
-  <div class="container cta-inner">
-    <div>
-      <h2>La villa est disponible<br><em>pour votre groupe</em>.</h2>
-      <p>À partir de 952 € / nuit · Réservation directe · Économisez jusqu'à 15 % vs Airbnb</p>
-    </div>
-    <div class="cta-btns">
-      <a href="index.html#calendar" class="btn-wh">Vérifier les disponibilités</a>
-      <a href="index.html#contact" class="btn-wo">Nous contacter</a>
-    </div>
-  </div>
-</section>
-
+<!-- ─── LIGHTBOX ─── -->
 <div class="lb" id="lb">
-  <div class="lb-bar">
-    <div class="lb-tit" id="lbTit">Casa Maddalena</div>
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="lb-ctr" id="lbCtr">1 / 81</div>
-      <button class="lb-x" id="lbX">×</button>
+  <div class="lb-top">
+    <div class="lb-label" id="lbLabel">Casa Maddalena</div>
+    <div class="lb-meta">
+      <div class="lb-ctr" id="lbCtr">1 / 1</div>
+      <button class="lb-close" id="lbClose">×</button>
     </div>
   </div>
   <div class="lb-stage">
-    <button class="lb-nav" id="lbPrev">‹</button>
-    <div class="lb-mid"><img class="lb-img" id="lbImg" src="" alt=""/></div>
-    <button class="lb-nav" id="lbNext">›</button>
+    <div class="lb-arrow" id="lbPrev">‹</div>
+    <div class="lb-view"><img class="lb-photo" id="lbPhoto" src="" alt=""/></div>
+    <div class="lb-arrow" id="lbNext">›</div>
   </div>
-  <div class="lb-strip" id="lbStrip"></div>
+  <div class="lb-film" id="lbFilm"></div>
 </div>
 
 <script>
 'use strict';
-const P=[
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=720',l:'Terrasse panoramique 180°',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=720',l:'Accès mer & vue Ortygia',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=720',l:'Salon extérieur couvert',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=720',l:'Séjour & salle à manger',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/415bb1e8-453f-4ac2-a72e-8aa4caff3ddb.jpeg?im_w=720',l:'Vue mer depuis la terrasse',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/19a10f23-b83b-4c95-8c07-47e769eb1f69.jpeg?im_w=720',l:'Villa face à la mer',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/75703f03-9d5a-4e50-b1c6-ca12141f9a20.jpeg?im_w=720',l:'Panorama mer & Etna',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/1164374f-f82b-4464-92e4-b73c132a6003.jpeg?im_w=720',l:'Suite Master — chambre',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/853aeb55-08fb-4185-b3c8-06bda9eb791a.jpeg?im_w=720',l:'Suite Master — détail',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/34a11fb3-a17b-46c4-a5db-c0ce0581afc6.jpeg?im_w=720',l:'Suite Master — salle de bain',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/2a11dfa1-25f5-4e88-b977-fa0ae17bf82c.jpeg?im_w=720',l:'Suite Master — vue',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/0028ab7c-354c-4610-bdec-89cc03d1710d.jpeg?im_w=720',l:'Chambre 2 — vue baie',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/81612904-4948-4404-80e8-c09fd7109e17.jpeg?im_w=720',l:'Chambre 2 — lit double',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/1fb988c9-c876-499c-804f-a455189a564f.jpeg?im_w=720',l:'Chambre 2 — détail',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/b452c2ea-48a7-4d19-977c-24b8b51be5f6.jpeg?im_w=720',l:'Chambre 2 — ambiance',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/df27b277-ac1b-43d6-8813-c06271531c8e.jpeg?im_w=720',l:'Chambre 3 — vue Etna',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/e1deacbc-00b3-49a1-9eb0-fa7d929c9c01.jpeg?im_w=720',l:'Chambre 3 — lits jumeaux',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/5608b31e-b8a8-45a0-aed8-6b0ba080b8dc.jpeg?im_w=720',l:'Chambre 3 — détail',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/85d902dd-aa50-4534-9408-a887af3ef935.jpeg?im_w=720',l:'Chambre 3 — fenêtre',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/76377c0d-02d5-41b5-a713-4fb5b0fb2c75.jpeg?im_w=720',l:'Chambre 4 — jardin & mer',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/528d3890-b467-4781-95b0-b1b85386da94.jpeg?im_w=720',l:'Chambre 4 — terrasse',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/c0ec7662-e7d1-4aa6-b8df-d198d45fc24d.jpeg?im_w=720',l:'Chambre 4 — lit',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/f787378e-1fc4-46b9-b7b3-9dbc1afea663.jpeg?im_w=720',l:'Chambre 4 — vue',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/94233edd-1cd8-4d24-aa9c-7ecc7ad740a8.jpeg?im_w=720',l:'Chambre 5 — famille',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/3052eec0-f3b0-4518-862d-e2fe0b4520ae.jpeg?im_w=720',l:'Chambre 5 — lits',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/619aa3d0-f113-4b2e-9858-77a98c35781e.jpeg?im_w=720',l:'Chambre 5 — détail',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/2757ca4d-cae4-4f51-950e-67209cc62286.jpeg?im_w=720',l:'Chambre 5 — ambiance',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/3eaac4c0-2048-4711-a0b8-9a4296757f8d.jpeg?im_w=720',l:'Suite 6 — terrasse privée',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/3fc65bf5-c86b-4ac8-b98d-a6d0a47895a2.jpeg?im_w=720',l:'Suite 6 — lit double',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/e32c2700-31bd-4d34-a7dd-c827211f3d82.jpeg?im_w=720',l:'Suite 6 — intérieur',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/70ab46d8-b535-40c7-97a3-3a23fa9703e7.jpeg?im_w=720',l:'Suite 6 — détail',c:'rooms'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=720',l:'Vue sur l\'Etna',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/9c7e7aa9-c283-4d6a-9eab-8c61d34b7181.jpeg?im_w=720',l:'Jardin privé',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/7fb918df-d682-4b2d-af0d-7c6b97f826b6.jpeg?im_w=720',l:'Accès mer privé',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/5de77300-b657-49d3-bd22-c55b41994dbe.jpeg?im_w=720',l:'Villa vue extérieure',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/c54a473b-776d-422e-b200-d17470c65723.jpeg?im_w=720',l:'Jardin & barbecue',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/f6b46c47-ffa2-45aa-8616-aa26e42c5271.jpeg?im_w=720',l:'Terrasse sud',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/0e4213fc-c72b-4904-8109-376c226a74be.jpeg?im_w=720',l:'Accès villa',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/6fceff22-67a6-45e6-9d2b-a4786d3d3847.jpeg?im_w=720',l:'Coucher de soleil',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/fae33ff3-9c06-4479-be49-78c22e8b6659.jpeg?im_w=720',l:'Vue mer matinale',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/a0060261-66c1-40e2-9c55-22ec9ceb6c86.jpeg?im_w=720',l:'Bord de mer',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/caa5a289-582e-47f6-b477-6b2eb6b5e453.jpeg?im_w=720',l:'Panorama',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/20b0b0dc-3c6e-493e-8f88-1dadc6c145b3.jpeg?im_w=720',l:'Entrée villa',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/549732f4-9db6-43c1-9887-32a3142deb7f.jpeg?im_w=720',l:'Jardin & mer',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/8152cdf5-989a-4ed4-8128-d1cf34e3bc60.jpeg?im_w=720',l:'Extérieur nuit',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/9e473d3a-78cd-4338-987e-445f718372d8.jpeg?im_w=720',l:'Côte sicilienne',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/eb394dd0-e25e-4440-a59c-9ec32b1840f2.jpeg?im_w=720',l:'Vue depuis la mer',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/21382902-c996-41eb-a033-6886113f95ea.jpeg?im_w=720',l:'Terrasse soir',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/169af278-2833-4c82-8046-14ddfb7c9eee.jpeg?im_w=720',l:'Mer cristalline',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/2e997c82-43d9-4f0d-9cd0-1932bfe37bd2.jpeg?im_w=720',l:'Coucher Etna',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/207e9772-8cd8-48fe-b33a-b99e5237aa71.jpeg?im_w=720',l:'Jardin méditerranéen',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/74015354-98a6-49b0-835a-fbcc4bc97653.jpeg?im_w=720',l:'Piscine naturelle',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/48164519-0ec4-4389-bf0b-cec60da73e3d.jpeg?im_w=720',l:'Vue baie de Syracuse',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/9c5cf54a-de60-4711-95ef-4a8b04288d9e.jpeg?im_w=720',l:'Salle de bain luxe',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/070fdc96-df08-440f-afb8-5f4aba10a6f1.jpeg?im_w=720',l:'Détail intérieur',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/19246a76-4940-49b5-8c0e-3d5e7c47ffd4.jpeg?im_w=720',l:'Cuisine équipée',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/aefb4413-f349-44de-9573-b468f3fcd42d.jpeg?im_w=720',l:'Salon intérieur',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/0b268b1b-eedc-4ae6-98f9-c5581ef38f7e.png?im_w=720',l:'Plan de la villa',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/ba02c1d4-a6e2-4a90-af67-1a3a72082a45.jpeg?im_w=720',l:'Détail architecture',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/64a3c6c0-037f-431d-8268-edc9b6ffebe4.png?im_w=720',l:'Plan des chambres',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/58532570-683e-46f0-8eb6-392d93584951.jpeg?im_w=720',l:'Équipements',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4b238ca9-5909-4dbf-bb53-9ba1ec7bade7.jpeg?im_w=720',l:'Salle à manger',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/bdac6c2a-1d09-4f65-951a-244c908f3ea1.jpeg?im_w=720',l:'Accueil villa',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/544fa912-ba1f-4870-9c30-724ae6d8c425.jpeg?im_w=720',l:'Lumière intérieure',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/0cc2ec6b-c5fd-42f4-a249-014628e8dd9a.jpeg?im_w=720',l:'Détail déco',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/548765e3-2347-4cfc-966a-f765beacb2fa.jpeg?im_w=720',l:'Espace commun',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/88d343d7-16fe-4d9c-950d-3c09c05277d5.jpeg?im_w=720',l:'Intérieur lumineux',c:'interior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/fec18285-059c-49f1-883b-c20c872fb2d1.jpeg?im_w=720',l:'Terrasse couverte',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/b195ddbe-641e-41cd-8a39-acd9857d05fa.jpeg?im_w=720',l:'Balcon vue mer',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/8669d1ae-f13b-402c-87b9-9e3adf15d5c1.jpeg?im_w=720',l:'Piscine naturelle soir',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/b0624d3a-7aa6-464f-8bde-55ee5a5ac536.jpeg?im_w=720',l:'Vue Ortygia',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/2e7a7ba2-24e3-4b8c-a5a7-a15c18ca6ada.jpeg?im_w=720',l:'Façade villa',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/c8568821-c983-4d4a-ae21-cd7ceeb5b725.jpeg?im_w=720',l:'Parking & accès',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/579cfe34-9eae-4c16-bdc7-f34d7dd1d5f2.png?im_w=720',l:'Environnement',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/f8ad0220-0b9b-430d-a7cc-94b7fefbfe9f.jpeg?im_w=720',l:'Piscine naturelle détail',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/23605910-20f8-49a1-83fa-007b1ce4f2e7.jpeg?im_w=720',l:'Vue mer couchant',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/499fb17a-2532-4601-8946-89dc80aa5dd2.jpeg?im_w=720',l:'Terrasse nuit',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/aebc44e7-1cd6-4807-80d1-98b0191dee97.png?im_w=720',l:'Vue aérienne',c:'exterior'},
-{u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/48e8fa1d-7f8e-4ba8-9852-890947872f61.jpeg?im_w=720',l:'Cuisine extérieure',c:'exterior'},
+
+/* ─── PHOTO DATA — haute résolution 1440px ─── */
+/* Photos triées : extérieur panoramique → mer → espaces communs → chambres */
+const P = [
+  /* ═══ EXTERIEURS PANORAMIQUES ═══ */
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/e7c3b674-07a2-457f-acd2-fe4e03840f7e.jpeg?im_w=1440',l:'Terrasse panoramique 180°',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4dd94e1e-072c-4044-8299-0571e3ba655e.jpeg?im_w=1440',l:'Accès mer & vue Ortygia',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/415bb1e8-453f-4ac2-a72e-8aa4caff3ddb.jpeg?im_w=1440',l:'Vue mer depuis la terrasse',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/19a10f23-b83b-4c95-8c07-47e769eb1f69.jpeg?im_w=1440',l:'Villa face à la mer',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/75703f03-9d5a-4e50-b1c6-ca12141f9a20.jpeg?im_w=1440',l:'Panorama mer & Etna',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/07218b56-f912-4233-9228-20dc841ad160.png?im_w=1440',l:'Vue sur l\'Etna',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/1164374f-f82b-4464-92e4-b73c132a6003.jpeg?im_w=1440',l:'Mer cristalline — baie de Syracuse',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/9c7e7aa9-c283-4d6a-9eab-8c61d34b7181.jpeg?im_w=1440',l:'Jardin privé',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/7fb918df-d682-4b2d-af0d-7c6b97f826b6.jpeg?im_w=1440',l:'Accès mer privé',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/5de77300-b657-49d3-bd22-c55b41994dbe.jpeg?im_w=1440',l:'Villa vue extérieure',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/c54a473b-776d-422e-b200-d17470c65723.jpeg?im_w=1440',l:'Jardin & barbecue',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/f6b46c47-ffa2-45aa-8616-aa26e42c5271.jpeg?im_w=1440',l:'Terrasse sud',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/6fceff22-67a6-45e6-9d2b-a4786d3d3847.jpeg?im_w=1440',l:'Coucher de soleil',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/fae33ff3-9c06-4479-be49-78c22e8b6659.jpeg?im_w=1440',l:'Vue mer matinale',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/a0060261-66c1-40e2-9c55-22ec9ceb6c86.jpeg?im_w=1440',l:'Bord de mer',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/caa5a289-582e-47f6-b477-6b2eb6b5e453.jpeg?im_w=1440',l:'Panorama côtier',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/549732f4-9db6-43c1-9887-32a3142deb7f.jpeg?im_w=1440',l:'Jardin & mer',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/8152cdf5-989a-4ed4-8128-d1cf34e3bc60.jpeg?im_w=1440',l:'Extérieur nuit',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/eb394dd0-e25e-4440-a59c-9ec32b1840f2.jpeg?im_w=1440',l:'Vue depuis la mer',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/21382902-c996-41eb-a033-6886113f95ea.jpeg?im_w=1440',l:'Terrasse soir',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/169af278-2833-4c82-8046-14ddfb7c9eee.jpeg?im_w=1440',l:'Mer cristalline',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/2e997c82-43d9-4f0d-9cd0-1932bfe37bd2.jpeg?im_w=1440',l:'Coucher Etna',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/207e9772-8cd8-48fe-b33a-b99e5237aa71.jpeg?im_w=1440',l:'Jardin méditerranéen',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/74015354-98a6-49b0-835a-fbcc4bc97653.jpeg?im_w=1440',l:'Piscine naturelle',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/48164519-0ec4-4389-bf0b-cec60da73e3d.jpeg?im_w=1440',l:'Vue baie de Syracuse',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/fec18285-059c-49f1-883b-c20c872fb2d1.jpeg?im_w=1440',l:'Terrasse couverte',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/b195ddbe-641e-41cd-8a39-acd9857d05fa.jpeg?im_w=1440',l:'Balcon vue mer',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/8669d1ae-f13b-402c-87b9-9e3adf15d5c1.jpeg?im_w=1440',l:'Piscine naturelle soir',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/b0624d3a-7aa6-464f-8bde-55ee5a5ac536.jpeg?im_w=1440',l:'Vue Ortygia',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/2e7a7ba2-24e3-4b8c-a5a7-a15c18ca6ada.jpeg?im_w=1440',l:'Façade villa',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/579cfe34-9eae-4c16-bdc7-f34d7dd1d5f2.png?im_w=1440',l:'Environnement côtier',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/f8ad0220-0b9b-430d-a7cc-94b7fefbfe9f.jpeg?im_w=1440',l:'Piscine naturelle détail',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/23605910-20f8-49a1-83fa-007b1ce4f2e7.jpeg?im_w=1440',l:'Vue mer couchant',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/499fb17a-2532-4601-8946-89dc80aa5dd2.jpeg?im_w=1440',l:'Terrasse nuit',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/aebc44e7-1cd6-4807-80d1-98b0191dee97.png?im_w=1440',l:'Vue aérienne',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/48e8fa1d-7f8e-4ba8-9852-890947872f61.jpeg?im_w=1440',l:'Cuisine extérieure',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/bdac6c2a-1d09-4f65-951a-244c908f3ea1.jpeg?im_w=1440',l:'Accueil villa',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/0e4213fc-c72b-4904-8109-376c226a74be.jpeg?im_w=1440',l:'Accès villa',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/9e473d3a-78cd-4338-987e-445f718372d8.jpeg?im_w=1440',l:'Côte sicilienne',c:'exterior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/c8568821-c983-4d4a-ae21-cd7ceeb5b725.jpeg?im_w=1440',l:'Parking & accès',c:'exterior'},
+  /* ═══ INTERIEUR & COMMUNS ═══ */
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4ade0fa7-231c-446f-86d1-2c954335e482.jpeg?im_w=1440',l:'Séjour & salle à manger',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=1440',l:'Salon extérieur couvert',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNTk1OTA1MjQ1MDkzODIwMw%3D%3D/original/ce85720a-f047-4009-bb22-9e5e6f0010df.jpeg?im_w=1440',l:'Salon extérieur couvert',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/9c5cf54a-de60-4711-95ef-4a8b04288d9e.jpeg?im_w=1440',l:'Salle de bain luxe',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/070fdc96-df08-440f-afb8-5f4aba10a6f1.jpeg?im_w=1440',l:'Détail intérieur',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/19246a76-4940-49b5-8c0e-3d5e7c47ffd4.jpeg?im_w=1440',l:'Cuisine entièrement équipée',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/aefb4413-f349-44de-9573-b468f3fcd42d.jpeg?im_w=1440',l:'Grand salon',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/ba02c1d4-a6e2-4a90-af67-1a3a72082a45.jpeg?im_w=1440',l:'Détail architecture',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/58532570-683e-46f0-8eb6-392d93584951.jpeg?im_w=1440',l:'Équipements',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/4b238ca9-5909-4dbf-bb53-9ba1ec7bade7.jpeg?im_w=1440',l:'Salle à manger',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/544fa912-ba1f-4870-9c30-724ae6d8c425.jpeg?im_w=1440',l:'Lumière intérieure',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/0cc2ec6b-c5fd-42f4-a249-014628e8dd9a.jpeg?im_w=1440',l:'Détail décoration',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/548765e3-2347-4cfc-966a-f765beacb2fa.jpeg?im_w=1440',l:'Espace commun',c:'interior'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/88d343d7-16fe-4d9c-950d-3c09c05277d5.jpeg?im_w=1440',l:'Intérieur lumineux',c:'interior'},
+  /* ═══ SUITE MASTER — Ch. 01 ═══ */
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/853aeb55-08fb-4185-b3c8-06bda9eb791a.jpeg?im_w=1440',l:'Suite Master — chambre',c:'rooms',room:'ch1'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/34a11fb3-a17b-46c4-a5db-c0ce0581afc6.jpeg?im_w=1440',l:'Suite Master — salle de bain',c:'rooms',room:'ch1'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/2a11dfa1-25f5-4e88-b977-fa0ae17bf82c.jpeg?im_w=1440',l:'Suite Master — vue panoramique',c:'rooms',room:'ch1'},
+  /* ═══ CHAMBRE 02 ═══ */
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/0028ab7c-354c-4610-bdec-89cc03d1710d.jpeg?im_w=1440',l:'Chambre 2 — vue baie',c:'rooms',room:'ch2'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/81612904-4948-4404-80e8-c09fd7109e17.jpeg?im_w=1440',l:'Chambre 2 — lit double',c:'rooms',room:'ch2'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/1fb988c9-c876-499c-804f-a455189a564f.jpeg?im_w=1440',l:'Chambre 2 — détail',c:'rooms',room:'ch2'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/b452c2ea-48a7-4d19-977c-24b8b51be5f6.jpeg?im_w=1440',l:'Chambre 2 — ambiance',c:'rooms',room:'ch2'},
+  /* ═══ CHAMBRE 03 ═══ */
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/df27b277-ac1b-43d6-8813-c06271531c8e.jpeg?im_w=1440',l:'Chambre 3 — vue Etna',c:'rooms',room:'ch3'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/e1deacbc-00b3-49a1-9eb0-fa7d929c9c01.jpeg?im_w=1440',l:'Chambre 3 — lits jumeaux',c:'rooms',room:'ch3'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/5608b31e-b8a8-45a0-aed8-6b0ba080b8dc.jpeg?im_w=1440',l:'Chambre 3 — détail',c:'rooms',room:'ch3'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/85d902dd-aa50-4534-9408-a887af3ef935.jpeg?im_w=1440',l:'Chambre 3 — fenêtre',c:'rooms',room:'ch3'},
+  /* ═══ CHAMBRE 04 ═══ */
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/76377c0d-02d5-41b5-a713-4fb5b0fb2c75.jpeg?im_w=1440',l:'Chambre 4 — jardin & mer',c:'rooms',room:'ch4'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/528d3890-b467-4781-95b0-b1b85386da94.jpeg?im_w=1440',l:'Chambre 4 — terrasse',c:'rooms',room:'ch4'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/c0ec7662-e7d1-4aa6-b8df-d198d45fc24d.jpeg?im_w=1440',l:'Chambre 4 — lit double',c:'rooms',room:'ch4'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/f787378e-1fc4-46b9-b7b3-9dbc1afea663.jpeg?im_w=1440',l:'Chambre 4 — vue',c:'rooms',room:'ch4'},
+  /* ═══ CHAMBRE 05 ═══ */
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/94233edd-1cd8-4d24-aa9c-7ecc7ad740a8.jpeg?im_w=1440',l:'Chambre 5 — famille',c:'rooms',room:'ch5'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/3052eec0-f3b0-4518-862d-e2fe0b4520ae.jpeg?im_w=1440',l:'Chambre 5 — lits',c:'rooms',room:'ch5'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/619aa3d0-f113-4b2e-9858-77a98c35781e.jpeg?im_w=1440',l:'Chambre 5 — détail',c:'rooms',room:'ch5'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/2757ca4d-cae4-4f51-950e-67209cc62286.jpeg?im_w=1440',l:'Chambre 5 — ambiance',c:'rooms',room:'ch5'},
+  /* ═══ SUITE 06 ═══ */
+  {u:'https://a0.muscache.com/im/pictures/hosting/Hosting-1325959052450938203/original/3eaac4c0-2048-4711-a0b8-9a4296757f8d.jpeg?im_w=1440',l:'Suite 6 — terrasse privée',c:'rooms',room:'ch6'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/3fc65bf5-c86b-4ac8-b98d-a6d0a47895a2.jpeg?im_w=1440',l:'Suite 6 — lit double',c:'rooms',room:'ch6'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/e32c2700-31bd-4d34-a7dd-c827211f3d82.jpeg?im_w=1440',l:'Suite 6 — intérieur',c:'rooms',room:'ch6'},
+  {u:'https://a0.muscache.com/im/pictures/miso/Hosting-1325959052450938203/original/70ab46d8-b535-40c7-97a3-3a23fa9703e7.jpeg?im_w=1440',l:'Suite 6 — détail',c:'rooms',room:'ch6'},
 ];
 
-const ROOMS=[
-{id:'ch1',tags:['sea','double'],no:'01',name:'Suite Master',sub:'Vue Panoramique',
-desc:"La chambre principale. Réveils face à la baie de Syracuse et à l'Etna. Grand lit king-size 200×200, lumière naturelle abondante, salle de bain privative avec douche et baignoire. La chambre qui justifie à elle seule le choix de cette propriété.",
-badges:[{t:'Vue mer 180°',s:'g'},{t:'Suite',s:'d'}],
-specs:[{i:'🌊',l:'Vue mer directe',v:'Baie de Syracuse'},{i:'🛏️',l:'Lit king-size',v:'200 × 200 cm'},{i:'🚿',l:'SdB privée',v:'Douche & baignoire'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
-chips:['Vue mer','SdB privée','Occultants','Dressing'],
-imgs:[0,7,8,9,10]},
-{id:'ch2',tags:['sea','double'],no:'02',name:'Chambre',sub:'Vue Baie',
-desc:"Seconde chambre côté mer. Grand lit double, exposition plein sud, lumière du matin sur la Méditerranée. Accès à la salle de bain attenante partagée avec la chambre 03. Idéale pour un couple cherchant l'intimité.",
-badges:[{t:'Vue mer',s:'g'}],
-specs:[{i:'🌊',l:'Vue baie',v:'Exposition sud'},{i:'🛏️',l:'Lit double',v:'160 × 200 cm'},{i:'🚿',l:'SdB attenante',v:'Partagée ch. 03'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
-chips:['Vue mer','Lit double','Lumière sud','Occultants'],
-imgs:[11,12,13,14]},
-{id:'ch3',tags:['sea','twin'],no:'03',name:'Chambre',sub:'Vue Etna',
-desc:"La chambre aux couchers de soleil sur le volcan. Deux lits simples modulables en double. Vue unique sur l'Etna au crépuscule. Idéale pour des amis ou des adolescents. Partage la salle de bain avec la chambre 02.",
-badges:[{t:'Vue Etna',s:'g'}],
-specs:[{i:'🏔️',l:'Vue Etna',v:'Couchers de soleil'},{i:'🛏️',l:'2 lits simples',v:'Modulables en double'},{i:'🚿',l:'SdB attenante',v:'Partagée ch. 02'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
-chips:['Vue Etna','Lits jumeaux','Modulable','Idéale ados'],
-imgs:[15,16,17,18]},
-{id:'ch4',tags:['sea','double','exterior'],no:'04',name:'Suite',sub:'Jardin & Mer',
-desc:"Quatrième chambre côté mer avec accès terrasse jardin direct. Grand lit double et espace ouvert sur le salon extérieur. Atmosphère de bungalow méditerranéen. La chambre pour ceux qui veulent être les premiers dehors.",
-badges:[{t:'Vue mer',s:'g'},{t:'Accès terrasse',s:'d'}],
-specs:[{i:'🌊',l:'Vue mer & jardin',v:'Accès direct'},{i:'🛏️',l:'Lit double',v:'160 × 200 cm'},{i:'🌿',l:'Terrasse privée',v:'Accès direct'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
-chips:['Vue mer','Accès terrasse','Lit double','Jardin'],
-imgs:[19,20,21,22]},
-{id:'ch5',tags:['twin','interior'],no:'05',name:'Chambre',sub:'Famille',
-desc:"Spacieuse chambre intérieure pensée pour les familles. Deux lits simples modulables en double. Calme et fraîche naturellement même en plein été. Salle de bain complète à proximité. Un cocon pour les plus jeunes voyageurs.",
-badges:[{t:'Famille',s:'d'}],
-specs:[{i:'👨‍👩‍👧',l:'Idéale familles',v:'Espace généreux'},{i:'🛏️',l:'2 lits simples',v:'Modulables en double'},{i:'🌡️',l:'Fraîche naturellement',v:'+ Climatisation'},{i:'🔒',l:'Porte verrouillable',v:'Intimité assurée'}],
-chips:['Famille','Lits jumeaux','Calme','Climatisation'],
-imgs:[23,24,25,26]},
-{id:'ch6',tags:['double','sea','exterior'],no:'06',name:'Suite',sub:'Terrasse Privée',
-desc:"La chambre avec terrasse semi-privée. Accès direct à l'extérieur depuis la chambre, vue dégagée côté mer. Grand lit double, atmosphère de bungalow au bord de l'eau. La plus intime pour un couple en quête d'indépendance.",
-badges:[{t:'Vue mer',s:'g'},{t:'Terrasse privée',s:'d'}],
-specs:[{i:'🌿',l:'Terrasse semi-privée',v:'Accès direct'},{i:'🛏️',l:'Lit double',v:'160 × 200 cm'},{i:'🌊',l:'Vue mer côté',v:'Ambiance bord de mer'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
-chips:['Terrasse privée','Vue mer','Couple','Accès direct'],
-imgs:[27,28,29,30]},
+/* Index helpers */
+const idxOf = url => P.findIndex(p=>p.u===url);
+
+/* ─── ROOMS DATA ─── */
+const ROOMS = [
+  {id:'ch1',tags:['sea','double'],no:'01',name:'Suite Master',sub:'Vue Panoramique',
+   desc:"La chambre principale. Grand lit king-size 200×200, réveils face à la baie de Syracuse et à l'Etna. Lumière naturelle abondante, salle de bain privative avec douche et baignoire. La chambre qui justifie à elle seule le choix de cette propriété.",
+   badges:[{t:'Vue mer 180°',s:'g'},{t:'Suite',s:'d'}],
+   specs:[{i:'🌊',l:'Vue mer directe',v:'Baie de Syracuse'},{i:'🛏️',l:'Lit king-size',v:'200 × 200 cm'},{i:'🚿',l:'SdB privative',v:'Douche & baignoire'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
+   chips:['Vue mer','SdB privée','Occultants','Dressing'],
+   imgs:['ch1','ch1','ch1','ch1']},
+  {id:'ch2',tags:['sea','double'],no:'02',name:'Chambre',sub:'Vue Baie',
+   desc:"Seconde chambre côté mer. Grand lit double, exposition plein sud, lumière du matin sur la Méditerranée. Accès à la salle de bain attenante. Idéale pour un couple cherchant l'intimité avec la mer à portée de regard.",
+   badges:[{t:'Vue mer',s:'g'}],
+   specs:[{i:'🌊',l:'Vue baie',v:'Exposition sud'},{i:'🛏️',l:'Lit double',v:'160 × 200 cm'},{i:'🚿',l:'SdB attenante',v:'Partagée ch. 03'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
+   chips:['Vue mer','Lit double','Lumière sud','Occultants'],
+   imgs:['ch2','ch2','ch2','ch2']},
+  {id:'ch3',tags:['sea','twin'],no:'03',name:'Chambre',sub:'Vue Etna',
+   desc:"La chambre aux couchers de soleil sur le volcan. Deux lits simples modulables en double. Vue unique sur l'Etna au crépuscule, dorée et spectaculaire. Idéale pour des amis ou des adolescents.",
+   badges:[{t:'Vue Etna',s:'g'}],
+   specs:[{i:'🏔️',l:'Vue Etna',v:'Couchers de soleil'},{i:'🛏️',l:'2 lits simples',v:'Modulables en double'},{i:'🚿',l:'SdB attenante',v:'Partagée ch. 02'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
+   chips:['Vue Etna','Lits jumeaux','Modulable','Idéale ados'],
+   imgs:['ch3','ch3','ch3','ch3']},
+  {id:'ch4',tags:['sea','double','exterior'],no:'04',name:'Suite',sub:'Jardin & Mer',
+   desc:"Quatrième chambre côté mer avec accès terrasse jardin direct. Grand lit double et espace ouvert sur le salon extérieur. Atmosphère de bungalow méditerranéen. La chambre pour ceux qui veulent être les premiers dehors.",
+   badges:[{t:'Vue mer',s:'g'},{t:'Accès terrasse',s:'d'}],
+   specs:[{i:'🌊',l:'Vue mer & jardin',v:'Accès direct'},{i:'🛏️',l:'Lit double',v:'160 × 200 cm'},{i:'🌿',l:'Terrasse privée',v:'Accès direct'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
+   chips:['Vue mer','Accès terrasse','Lit double','Jardin'],
+   imgs:['ch4','ch4','ch4','ch4']},
+  {id:'ch5',tags:['twin','interior'],no:'05',name:'Chambre',sub:'Famille',
+   desc:"Spacieuse chambre pensée pour les familles. Deux lits simples modulables en double. Calme et fraîche naturellement même en plein été. Un cocon pour les plus jeunes voyageurs.",
+   badges:[{t:'Famille',s:'d'}],
+   specs:[{i:'👨‍👩‍👧',l:'Idéale familles',v:'Espace généreux'},{i:'🛏️',l:'2 lits simples',v:'Modulables en double'},{i:'🌡️',l:'Fraîche naturellement',v:'+ Climatisation'},{i:'🔒',l:'Porte verrouillable',v:'Intimité assurée'}],
+   chips:['Famille','Lits jumeaux','Calme','Climatisation'],
+   imgs:['ch5','ch5','ch5','ch5']},
+  {id:'ch6',tags:['double','sea','exterior'],no:'06',name:'Suite',sub:'Terrasse Privée',
+   desc:"La chambre avec terrasse semi-privée. Accès direct à l'extérieur depuis la chambre, vue dégagée côté mer. Grand lit double, atmosphère de bungalow au bord de l'eau. La plus intime pour un couple en quête d'indépendance.",
+   badges:[{t:'Vue mer',s:'g'},{t:'Terrasse privée',s:'d'}],
+   specs:[{i:'🌿',l:'Terrasse semi-privée',v:'Accès direct'},{i:'🛏️',l:'Lit double',v:'160 × 200 cm'},{i:'🌊',l:'Vue mer côté',v:'Ambiance bord de mer'},{i:'❄️',l:'Climatisation',v:'Chaud & froid'}],
+   chips:['Terrasse privée','Vue mer','Couple','Accès direct'],
+   imgs:['ch6','ch6','ch6','ch6']},
 ];
 
-const SPACES=[
-{pi:0,t:'Terrasse panoramique',d:'180° sur la baie de Syracuse, l\'Etna et le golfe. Table pour 12. Le lieu de vie principal.',tags:['Vue 180°','Table 12','Couchers de soleil']},
-{pi:33,t:'Accès privé à la mer',d:'Descente directe, eau cristalline. Fond rocheux, idéal snorkeling. Exclusif aux résidents.',tags:['Eau claire','Exclusif','Snorkeling']},
-{pi:2,t:'Salon extérieur couvert',d:'Canapés face à la mer, protégé du vent. Parfait pour les apéritifs du soir.',tags:['Couvert','Apéritifs','Face mer']},
-{pi:3,t:'Grand séjour',d:'80 m² ouverts, table 12, cuisine entièrement équipée. Lumière naturelle toute la journée.',tags:['80 m²','Table 12','Cuisine']},
-{pi:35,t:'Jardin & cuisine extérieure',d:'Barbecue Kamado professionnel, plancha, cuisine d\'été équipée. Jardin privatif.',tags:['Kamado','Plancha','Jardin']},
-{pi:41,t:'Parking & accès',d:'Parking gratuit sur place pour plusieurs véhicules. Accès direct rez-de-chaussée.',tags:['Gratuit','Sécurisé','Accès direct']},
+/* Room photo lookups */
+function getRoomPhotos(rid) {
+  return P.filter(p=>p.room===rid);
+}
+function getRoomMainPhoto(rid) {
+  return P.find(p=>p.room===rid) || P[0];
+}
+
+/* ─── SPACES ─── */
+const SPACES = [
+  {pi:0,t:'Terrasse panoramique 180°',d:'Sur la baie de Syracuse, l\'Etna et le golfe. Table pour 12. Le cœur de vie de la villa.',tags:['Vue 180°','Table 12','Couchers de soleil']},
+  {pi:8,t:'Accès privé à la mer',d:'Descente directe. Eau cristalline, fond rocheux, snorkeling. Exclusif aux résidents.',tags:['Eau claire','Exclusif','Snorkeling']},
+  {pi:40,t:'Salon extérieur couvert',d:'Canapés face à la mer, protégé du vent. Parfait pour les apéritifs du soir.',tags:['Couvert','Apéritifs','Face mer']},
+  {pi:42,t:'Grand séjour 80 m²',d:'Ouvert, table 12, cuisine entièrement équipée. Lumière naturelle toute la journée.',tags:['80 m²','Table 12','Cuisine']},
+  {pi:10,t:'Jardin & cuisine d\'été',d:'Barbecue Kamado professionnel, plancha. Jardin privatif méditerranéen.',tags:['Kamado','Plancha','Jardin']},
+  {pi:36,t:'Parking & accès',d:'Parking gratuit sur place. Accès direct rez-de-chaussée. Idéal pour plusieurs familles.',tags:['Gratuit','Sécurisé','Accès direct']},
 ];
 
-/* LIGHTBOX */
-let lbI=0,lbL=P;
-const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
-function openLb(i,list){lbL=list||P;lbI=Math.max(0,Math.min(i,lbL.length-1));_updLb();lb.classList.add('open');document.body.style.overflow='hidden';_buildStrip();}
+/* ─── LIGHTBOX ─── */
+let lbList=P,lbI=0;
+const lb=document.getElementById('lb'),lbPhoto=document.getElementById('lbPhoto');
+
+function openLb(idx,list){
+  lbList=list||P;lbI=Math.max(0,Math.min(idx,lbList.length-1));
+  _lbRender();lb.classList.add('open');document.body.style.overflow='hidden';
+  _buildFilm();
+}
 function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
-function _updLb(){
-  const p=lbL[lbI];lbImg.style.opacity='0';
-  setTimeout(()=>{lbImg.src=p.u;lbImg.alt=p.l;lbImg.style.opacity='1';},150);
-  document.getElementById('lbTit').textContent=p.l;
-  document.getElementById('lbCtr').textContent=`${lbI+1} / ${lbL.length}`;
-  document.querySelectorAll('.lb-thb').forEach((t,i)=>t.classList.toggle('on',i===lbI));
-  const s=document.getElementById('lbStrip'),th=s.querySelectorAll('.lb-thb')[lbI];
+function _lbRender(){
+  const p=lbList[lbI];
+  lbPhoto.style.opacity='0';
+  setTimeout(()=>{lbPhoto.src=p.u;lbPhoto.alt=p.l;lbPhoto.style.opacity='1';},160);
+  document.getElementById('lbLabel').textContent=p.l;
+  document.getElementById('lbCtr').textContent=`${lbI+1} / ${lbList.length}`;
+  document.querySelectorAll('.lf-th').forEach((t,i)=>t.classList.toggle('on',i===lbI));
+  const f=document.getElementById('lbFilm'),th=f.querySelectorAll('.lf-th')[lbI];
   if(th)th.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
 }
-function _buildStrip(){
-  document.getElementById('lbStrip').innerHTML=lbL.map((p,i)=>`<div class="lb-thb${i===lbI?' on':''}" onclick="lbI=${i};_updLb()"><img src="${p.u}" alt="" loading="lazy"/></div>`).join('');
+function _buildFilm(){
+  document.getElementById('lbFilm').innerHTML=lbList.map((p,i)=>`
+    <div class="lf-th${i===lbI?' on':''}" onclick="lbI=${i};_lbRender()">
+      <img src="${p.u.replace('im_w=1440','im_w=240')}" alt="" loading="lazy"/>
+    </div>`).join('');
 }
-document.getElementById('lbX').addEventListener('click',closeLb);
-document.getElementById('lbPrev').addEventListener('click',()=>{lbI=(lbI-1+lbL.length)%lbL.length;_updLb();});
-document.getElementById('lbNext').addEventListener('click',()=>{lbI=(lbI+1)%lbL.length;_updLb();});
+document.getElementById('lbClose').addEventListener('click',closeLb);
+document.getElementById('lbPrev').addEventListener('click',()=>{lbI=(lbI-1+lbList.length)%lbList.length;_lbRender();});
+document.getElementById('lbNext').addEventListener('click',()=>{lbI=(lbI+1)%lbList.length;_lbRender();});
 lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
 document.addEventListener('keydown',e=>{
   if(!lb.classList.contains('open'))return;
   if(e.key==='Escape')closeLb();
-  if(e.key==='ArrowLeft'){lbI=(lbI-1+lbL.length)%lbL.length;_updLb();}
-  if(e.key==='ArrowRight'){lbI=(lbI+1)%lbL.length;_updLb();}
+  if(e.key==='ArrowLeft'){lbI=(lbI-1+lbList.length)%lbList.length;_lbRender();}
+  if(e.key==='ArrowRight'){lbI=(lbI+1)%lbList.length;_lbRender();}
 });
 
-/* HERO SLIDESHOW */
-const slideIdxs=[0,1,2,4,5,6];
-let si=0;
-const bgEl=document.getElementById('heroBg'),dotsEl=document.getElementById('heroDots');
-slideIdxs.forEach((pi,i)=>{
-  const d=document.createElement('div');d.className='hero-slide'+(i===0?' on':'');
-  d.innerHTML=`<img src="${P[pi].u}" alt="${P[pi].l}" loading="${i===0?'eager':'lazy'}"/>`;
-  bgEl.appendChild(d);
+/* ─── HERO SLIDESHOW ─── */
+const HERO_PHOTOS=[0,1,2,3,4,5];
+let si=0,barTimer;
+const reel=document.getElementById('reel'),hdots=document.getElementById('hdots'),hbar=document.getElementById('hbar');
+
+HERO_PHOTOS.forEach((pi,i)=>{
+  const fr=document.createElement('div');fr.className='hero-frame'+(i===0?' on':'');
+  fr.innerHTML=`<img src="${P[pi].u.replace('im_w=1440','im_w=1440')}" alt="${P[pi].l}" loading="${i===0?'eager':'lazy'}"/>`;
+  reel.appendChild(fr);
   const dot=document.createElement('div');dot.className='hdot'+(i===0?' on':'');
-  dot.addEventListener('click',()=>goSlide(i));dotsEl.appendChild(dot);
+  dot.addEventListener('click',()=>goSlide(i));hdots.appendChild(dot);
 });
+
 function goSlide(n){
-  document.querySelectorAll('.hero-slide')[si].classList.remove('on');
+  document.querySelectorAll('.hero-frame')[si].classList.remove('on');
   document.querySelectorAll('.hdot')[si].classList.remove('on');
-  si=(n+slideIdxs.length)%slideIdxs.length;
-  document.querySelectorAll('.hero-slide')[si].classList.add('on');
+  si=(n+HERO_PHOTOS.length)%HERO_PHOTOS.length;
+  document.querySelectorAll('.hero-frame')[si].classList.add('on');
   document.querySelectorAll('.hdot')[si].classList.add('on');
+  hbar.classList.remove('animate');hbar.style.width='0';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{hbar.classList.add('animate');hbar.style.width='100%';}));
 }
+goSlide(0);
 setInterval(()=>goSlide(si+1),5200);
 
-/* HEADER */
-window.addEventListener('scroll',()=>document.getElementById('hd').classList.toggle('solid',scrollY>50),{passive:true});
+/* ─── HEADER SCROLL ─── */
+window.addEventListener('scroll',()=>document.getElementById('hd').classList.toggle('solid',scrollY>60),{passive:true});
 
-/* HERO GALLERY */
-const hg=document.getElementById('hgrid');
-const hgCl=['hg1','hg2','hg3','hg4','hg5','hg6','hg7'];
-[0,1,2,3,4,5,6].forEach((pi,i)=>{
-  const d=document.createElement('div');d.className=`hgi ${hgCl[i]}`;
-  d.innerHTML=`<img src="${P[pi].u}" alt="${P[pi].l}" loading="${i<2?'eager':'lazy'}"/>`+
-    (i===0?`<div class="hgi-cnt">${P.length} photos</div>`:'');
-  d.addEventListener('click',()=>openLb(pi,P));hg.appendChild(d);
+/* ─── MOSAIC ─── */
+const mosaicEl=document.getElementById('mosaic');
+const MOSAIC=[0,1,4,5,3,2,8,12,14];
+MOSAIC.forEach((pi,i)=>{
+  const d=document.createElement('div');d.className='mc';
+  d.innerHTML=`<img src="${P[pi].u.replace('im_w=1440','im_w=960')}" alt="${P[pi].l}" loading="${i<2?'eager':'lazy'}"/>`;
+  if(i===0)d.innerHTML+=`<div class="mc-badge">${P.length} photos haute résolution</div>`;
+  d.addEventListener('click',()=>openLb(pi,P));
+  mosaicEl.appendChild(d);
 });
 
-/* ROOMS */
-const rg=document.getElementById('roomsGrid');
+/* ─── ROOMS ─── */
+const rw=document.getElementById('rooms-wrap');
 ROOMS.forEach(r=>{
+  const roomPhotos=getRoomPhotos(r.id);
+  const mainPhoto=roomPhotos[0]||P[0];
   const div=document.createElement('div');
-  div.className='room';div.id=r.id;div.dataset.tags=r.tags.join(' ');
-  div.innerHTML=`<div class="room-inner">
-  <div>
-    <div class="rm-main" onclick="openLb(${r.imgs[0]},getRoomPhotos('${r.id}'))">
-      <img src="${P[r.imgs[0]].u}" alt="${r.name}" id="${r.id}-main"/>
-      <div class="rm-badges">${r.badges.map(b=>`<span class="bdg bdg-${b.s==='g'?'g':'d'}">${b.t}</span>`).join('')}</div>
+  div.className='room-entry';div.id=r.id;div.dataset.tags=r.tags.join(' ');
+  div.innerHTML=`<div class="re-layout">
+    <div class="re-media">
+      <div class="re-main" onclick="openLb(0,getRoomPhotos('${r.id}'))">
+        <img src="${mainPhoto.u.replace('im_w=1440','im_w=1200')}" alt="${r.name}" id="rmain-${r.id}" loading="lazy"/>
+        <div class="re-bdgs">${r.badges.map(b=>`<span class="bdg bdg-${b.s}">${b.t}</span>`).join('')}</div>
+      </div>
+      <div class="re-thumbs">${roomPhotos.slice(0,5).map((p,ti)=>`
+        <div class="re-th${ti===0?' on':''}" onclick="swRoomImg('${r.id}','${p.u}',this)">
+          <img src="${p.u.replace('im_w=1440','im_w=320')}" alt="" loading="lazy"/>
+        </div>`).join('')}
+      </div>
     </div>
-    <div class="rm-strip">${r.imgs.slice(0,5).map((pi,ti)=>`
-      <div class="rm-thumb${ti===0?' on':''}" onclick="swImg('${r.id}-main','${P[pi].u}',this)">
-        <img src="${P[pi].u}" alt="" loading="lazy"/>
-      </div>`).join('')}
+    <div class="re-info reveal">
+      <div class="re-num">Chambre ${r.no}</div>
+      <h2 class="re-name">${r.name}</h2>
+      <div class="re-sub">${r.sub}</div>
+      <p class="re-desc">${r.desc}</p>
+      <div class="re-specs">${r.specs.map(s=>`
+        <div class="rspec"><div class="rspec-icon">${s.i}</div>
+        <div><span class="rspec-l">${s.l}</span><span class="rspec-v">${s.v}</span></div></div>`).join('')}
+      </div>
+      <div class="re-chips">${r.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
+      <div class="re-ctas">
+        <a href="index.html#calendar" class="btn-book2">Réserver cette chambre</a>
+        <a href="index.html#contact" class="btn-contact">Contact</a>
+      </div>
     </div>
-  </div>
-  <div class="rm-info">
-    <div class="rm-no">Chambre ${r.no}</div>
-    <div class="rm-name">${r.name}</div>
-    <div class="rm-sub">${r.sub}</div>
-    <p class="rm-desc">${r.desc}</p>
-    <div class="rm-specs">${r.specs.map(s=>`
-      <div class="spec"><div class="spec-i">${s.i}</div>
-      <div><span class="spec-l">${s.l}</span><span class="spec-v">${s.v}</span></div></div>`).join('')}
-    </div>
-    <div class="rm-chips">${r.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
-    <div class="rm-acts">
-      <a href="index.html#calendar" class="btn-cta btn-gold">Réserver</a>
-      <a href="index.html#contact" class="btn-cta btn-outline">Contact</a>
-    </div>
-  </div>
-</div>`;
-  rg.appendChild(div);
+  </div>`;
+  rw.appendChild(div);
 });
-function getRoomPhotos(rid){const r=ROOMS.find(x=>x.id===rid);return r?r.imgs.map(i=>P[i]):P;}
-function swImg(id,src,el){
-  const img=document.getElementById(id);
-  if(!img)return;img.style.transition='opacity .18s';img.style.opacity='0';
-  setTimeout(()=>{img.src=src;img.style.opacity='1';},170);
-  el.closest('.rm-strip').querySelectorAll('.rm-thumb').forEach(t=>t.classList.remove('on'));
+
+function swRoomImg(rid,url,el){
+  const img=document.getElementById('rmain-'+rid);
+  if(!img)return;
+  img.style.transition='opacity .2s';img.style.opacity='0';
+  setTimeout(()=>{img.src=url.replace('im_w=1440','im_w=1200');img.style.opacity='1';},180);
+  el.closest('.re-thumbs').querySelectorAll('.re-th').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
 }
 
-/* SPACES */
+/* ─── SPACES ─── */
 const spg=document.getElementById('spgrid');
 SPACES.forEach((s,i)=>{
-  const d=document.createElement('div');d.className='sp-card';
-  d.innerHTML=`<div class="sp-img"><img src="${P[s.pi].u}" alt="${s.t}" loading="lazy"/></div>
-  <div class="sp-body"><h3>${s.t}</h3><p>${s.d}</p>
-  <div class="sp-tags">${s.tags.map(t=>`<span class="stag">${t}</span>`).join('')}</div></div>`;
-  d.addEventListener('click',()=>openLb(s.pi,P));spg.appendChild(d);
+  const d=document.createElement('div');d.className='spc';
+  d.innerHTML=`<div class="spc-img"><img src="${P[s.pi].u.replace('im_w=1440','im_w=960')}" alt="${s.t}" loading="lazy"/></div>
+  <div class="spc-body"><h3>${s.t}</h3><p>${s.d}</p>
+  <div class="spc-tags">${s.tags.map(t=>`<span class="stag">${t}</span>`).join('')}</div></div>`;
+  d.addEventListener('click',()=>openLb(s.pi,P));
+  spg.appendChild(d);
 });
 
-/* MASONRY */
+/* ─── MASONRY GALLERY ─── */
 const gm=document.getElementById('gmasonry');
-let shown=24;
-function buildGal(n){
-  gm.innerHTML='';
-  P.slice(0,n).forEach((p,i)=>{
-    const d=document.createElement('div');d.className='gmi';
-    d.innerHTML=`<img src="${p.u}" alt="${p.l}" loading="lazy"/><div class="gmi-ov"><span>${p.l}</span></div>`;
-    d.addEventListener('click',()=>openLb(i,P));gm.appendChild(d);
-  });
-  document.getElementById('lmw').style.display=n>=P.length?'none':'';
-}
-buildGal(shown);
-document.getElementById('btnLoad').addEventListener('click',()=>{shown=P.length;buildGal(shown);});
+let shown=28;
+/* Curated order: best exterior first, then interior, then rooms */
+const GALLERY_ORDER=[...Array(P.length).keys()].sort((a,b)=>{
+  const cat={exterior:0,interior:1,rooms:2};
+  return (cat[P[a].c]||0)-(cat[P[b].c]||0);
+});
 
-/* FILTER */
+function buildGallery(n){
+  gm.innerHTML='';
+  GALLERY_ORDER.slice(0,n).forEach(pi=>{
+    const d=document.createElement('div');d.className='gmi';
+    d.innerHTML=`<img src="${P[pi].u.replace('im_w=1440','im_w=720')}" alt="${P[pi].l}" loading="lazy"/><div class="gmi-ov"><span>${P[pi].l}</span></div>`;
+    d.addEventListener('click',()=>openLb(GALLERY_ORDER.indexOf(pi),GALLERY_ORDER.slice(0,n).map(i=>P[i])));
+    gm.appendChild(d);
+  });
+  document.getElementById('lw').style.display=n>=P.length?'none':'block';
+}
+buildGallery(shown);
+document.getElementById('btnLoad').addEventListener('click',()=>{shown=P.length;buildGallery(shown);});
+
+/* ─── FILTER ─── */
 document.querySelectorAll('.ftab').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));
     btn.classList.add('on');
     const f=btn.dataset.f;let v=0;
-    document.querySelectorAll('.room').forEach(r=>{
-      const tags=(r.dataset.tags||'').split(' ');
-      const show=f==='all'||tags.includes(f);
+    document.querySelectorAll('.room-entry').forEach(r=>{
+      const show=f==='all'||r.dataset.tags.split(' ').includes(f);
       r.style.display=show?'':'none';if(show)v++;
     });
-    document.getElementById('finfo').textContent=f==='all'?'6 chambres · 81 photos':`${v} chambre${v>1?'s':''} · ${f}`;
+    document.getElementById('fcount').textContent=`${v} chambre${v>1?'s':''} affichée${v>1?'s':''}`;
   });
+});
+
+/* ─── SCROLL REVEAL ─── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ─── CUSTOM CURSOR ─── */
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+function animCursor(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animCursor);}
+animCursor();
+document.querySelectorAll('a,button,.mc,.re-main,.re-th,.spc,.gmi,.lf-th,.lb-arrow').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curR.style.width='52px';curR.style.height='52px';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curR.style.width='36px';curR.style.height='36px';});
 });
 </script>
 </body>
